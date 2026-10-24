@@ -34,36 +34,52 @@
       padding: 20px 10px;
     }
 
-    /* BARRA DE BOTONES DE IDIOMA */
+    /* BARRA SUPERIOR DE IDIOMAS (18 IDIOMAS) */
     .lang-header {
-      margin-bottom: 15px;
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 20px;
     }
 
     .lang-switcher {
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
       background-color: var(--deepblue);
-      padding: 6px 10px;
+      padding: 10px 14px;
       border: 1px solid var(--gold);
-      border-radius: 6px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
     .btn-lang {
-      background: transparent;
-      border: none;
+      background: rgba(225, 205, 145, 0.08);
+      border: 1px solid rgba(176, 140, 84, 0.3);
       color: var(--goldlight);
-      padding: 6px 16px;
+      padding: 5px 10px;
       font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
       border-radius: 4px;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .btn-lang.active, .btn-lang:hover {
+    .btn-lang:hover {
+      background-color: rgba(176, 140, 84, 0.3);
+      border-color: var(--goldlight);
+      transform: translateY(-1px);
+    }
+
+    .btn-lang.active {
       background-color: var(--gold);
       color: var(--deepblue);
+      border-color: var(--goldlight);
+      box-shadow: 0 0 8px rgba(225, 205, 145, 0.5);
     }
 
     /* MARCO ESTILO PERGAMINO */
@@ -98,7 +114,7 @@
       margin-top: 10px;
     }
 
-    /* ESTILO DE LAS CAJAS (TCOLORBOX) */
+    /* ESTILO DE LAS CAJAS */
     .box {
       background-color: var(--cream);
       border: 1px solid var(--gold);
@@ -149,16 +165,36 @@
       .grid-header, .grid-columns, .grid-subcolumns {
         grid-template-columns: 1fr;
       }
+      .btn-lang {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- BOTONES DE CAMBIO DE IDIOMA -->
+  <!-- BARRA DE SELECCIÓN DE 18 IDIOMAS -->
   <div class="lang-header">
     <div class="lang-switcher">
-      <button id="btn-es" class="btn-lang active" onclick="setLanguage('es')">ESPAÑOL</button>
-      <button id="btn-en" class="btn-lang" onclick="setLanguage('en')">ENGLISH</button>
+      <button id="btn-es" class="btn-lang active" onclick="setLanguage('es')">🇪🇸 ES</button>
+      <button id="btn-en" class="btn-lang" onclick="setLanguage('en')">🇬🇧 EN</button>
+      <button id="btn-zh" class="btn-lang" onclick="setLanguage('zh')">🇨🇳 中文</button>
+      <button id="btn-hi" class="btn-lang" onclick="setLanguage('hi')">🇮🇳 हिन्दी</button>
+      <button id="btn-fr" class="btn-lang" onclick="setLanguage('fr')">🇫🇷 FR</button>
+      <button id="btn-pt" class="btn-lang" onclick="setLanguage('pt')">🇵🇹 PT</button>
+      <button id="btn-de" class="btn-lang" onclick="setLanguage('de')">🇩🇪 DE</button>
+      <button id="btn-ar" class="btn-lang" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="btn-bn" class="btn-lang" onclick="setLanguage('bn')">🇧🇩 বাংলা</button>
+      <button id="btn-ru" class="btn-lang" onclick="setLanguage('ru')">🇷🇺 RU</button>
+      <button id="btn-ja" class="btn-lang" onclick="setLanguage('ja')">🇯🇵 日本語</button>
+      <button id="btn-ko" class="btn-lang" onclick="setLanguage('ko')">🇰🇷 한국어</button>
+      <button id="btn-vi" class="btn-lang" onclick="setLanguage('vi')">🇻🇳 VI</button>
+      <button id="btn-it" class="btn-lang" onclick="setLanguage('it')">🇮🇹 IT</button>
+      <button id="btn-pl" class="btn-lang" onclick="setLanguage('pl')">🇵🇱 PL</button>
+      <button id="btn-uk" class="btn-lang" onclick="setLanguage('uk')">🇺🇦 UA</button>
+      <button id="btn-tr" class="btn-lang" onclick="setLanguage('tr')">🇹🇷 TR</button>
+      <button id="btn-tl" class="btn-lang" onclick="setLanguage('tl')">🇵🇭 TL</button>
     </div>
   </div>
 
@@ -214,11 +250,7 @@
       <!-- COLUMNA DERECHA -->
       <div>
         <div class="box" style="text-align: center; margin-bottom: 10px;">
-          <!-- Primera Imagen -->
-          <img src="sofiavsdemiurgo3.jpeg" alt="Sofia vs. El Demiurgo" style="max-width: 100%; height: auto; margin: 0 auto 10px auto; display: block; border-radius: 4px;">
-          
-          <!-- Segunda Imagen -->
-          <img src="TU_SEGUNDA_IMAGEN.jpg" alt="Ilustración Adicional" style="max-width: 100%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
+          <img src="concienciauniversal.jpg" alt="Sofia vs. El Demiurgo" style="max-width: 100%; height: auto; margin: 0 auto 10px auto; display: block; border-radius: 4px;">
 
           <p class="subtitle" style="font-size: 0.85rem;" data-i18n="center_text">
             Lo que la tradición cristiana denomina como el <i>arrebatamiento de la Iglesia</i> constituye, en estricto rigor, un fenómeno de la física de la conciencia: la emancipación definitiva de la prisión del ego (El Universo de la materia). La gnosis del despertar es la facultad inquebrantable de percibir con el corazón para reconocer nuestra chispa divina interior y recuperar, de forma definitiva, la conexión con la plenitud del Uno (el Universo de Luz).
@@ -246,7 +278,7 @@
 
     </div>
 
-    <!-- SECCIÓN DE VIDEO DESTACADO (ANCHO COMPLETO) -->
+    <!-- SECCIÓN DE VIDEO DESTACADO -->
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title">DOCUMENTAL / EL DESPERTAR DE LA CONCIENCIA</h2>
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--gold);">
@@ -261,6 +293,8 @@
       </div>
     </div>
 
+    <img src="sofiavsdemiurgo3.jpg" alt="Ilustración Adicional" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
+
     <!-- CITA FINAL INFERIOR -->
     <div class="box final-quote">
       <p data-i18n="final_quote">
@@ -270,63 +304,36 @@
 
   </div>
 
-  <!-- SCRIPT PARA CAMBIAR DE IDIOMA -->
-  <script>
-    const translations = {
-      es: {
-        condor_title: "Cóndor del Sur",
-        condor_sub: "Pneuma ❤️, intuición y espíritu",
-        main_title: "Cóndor & Águila",
-        main_sub: "El Despertar ✝️",
-        header_desc: "El Proyecto de Divinidad Humana fundamenta el despertar de nuestra naturaleza divina en las enseñanzas de Jesús de Nazaret, quien reveló que el Reino de Dios reside en el interior de cada persona. Bajo esta premisa, el universo observable se comprende como un agujero negro que confina la luz, siendo la gnosis del despertar la clave espiritual para trascenderlo y dar paso a un nuevo cielo y una nueva tierra. De este modo, la Conciencia Primera actualiza el mensaje de revelación del siglo I traduciéndolo al lenguaje científico del siglo XXI, lo que cristaliza el encuentro entre el Cóndor y el Águila como la unión definitiva entre la ciencia y la espiritualidad.",
-        eagle_title: "Águila del Norte",
-        eagle_sub: "Psyche 🧠, ciencia y tecnología",
-        left_title: "LA GRAVEDAD DEL EGO",
-        left_body: "La solución a uno de los pilares fundamentales de la física moderna —la gravedad cuántica— halla su clave en escritos redactados hace casi dos milenios: los evangelios gnósticos.<br><br>La conciencia se manifiesta inexorablemente a través de los estados |UNO❤️⟩ y |EGO🧠⟩, revelando que poseemos un auténtico libre albedrío de percepción, formalizado matemáticamente mediante el producto interno ⟨UNO❤️ | EGO🧠⟩. El no-tiempo ✝️ es una propiedad emergente de la pneuma ❤️, mientras que el espacio-tiempo ┻ es una propiedad emergente de la psyche 🧠.<br><br>En este contexto, el símbolo de la cruz se erige como la llave definitiva para liberar el alma de la prisión material de Yaldabaoth (El Demiurgo). Dado que el ego humano posee masa, despojarnos de él equivale a trascender la materia y el tiempo, lo que confirma de manera irrevocable que albergamos una chispa divina.",
-        sagan_quote: "«La idea de que Dios es un hombre blanco, más grande de lo normal, con una barba flameante, sentado en el cielo y contando la caída de cada gorrión, es ridícula. Pero si por Dios uno entiende el conjunto de leyes físicas que gobiernan el universo, entonces claramente existe tal Dios. Sin embargo, este Dios es emocionalmente insatisfactorio. No tiene mucho sentido rezarle a la ley de gravedad.»",
-        center_text: "Lo que la tradición cristiana denomina como el <i>arrebatamiento de la Iglesia</i> constituye, en estricto rigor, un fenómeno de la física de la conciencia: la emancipación definitiva de la prisión del ego (El Universo de la materia). La gnosis del despertar es la facultad inquebrantable de percibir con el corazón para reconocer nuestra chispa divina interior y recuperar, de forma definitiva, la conexión con la plenitud del Uno (el Universo de Luz).",
-        video_title: "DOCUMENTAL / EL DESPERTAR DE LA CONCIENCIA",
-        universe_light_title: "Universo de Luz",
-        universe_light_sub: "UNO ❤️ NoTiempo ✝️",
-        universe_light_text: "<strong>El Padre y yo, uno somos</strong>: Recordar quién eres mediante la Gnosis —la revelación de que el Padre es el universo y de que la muerte no existe— nos libera de la ignorancia. En el hemisferio derecho reside el plano intemporal y divino, la dimensión de alta frecuencia |999⟩. Allí se encuentra la tierra de la unión y la libertad <i>(La Patria Grande)</i>.",
-        universe_mat_title: "Universo Material",
-        universe_mat_sub: "EGO 🧠 espaciotiempo ┻",
-        universe_mat_text: "El cuerpo humano está compuesto de carbono-12 (6p⁺, 6e⁻, 6n⁰). En el hemisferio izquierdo radica el plano temporal y material, la dimensión de baja frecuencia |666⟩. La fuerza gravitacional del ego y la ignorancia demiúrgica nos arrastran hacia un lugar donde: <i>«la guerra es la paz, la libertad es la esclavitud y la ignorancia es la fuerza»</i> (1984).",
-        final_quote: "«Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará.»"
-      },
-      en: {
-        condor_title: "Condor of the South",
-        condor_sub: "Pneuma ❤️, intuition and spirit",
-        main_title: "Condor & Eagle",
-        main_sub: "The Awakening ✝️",
-        header_desc: "The Human Divinity Project grounds the awakening of our divine nature in the teachings of Jesus of Nazareth, who revealed that the Kingdom of God lies within each person. Under this premise, the observable universe is understood as a black hole confining light, with the gnosis of awakening being the spiritual key to transcend it and usher in a new heaven and a new earth. Thus, First Consciousness updates the 1st-century revelation message, translating it into 21st-century scientific language, crystallizing the meeting between the Condor and the Eagle as the ultimate union between science and spirituality.",
-        eagle_title: "Eagle of the North",
-        eagle_sub: "Psyche 🧠, science and technology",
-        left_title: "THE GRAVITY OF THE EGO",
-        left_body: "The solution to one of the fundamental pillars of modern physics —quantum gravity— finds its key in texts written nearly two millennia ago: the Gnostic gospels.<br><br>Consciousness inexorably manifests through the states |ONE❤️⟩ and |EGO🧠⟩, revealing that we possess genuine free will of perception, mathematically formalized through the inner product ⟨ONE❤️ | EGO🧠⟩. Non-time ✝️ is an emergent property of pneuma ❤️, while spacetime ┻ is an emergent property of psyche 🧠.<br><br>In this context, the symbol of the cross stands as the ultimate key to liberate the soul from the material prison of Yaldabaoth (The Demiurge). Since the human ego possesses mass, shedding it is equivalent to transcending matter and time, irrevocably confirming that we harbor a divine spark.",
-        sagan_quote: "“The idea that God is an oversized, white-skinned male with a flowing beard, sitting in the sky and tallying the fall of every sparrow is ludicrous. But if by God one means the set of physical laws that govern the universe, then clearly there is such a God. This God is emotionally unsatisfying, however... it does not make much sense to pray to the law of gravity.”",
-        center_text: "What Christian tradition calls the <i>rapture of the Church</i> constitutes, strictly speaking, a phenomenon of the physics of consciousness: the definitive emancipation from the prison of the ego (The Material Universe). The gnosis of awakening is the unwavering ability to perceive with the heart in order to recognize our inner divine spark and permanently restore our connection with the fullness of the One (the Universe of Light).",
-        video_title: "DOCUMENTARY / THE AWAKENING OF CONSCIOUSNESS",
-        universe_light_title: "Universe of Light",
-        universe_light_sub: "ONE ❤️ NonTime ✝️",
-        universe_light_text: "<strong>I and the Father are one</strong>: Remembering who you are through Gnosis —the revelation that the Father is the universe and that death does not exist— frees us from ignorance. In the right hemisphere lies the timeless and divine realm, the high-frequency dimension |999⟩. There lies the land of union and freedom <i>(La Patria Grande)</i>.",
-        universe_mat_title: "Material Universe",
-        universe_mat_sub: "EGO 🧠 spacetime ┻",
-        universe_mat_text: "The human body is composed of carbon-12 (6p⁺, 6e⁻, 6n⁰). In the left hemisphere lies the temporal and material realm, the low-frequency dimension |666⟩. The gravitational pull of the ego and demiurgic ignorance drag us into a place where: <i>“war is peace, freedom is slavery, and ignorance is strength”</i> (1984).",
-        final_quote: "“When the Eagle of the North and the Condor of the South fly together in the same sky, Mother Earth will awaken and all humanity will heal.”"
-      }
-    };
+  <!-- ARCHIVO EXTERNO DE TRADUCCIONES -->
+  <script src="translations.js"></script>
 
+  <!-- CONTROLADOR DE CAMBIO DE IDIOMA SEGURO -->
+  <script>
     function setLanguage(lang) {
+      if (typeof translations === 'undefined' || !translations[lang]) {
+        console.warn(`El idioma "${lang}" no está cargado en translations.js`);
+        return;
+      }
+
+      // Actualizar textos respetando fallbacks
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
+        if (translations[lang][key] && translations[lang][key].trim() !== "") {
           el.innerHTML = translations[lang][key];
         }
       });
 
-      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      // Actualizar estado del botón activo
+      document.querySelectorAll('.btn-lang').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${lang}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Dirección de lectura (RTL para Árabe)
+      if (lang === 'ar') {
+        document.body.setAttribute('dir', 'rtl');
+      } else {
+        document.body.removeAttribute('dir');
+      }
     }
   </script>
 </body>
