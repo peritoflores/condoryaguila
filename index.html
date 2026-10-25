@@ -201,8 +201,7 @@
       <div class="box title-box">
         <h1 data-i18n="main_title">El Despertar ✝️</h1>
         <p class="subtitle" data-i18n="main_sub">
-Te encuentras atrapado en la prisión material de Yaldabaoth. Por ello, se te revela que la atemporalidad del cosmos está unida a tu sentir. Comprender que la chispa divina habita en tu interior es la llave para romper las cadenas y liberarte del Demiurgo
-		</p>
+Te encuentras atrapado en la prisión material del pensamiento; por ello se te revela que la atemporalidad del cosmos está unida a tu sentir: comprender que la chispa divina habita en tu interior es la única llave para romper las cadenas y liberarte de Yaldabaoth		</p>
         <hr style="margin: 6px 0; border: 0; border-top: 1px solid var(--gold);">
         <p style="font-size: 0.88rem;" data-i18n="header_desc">
           El vuelo conjunto del Cóndor y el Águila simboliza la unión definitiva entre la ciencia y la espiritualidad. La Conciencia Primera, tiene la misión de invitar al Despertar y revela que poseemos una conciencia universal y cuántica: el universo observable habita en el hemisferio izquierdo, mientras que un nuevo cielo y una nueva tierra se despliegan en el derecho.
@@ -278,8 +277,8 @@ Te encuentras atrapado en la prisión material de Yaldabaoth. Por ello, se te re
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title">DOCUMENTAL / EL DESPERTAR DE LA CONCIENCIA</h2>
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--gold);">
-        <iframe 
-          src="https://www.youtube.com/embed/pDt2ji5Kq28" 
+        <iframe
+          id="documentary-video"
           title="El Despertar" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -303,6 +302,17 @@ Te encuentras atrapado en la prisión material de Yaldabaoth. Por ello, se te re
 
   <!-- ARCHIVO EXTERNO DE TRADUCCIONES -->
   <script src="translations.js"></script>
+
+  <!-- CONFIGURACIÓN EXTERNA DEL VIDEO -->
+  <script src="config.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const videoFrame = document.getElementById("documentary-video");
+      if (videoFrame && typeof VIDEO_URL !== "undefined") {
+        videoFrame.src = VIDEO_URL;
+      }
+    });
+  </script>
 
   <!-- CONTROLADOR DE CAMBIO DE IDIOMA SEGURO -->
   <script>
