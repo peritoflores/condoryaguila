@@ -3,15 +3,14 @@ window.translations.es = {
   condor_title: "Cóndor del Sur",
   condor_sub: "Pneuma ❤️, intuición y espíritu",
   main_title: "El Despertar ✝️",
-  main_sub:
-    "Dios es UNO ❤️ y Yaldabaoth es EGO 🧠: La Conciencia Humana trasciende la materia",
+  main_sub:"Dios es UNO ❤️ y Yaldabaoth es EGO 🧠: La Conciencia Humana trasciende la materia",
   header_desc:
     "La misión de la Conciencia Primera es invitarnos a encender la chispa divina: el universo observable habita en el hemisferio izquierdo, mientras que «un nuevo cielo y una nueva tierra» se despliegan en el derecho. El vuelo conjunto del Cóndor y el Águila simboliza la unión definitiva entre la ciencia y la espiritualidad, integrando las enseñanzas de Jesús de Nazaret del siglo I respaldadas por la ciencia del siglo XXI, las cuales nos permiten liberarnos de las ataduras del mundo material.",
   eagle_title: "Águila del Norte",
   eagle_sub: "Psyche 🧠, ciencia y tecnología",
   left_title: "CONCIENCIA Y GRAVEDAD CUÁNTICA",
   left_body:
-    "Te encuentras atrapado en la ilusión temporal del pensamiento; por ello se te revela que la atemporalidad del cosmos está unida a la divinidad de tu sentir. La solución a uno de los pilares fundamentales de la física moderna —la gravedad cuántica— halla su clave en escritos redactados hace casi dos milenios: los evangelios gnósticos.<br><br><br><br>La conciencia se manifiesta inexorablemente a través de los estados |UNO❤️⟩ y |EGO🧠⟩, revelando que poseemos un auténtico libre albedrío de percepción, formalizado matemáticamente mediante el producto interno ⟨UNO❤️ | EGO🧠⟩. El no-tiempo ✝️ es una propiedad emergente de la pneuma ❤️, mientras que el espacio-tiempo ┻ es una propiedad emergente de la psyche 🧠.<br><br><br><br>Dado que el ego humano posee masa, despojarnos de él equivale a liberarnos de la prisión material de Yaldabaoth.",
+    "Te encuentras atrapado en la ilusión temporal del pensamiento; por ello se te revela que la atemporalidad del cosmos está unida a la divinidad de tu sentir. La solución a uno de los pilares fundamentales de la física moderna —la gravedad cuántica— halla su clave en escritos redactados hace casi dos milenios: los evangelios gnósticos.<br>La conciencia se manifiesta inexorablemente a través de los estados |UNO❤️⟩ y |EGO🧠⟩, revelando que poseemos un auténtico libre albedrío de percepción, formalizado matemáticamente mediante el producto interno ⟨UNO❤️ | EGO🧠⟩. El no-tiempo ✝️ es una propiedad emergente de la pneuma ❤️, mientras que el espacio-tiempo ┻ es una propiedad emergente de la psyche 🧠.<br>Dado que el ego humano posee masa, despojarnos de él equivale a liberarnos de la prisión material de Yaldabaoth.",
   sagan_quote:
     "«La idea de que Dios es un hombre blanco, más grande de lo normal, con una barba flameante, sentado en el cielo y contando la caída de cada gorrión, es ridícula. Pero si por Dios uno entiende el conjunto de leyes físicas que gobiernan el universo, entonces claramente existe tal Dios. Sin embargo, este Dios es emocionalmente insatisfactorio. No tiene mucho sentido rezarle a la ley de gravedad.»",
   universe_light_title: "Universo de Luz",
