@@ -28,6 +28,14 @@ def traducir_comandos_a_emojis(datos):
         r"\cerebro": "🧠",
         r"\cruz": "✝️",
         r"\cruzinvertida": "┻",
+     #   r"\rangle$": "⟩",
+      # Mapeos solicitados para LaTeX:
+        r"\langle": "⟨",
+        r"\rangle": "⟩",
+        r"\vert": "|",
+        r"\mid": "|",
+        r"\&": "&",
+        r"$": "",
     }
 
     datos_procesados = {}
@@ -48,13 +56,17 @@ def limpiar_formato_latex(datos):
     for clave, texto in datos.items():
         texto_modificado = texto
         
-        # Retirar dobles barras invertidas (\\) o saltos de línea de LaTeX
-        texto_modificado = re.sub(r'\\\\+', ' ', texto_modificado)
-        
-        # Retirar la etiqueta \textbf{...} conservando únicamente el texto interior
+        # 1. Retirar las etiquetas de formato conservando únicamente el texto interior
         texto_modificado = re.sub(r'\\textbf\{([^}]*)\}', r'\1', texto_modificado)
+        texto_modificado = re.sub(r'\\text\{([^}]*)\}', r'\1', texto_modificado)
+        texto_modificado = re.sub(r'\\textit\{([^}]*)\}', r'\1', texto_modificado)
+        texto_modificado = re.sub(r'\\enquote\{([^}]*)\}', r'\1', texto_modificado) # Opcional para limpiar URLs
         
-        # Limpieza de espacios múltiples resultantes
+        # 2. Eliminar cualquier barra invertida sobrante (\ o \\)
+        texto_modificado = re.sub(r'\\+', ' ', texto_modificado)
+      
+        
+        # 3. Limpieza de espacios múltiples resultantes
         texto_modificado = re.sub(r'\s+', ' ', texto_modificado).strip()
         
         datos_limpios[clave] = texto_modificado
