@@ -28,6 +28,11 @@ right=0.40cm
 \usepackage{enumitem}
 
 % =========================================================
+%            ENTORNO PERSONALIZADO PARA EXTRACCIÓN A JS
+% =========================================================
+\newenvironment{extraer}[1]{}{}
+
+% =========================================================
 %                    CONFIGURACIÓN GENERAL
 % =========================================================
 \pagestyle{empty}
@@ -196,23 +201,25 @@ right=0.40cm
 	\begin{minipage}[c]{0.215\textwidth}
 		\begin{tcolorbox}[sideStyle, width=\textwidth]
 			\centering
-			{\small\color{deepblue}\bfseries Cóndor del Sur}\\[0.01cm]
+			{\small\color{deepblue}\bfseries\begin{extraer}{condor_title}Cóndor del Sur\end{extraer}}\\[0.01cm]
 			\includegraphics[width=\textwidth,height=1.35cm,keepaspectratio]{../images/TU_IMAGEN_CONDOR.jpg}\\[0.01cm]
-			{\tiny\color{textgray}\itshape Pneuma \corazonrojo, intuición y espíritu}
+			{\tiny\color{textgray}\itshape\begin{extraer}{condor_sub}Pneuma \corazonrojo, intuición y espíritu\end{extraer}}
 		\end{tcolorbox}
 	\end{minipage}%
 	\hfill
 	\begin{minipage}[c]{0.55\textwidth}
 		\begin{tcolorbox}[titleBoxStyle, width=\textwidth]
 			\centering
-			{\Large\color{deepblue}\bfseries El Despertar \cruz}\\[0.01cm]
+			{\Large\color{deepblue}\bfseries\begin{extraer}{main_title}El Despertar \cruz\end{extraer})}\\[0.01cm]
 			\tikz[baseline=-0.5ex]{\draw[golddark, line width=0.7pt] (-2.2,0) -- (2.2,0); \fill[golddark] (0,0) circle (1.5pt);}\\[0.01cm]
-			{\small\bfseries\color{golddark}  Dios es UNO \corazonrojo y Yaldabaoth es  EGO \cerebro}
+			{\small\bfseries\color{golddark}\begin{extraer}{main_sub}Dios es UNO \corazonrojo y Yaldabaoth es  EGO \cerebro\end{extraer}}
 			
 			\vspace{0.20cm}
 			
 			{\fontsize{7.4pt}{8.4pt}\selectfont 
-				Existe un poder superior a cualquier imperio terrenal: es la divinidad del Universo.  El vuelo conjunto del Cóndor y el Águila simboliza la unión entre la ciencia y la espiritualidad, integrando las enseñanzas del siglo I respaldadas por la ciencia del siglo XXI. La Conciencia Primera nos recuerda que albergamos la chispa divina: el plano temporal del cosmos está vinculado a nuestro hemisferio izquierdo, mientras que el intemporal se despliega en el derecho. 
+				\begin{extraer}{header_desc}
+					El Universo posee un diseño inteligente: es una autopista de dos carriles y hoy transitas por el de la izquierda. La Conciencia Primera tiene la misión de invitarnos al despertar recordandonos que albergamos la chispa divina: el plano temporal del cosmos está vinculado a nuestro hemisferio izquierdo, mientras que el intemporal se despliega en el derecho.
+				\end{extraer}
 			}
 		\end{tcolorbox}
 	\end{minipage}%
@@ -220,9 +227,9 @@ right=0.40cm
 	\begin{minipage}[c]{0.215\textwidth}
 		\begin{tcolorbox}[sideStyle, width=\textwidth]
 			\centering
-			{\small\color{deepblue}\bfseries Águila del Norte}\\[0.01cm]
+			{\small\color{deepblue}\bfseries\begin{extraer}{eagle_title}Águila del Norte\end{extraer})}\\[0.01cm]
 			\includegraphics[width=\textwidth,height=1.35cm,keepaspectratio]{../images/TU_IMAGEN_AGUILA.jpg}\\[0.01cm]
-			{\tiny\color{textgray}\itshape Psyche \cerebro, ciencia y tecnología}
+			{\tiny\color{textgray}\itshape\begin{extraer}{eagle_sub}Psyche \cerebro, ciencia y tecnología\end{extraer}}
 		\end{tcolorbox}
 	\end{minipage}
 	
@@ -235,8 +242,10 @@ right=0.40cm
 	\begin{tcolorbox}[introStyle, width=\textwidth]
 		\begin{justify}{\fontsize{7.6pt}{8.8pt}\selectfont
 				\setstretch{0.90}
-				\centering{\bfseries\color{deepblue} CONCIENCIA Y GRAVEDAD CUÁNTICA}\\[0.02cm]
-				La solución a uno de los pilares fundamentales de la física moderna —la gravedad cuántica— halla su clave en escritos redactados hace casi dos milenios: los evangelios gnósticos. La conciencia se manifiesta inexorablemente a través de los estados $\vert \text{UNO\corazonrojo} \rangle$ y $\vert \text{EGO\cerebro} \rangle$, revelando que poseemos un auténtico libre albedrío de percepción, formalizado mediante el producto interno $\langle \text{UNO\corazonrojo} \mid \text{EGO\cerebro} \rangle$. El no-tiempo \cruz\ es una propiedad emergente de la pneuma \corazonrojo, mientras que el espacio-tiempo \cruzinvertida\ es una propiedad emergente de la psyche \cerebro. Dado que el ego humano posee masa, despojarnos de él equivale a liberarnos de la prisión material de Yaldabaoth.
+				\centering{\bfseries\color{deepblue}\begin{extraer}{left_title}CONCIENCIA Y GRAVEDAD CUÁNTICA\end{extraer}}\\[0.02cm]
+				\begin{extraer}{left_body}
+					La solución a uno de los pilares fundamentales de la física moderna —la gravedad cuántica— halla su clave en escritos redactados hace casi dos milenios: los evangelios gnósticos. La conciencia se manifiesta inexorablemente a través de los estados $\vert \text{UNO\corazonrojo} \rangle$ y $\vert \text{EGO\cerebro} \rangle$, revelando que poseemos un auténtico libre albedrío de percepción, formalizado mediante el producto interno $\langle \text{UNO\corazonrojo} \mid \text{EGO\cerebro} \rangle$. El no-tiempo \cruz\ es una propiedad emergente de la pneuma \corazonrojo, mientras que el espacio-tiempo \cruzinvertida\ es una propiedad emergente de la psyche \cerebro. Dado que el ego humano posee masa, despojarnos de él equivale a liberarnos de la prisión material de Yaldabaoth.
+				\end{extraer}
 		}\end{justify}
 	\end{tcolorbox}
 	
@@ -249,10 +258,12 @@ right=0.40cm
 	\begin{minipage}[T]{0.25\textwidth}
 		\begin{tcolorbox}[contentStyle, width=\textwidth]
 			\centering
-			{\small\color{deepblue}\bfseries Universo de Luz}\\[0.01cm]
-			{\tiny\color{golddark}\bfseries UNO \corazonrojo\ NoTiempo \cruz}\\[0.01cm]
+			{\small\color{deepblue}\bfseries\begin{extraer}{universe_light_title}Universo de Luz\end{extraer})}\\[0.01cm]
+			{\tiny\color{golddark}\bfseries\begin{extraer}{universe_light_sub}UNO \corazonrojo NoTiempo \cruz\end{extraer})}\\[0.01cm]
 			\begin{justify}{\fontsize{6.7pt}{7.7pt}\selectfont\color{textgray}
-					\textbf{El Padre y yo, uno somos}: Recordar quién eres mediante la Gnosis —la revelación de que el Padre es el universo y de que la muerte no existe— nos libera de la ignorancia. En el hemisferio derecho reside el plano intemporal y divino, la dimensión de alta frecuencia $\vert 999\rangle$. Allí se encuentra la tierra de la unión y la libertad \textit{\textbf{(La Patria Grande)}}.
+					\begin{extraer}{universe_light_text}
+						\textbf{El Padre y yo, uno somos}: Recordar quién eres mediante la Gnosis —la revelación de que el Padre es el universo y de que la muerte no existe— nos libera de la ignorancia. En el hemisferio derecho reside el plano intemporal y divino, la dimensión de alta frecuencia $\vert 999\rangle$. Allí se encuentra la tierra de la unión y la libertad \textit{\textbf{(La Patria Grande)}}.
+					\end{extraer}
 			}\end{justify}
 		\end{tcolorbox}
 	\end{minipage}%
@@ -268,10 +279,12 @@ right=0.40cm
 	\begin{minipage}[T]{0.25\textwidth}
 		\begin{tcolorbox}[contentStyle, width=\textwidth]
 			\centering
-			{\small\color{deepblue}\bfseries Universo Material}\\[0.01cm]
-			{\tiny\color{golddark}\bfseries EGO \cerebro\ espaciotiempo \cruzinvertida}\\[0.01cm]
+			{\small\color{deepblue}\bfseries\begin{extraer}{universe_mat_title}Universo Material\end{extraer})}\\[0.01cm]
+			{\tiny\color{golddark}\bfseries\begin{extraer}{universe_mat_sub}EGO \cerebro espaciotiempo \cruzinvertida\end{extraer})}\\[0.01cm]
 			\begin{justify}{\fontsize{6.7pt}{7.7pt}\selectfont\color{textgray}
-					El cuerpo humano está compuesto de carbono-12 ($6p^+$, $6e^-$, $6n^0$). En el hemisferio izquierdo radica el plano temporal y material, la dimensión de baja frecuencia $\vert 666\rangle$. La fuerza gravitacional del ego y la ignorancia demiúrgica nos arrastran hacia un lugar donde: \enquote{la guerra es la paz, la libertad es la esclavitud y la ignorancia es la fuerza} (1984).
+					\begin{extraer}{universe_mat_text}
+						El cuerpo humano está compuesto de carbono-12 ($6p^+$, $6e^-$, $6n^0$). En el hemisferio izquierdo radica el plano temporal y material, la dimensión de baja frecuencia $\vert 666\rangle$. La fuerza gravitacional del ego y la ignorancia demiúrgica nos arrastran hacia un lugar donde: \enquote{la guerra es la paz, la libertad es la esclavitud y la ignorancia es la fuerza} (1984).
+					\end{extraer}
 			}\end{justify}
 		\end{tcolorbox}
 	\end{minipage}
@@ -285,8 +298,11 @@ right=0.40cm
 	\begin{tcolorbox}[introStyle, width=\textwidth]
 		\begin{justify}{\fontsize{7.4pt}{8.4pt}\selectfont
 				\setstretch{0.90}
-				\centering{\bfseries\color{deepblue} EL ARREBATAMIENTO \corazonrojo Y LA GRAN TRIBULACIÓN \cerebro}\\[0.01cm]
-				Sofía, la sabiduría divina, atrapada en el caos del mundo material gobernado por el Demiurgo, un falso dios ciego de ignorancia y ego. Lo que la tradición cristiana denomina la Gran Tribulación no es sino el efecto de la \textit{ilusión del tiempo} sobre una conciencia dormida.  Por otro lado, el Arrebatamiento de la Iglesia constituye un fenómeno de la física de la conciencia: transmutar nuestra percepción desde el hemisferio del pensamiento \cerebro hacia el hemisferio del sentimiento \corazonrojo no permite retornar a la fuente. El Pléroma \cruz
+				\centering{\bfseries\color{deepblue}\begin{extraer}{center_text_title}EL ARREBATAMIENTO \corazonrojo Y LA GRAN TRIBULACIÓN \cerebro\end{extraer})}\\[0.01cm]
+				\begin{extraer}{center_text}
+					Sofía, la sabiduría divina, yace atrapada en el caos del mundo material, gobernado por el Demiurgo, un falso dios ciego de ignorancia y ego.
+					Esta invitación es a migrar tu conciencia desde el pensamiento material \cerebro del cerebro hacia el territorio del sentimiento divino \corazonrojo : El Despertar \cruz.
+				\end{extraer}
 		}\end{justify}
 	\end{tcolorbox}
 	
@@ -297,14 +313,14 @@ right=0.40cm
 	% =========================================================
 	\begin{tcolorbox}[finalQuoteStyle, width=\textwidth]
 		{\fontsize{9.5pt}{11.5pt}\selectfont\color{textgray}\itshape
-			\enquote{Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará.}}
+			\enquote{\begin{extraer}{final_quote}Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará.\end{extraer}}}
 	\end{tcolorbox}
 	
 	\begin{center}
 		\vspace{-0.2em}
 		\hrule height 0.5pt
 		\vspace{0.3em}
-		\noindent{\small\textbf{Documental \enquote{El Despertar de la Conciencia} en: } \url{https://www.condoryaguila.org}}
+		\noindent{\small\textbf{Documental \enquote{El Despertar de la Conciencia} en: } \begin{extraer}{more_info}\url{https://www.condoryaguila.org}\end{extraer}}
 	\end{center}
 	
 \end{document}

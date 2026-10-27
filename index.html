@@ -108,11 +108,11 @@
     }
 
     .grid-subcolumns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 25% (1fr), 50% (2fr), 25% (1fr) */
+  gap: 10px;
+  margin-top: 10px;
+}
 
     /* ESTILO DE LAS CAJAS */
     .box {
@@ -216,7 +216,6 @@
     </div>
 
     <!-- BLOQUE PRINCIPAL EN 2 COLUMNAS -->
-    <div class="grid-columns">
       
       <!-- COLUMNA IZQUIERDA -->
       <div>
@@ -226,18 +225,9 @@
         </div>
       </div>
 
-      <!-- COLUMNA DERECHA (IMAGEN LIMPIA INTEGRADA) -->
-      <div>
-        <div class="box" style="text-align: center; margin-bottom: 10px;">
-          <img src="./images/conciencia-universal.jpg" alt="Conciencia Universal Limpia" style="max-width: 100%; height: auto; margin: 0 auto 10px auto; display: block; border-radius: 4px;">
-        </div>
-      </div>  
-    </div>
-
-    <div class="box quote-box">
-      <p data-i18n="sagan_quote"></p>
-      <p style="text-align: right; font-weight: bold; margin-top: 5px;">— Carl Sagan</p>
-    </div>
+      
+    
+    
 
     <div class="grid-subcolumns">
       <div class="box">
@@ -246,6 +236,14 @@
         <p style="font-size: 0.85rem;" data-i18n="universe_light_text"></p>
       </div>
 
+<div class="box">
+      <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
+    
+        <h4 style="text-align: center;" data-i18n="center_text_title"></h4>
+	    <p class="subtitle" style="font-size: 0.85rem; text-align: justify;" data-i18n="center_text"></p>
+    
+	</div>
+
       <div class="box">
         <h3 data-i18n="universe_mat_title"></h3>
         <p class="subtitle" data-i18n="universe_mat_sub"></p>
@@ -253,10 +251,11 @@
       </div>
     </div>
 
-    <div style="margin-top: 15px;">
-      <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
-      <p class="subtitle" style="font-size: 0.85rem; text-align: justify;" data-i18n="center_text"></p>
+    <div class="box quote-box">
+      <p data-i18n="sagan_quote"></p>
+      <p style="text-align: right; font-weight: bold; margin-top: 5px;">— Carl Sagan</p>
     </div>
+	
     
     <!-- SECCIÓN DE VIDEO DESTACADO -->
     <div class="box" style="margin-bottom: 12px; text-align: center;">
