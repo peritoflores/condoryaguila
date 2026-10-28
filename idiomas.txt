@@ -1,13 +1,16 @@
 Tus 7 idiomas iniciales (Base principal)
-Inglés (~1.500 millones de hablantes) 
-Chino Mandarín (~1.100 millones de hablantes) 
-Español (~635 millones de hablantes) 
-Francés (~340 millones de hablantes) 
+Español (~635 millones de hablantes)
 Portugués (~294 millones de hablantes) 
+Inglés (~1.500 millones de hablantes) 
+Francés (~340 millones de hablantes) 
+
+
 Alemán (~180 millones de hablantes) 
+Chino Mandarín (~1.100 millones de hablantes) 
 Coreano (~80 millones de hablantes) 
 
-Los 5 idiomas siguientes (Ampliación masiva)Hindi (~610 millones de hablantes)
+Los 5 idiomas siguientes (Ampliación masiva)
+Hindi (~610 millones de hablantes)
 Árabe (~320 millones de hablantes)
 Bengalí (~275 millones de hablantes)
 Ruso (~255 millones de hablantes)
@@ -20,3 +23,74 @@ Italiano (~75 millones de hablantes)
 Polaco (~45 millones de hablantes)
 Ucraniano (~40 millones de hablantes)
 Tagalo / Filipino (~45 millones de hablantes) (falta)
+
+
+
+por continente  
+
+🌎 América
+Inglés (~1.500 millones de hablantes / ~18.3%) – Con arraigo masivo en Norteamérica (EE. UU., Canadá) y estatus global.
+
+Español (~635 millones de hablantes / ~7.7%) – Con su mayor masa demográfica y cultural en Hispanoamérica.
+
+Francés (~340 millones de hablantes / ~4.1%) – Presente en el continente americano a través de Canadá (Quebec) e Haití (además de Europa y África).
+
+Portugués (~294 millones de hablantes / ~3.6%) – Con su mayor comunidad global concentrada en Sudamérica (Brasil).
+
+🌍 Europa
+Ruso (~255 millones de hablantes / ~3.1%) – Hablado en Europa Oriental y gran parte de Eurasia.
+
+Alemán (~180 millones de hablantes / ~2.2%) – Principalmente en Europa Central (Alemania, Austria, Suiza).
+
+Italiano (~75 millones de hablantes / ~0.9%) – Originario y hablado en el sur de Europa.
+
+Polaco (~45 millones de hablantes / ~0.5%) – Idioma eslavo de Europa Central (Polonia).
+
+Ucraniano (~40 millones de hablantes / ~0.5%) – Idioma oficial de Ucrania en Europa Oriental.
+
+Noruego (~5 millones de hablantes / ~0.1%) – Idioma germánico escandinavo oficial en Noruega, conocido por su alta inteligibilidad mutua con el sueco y el danés.
+
+Danés (~6 millones de hablantes / ~0.1%) – Idioma germánico hablado principalmente en Dinamarca y parte de Groenlandia, clave en la región nórdica.
+
+🌏 Asia
+Chino Mandarín (~1.100 millones de hablantes / ~13.4%) – El gigante demográfico de Asia Oriental.
+
+Hindi (~610 millones de hablantes / ~7.4%) – Una de las lenguas principales del sur de Asia (India).
+
+Árabe (~320 millones de hablantes / ~3.9%) – Idioma fundamental de Oriente Medio y el norte de África.
+
+Bengalí (~275 millones de hablantes / ~3.4%) – Hablado en Bangladés y el este de la India.
+
+Punyabí / Panyabí (~130-150 millones de hablantes / ~1.7%) – Hablado en la región del Punyab (Pakistán e India).
+
+Japonés (~125 millones de hablantes / ~1.5%) – Idioma del archipiélago de Japón en Asia Oriental.
+
+Vietnamita (~100 millones de hablantes / ~1.2%) – Idioma principal del Sudeste Asiático (Vietnam).
+
+Maratí (~99 millones de hablantes / ~1.2%) – Idioma oficial del estado de Maharastra (India), con epicentro en Bombay.
+
+Telugú (~95 millones de hablantes / ~1.2%) – Importante lengua drávida del sur de la India (Andhra Pradesh y Telangana).
+
+Tamil (~85 millones de hablantes / ~1.0%) – Antigua lengua del sur de la India (Tamil Nadu), Sri Lanka y Singapur.
+
+Javanés (~85 millones de hablantes / ~1.0%) – El idioma más hablado de Indonesia, concentrado en la isla de Java.
+
+Turco (~85 millones de hablantes / ~1.0%) – Idioma túrquico que conecta Europa Oriental y Asia Occidental.
+
+Coreano (~80 millones de hablantes / ~1.0%) – Hablado en la península de Corea (Asia Oriental).
+
+Persa / Farsi (~75-110 millones de hablantes / ~1.1%) – Idioma oficial de Irán y variantes (darí) en Afganistán y Tayikistán.
+
+Tagalo / Filipino (~45 millones de hablantes / ~0.5%) – Idioma principal de Filipinas (Sudeste Asiático).
+
+Guyaratí (~60 millones de hablantes / ~0.7%) – Idioma originario del estado de Guyarat en la India, muy vinculado al comercio.
+
+🌍 África
+Suajili (~100-150 millones de hablantes / ~1.5%) – La lengua franca más importante de África Oriental (Tanzania, Kenia, RDC, etc.).
+
+Hausa (~80 millones de hablantes / ~1.0%) – Lengua principal de África Occidental, hablada en Nigeria y Níger.
+
+🌊 Oceanía y Sudeste Insular
+Indonesio (Bahasa Indonesia) (~270-300 millones de hablantes / ~3.5%) – Idioma oficial de Indonesia, perteneciente a la familia austronésica, que sirve como gran puente de comunicación en los archipiélagos del Sudeste Asiático y la macro-región insular del Pacífico.
+
+¡Con estos 30 idiomas cubres prácticamente todos los rincones culturales y geográficos clave del planeta, superando con holgura el 93% de la población mundial!

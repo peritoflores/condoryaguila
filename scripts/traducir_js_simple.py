@@ -2,34 +2,48 @@ import json
 import re
 import os
 from openai import OpenAI
+from idiomas_data import idiomas_destino
 
-# Inicializar el cliente de OpenAI (toma automáticamente la API Key de las variables de entorno)
+
+
+# Inicializar el cliente de OpenAI (toma la API Key de las variables de entorno)
 client = OpenAI()
 
 # =====================================================================
-# ⚙️ ZONA DE CONFIGURACIÓN DE RUTAS
+# ⚙️ ZONA DE CONFIGURACIÓN
 # =====================================================================
-# Ruta de tu archivo 'es.js' de origen (puede ser ruta relativa o absoluta)
-RUTA_ES_JS = "../translations/es.js"  # Ejemplo: "src/i18n/es.js" o "C:/proyectos/es.js"
+# Ruta de tu archivo 'es.js' de origen
+RUTA_ES_JS = "../translations/es.js"  # O pon la ruta relativa como "../translations/es.js"
 
 # Carpeta donde se guardarán los archivos de salida traducidos
-DIRECTORIO_SALIDA = "../translations/"  # Ejemplo: "." (directorio actual) o "src/i18n"
+DIRECTORIO_SALIDA = "../translations/"  # Carpeta actual o una específica como "../translations/"
 
-# Diccionario de idiomas de destino y sus nombres de archivo
-idiomas_destino = {
-    "en": "en.js",
-    "pt": "pt.js",
-    "fr": "fr.js"
-}
+
+
 # =====================================================================
 
+def seleccionar_modelo():
+    """Permite elegir el modelo de OpenAI de forma rápida."""
+    print("=========================================================")
+    print("🤖 SELECCIONA EL MODELO DE OPENAI (JS)")
+    print("=========================================================")
+    print("1. gpt-4o      (Máxima calidad)")
+    print("2. gpt-4o-mini (Más rápido y económico - Recomendado)")
+    print("---------------------------------------------------------")
+    opcion = input("Elige el modelo (1 o 2, por defecto 2): ").strip()
+    return "gpt-4o" if opcion == "1" else "gpt-4o-mini"
+
 def traducir_archivo_js():
-    # 1. Leer el archivo es.js desde la ruta configurada
+    # 1. Seleccionar modelo
+    modelo_elegido = seleccionar_modelo()
+    print(f"\n🚀 Usando modelo: [{modelo_elegido}]")
+
+    # 2. Leer el archivo es.js desde la ruta configurada
     try:
         with open(RUTA_ES_JS, "r", encoding="utf-8") as f:
             contenido = f.read()
     except FileNotFoundError:
-        print(f"❌ Error: No se encontró el archivo '{RUTA_ES_JS}'.")
+        print(f"❌ Error: No se encontró el archivo '{RUTA_ES_JS}'. Verifica la ruta.")
         return
 
     # Extraer el objeto JSON interno dentro de window.translations.es
@@ -40,19 +54,22 @@ def traducir_archivo_js():
 
     translations_es = json.loads(match.group(1))
 
-    # Asegurarse de que el directorio de salida exista (lo crea si no existe)
+    # Asegurarse de que el directorio de salida exista
     os.makedirs(DIRECTORIO_SALIDA, exist_ok=True)
 
-    # 2. Iterar sobre cada idioma para realizar la traducción con OpenAI
-    for lang, filename in idiomas_destino.items():
-        # Combinar el directorio de salida con el nombre del archivo
+    print(f"\n🌐 Iniciando traducción del archivo JS a los 4 idiomas principales...")
+
+    # 3. Iterar sobre los 4 idiomas
+    for code_lang, info in idiomas_destino.items():
+        filename = info["archivo"]
+        nombre_idioma = info["nombre"]
         ruta_salida = os.path.join(DIRECTORIO_SALIDA, filename)
-        
-        print(f"🌐 Traduciendo contenido al idioma [{lang.upper()}] -> Guardando en '{ruta_salida}'...")
+
+        print(f"\n🌐 Traduciendo al [{nombre_idioma.upper()}] -> Guardando en '{ruta_salida}'...")
 
         prompt = f"""
         Eres un traductor experto en localización de software y contenido místico/técnico.
-        Traduce los valores del siguiente diccionario JSON del español al idioma con código '{lang}'.
+        Traduce los valores del siguiente diccionario JSON del español al idioma '{nombre_idioma}' (código '{code_lang}').
 
         REGLAS ESTRICTAS DE TRADUCCIÓN:
         1. NO modifiques las claves del diccionario (ej: 'condor_title', 'main_sub'), traduce únicamente los VALORES.
@@ -66,7 +83,7 @@ def traducir_archivo_js():
 
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",  # O puedes usar "gpt-4o-mini" según prefieras
+                model=modelo_elegido,
                 messages=[
                     {
                         "role": "system", 
@@ -83,17 +100,19 @@ def traducir_archivo_js():
             # Formatear la salida idéntica a tu estructura de es.js
             js_content = (
                 "window.translations = window.translations || {};\n"
-                f"window.translations.{lang} = {json.dumps(translated_dict, ensure_ascii=False, indent=2)};\n"
+                f"window.translations.{code_lang} = {json.dumps(translated_dict, ensure_ascii=False, indent=2)};\n"
             )
 
-            # Guardar el archivo resultante en la ruta de salida configurada
+            # Guardar el archivo resultante en la ruta configurada
             with open(ruta_salida, "w", encoding="utf-8") as out_f:
                 out_f.write(js_content)
 
-            print(f"✅ ¡Archivo '{ruta_salida}' generado con éxito!")
+            print(f"   ✅ ¡'{filename}' generado con éxito!")
 
         except Exception as e:
-            print(f"❌ Error al procesar el idioma {lang}: {e}")
+            print(f"   ❌ Error al procesar {nombre_idioma}: {e}")
+
+    print("\n🎉 ¡Proceso de traducción JS completado con éxito!")
 
 if __name__ == "__main__":
     traducir_archivo_js()
