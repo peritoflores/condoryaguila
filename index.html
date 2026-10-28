@@ -108,11 +108,11 @@
     }
 
     .grid-subcolumns {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* 25% (1fr), 50% (2fr), 25% (1fr) */
-  gap: 10px;
-  margin-top: 10px;
-}
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr; /* 25% (1fr), 50% (2fr), 25% (1fr) */
+      gap: 10px;
+      margin-top: 10px;
+    }
 
     /* ESTILO DE LAS CAJAS */
     .box {
@@ -176,14 +176,39 @@
 </head>
 <body>
 
-  <!-- BARRA DE SELECCIÓN DE IDIOMAS -->
+  <!-- BARRA DE SELECCIÓN DE IDIOMAS (30 IDIOMAS) -->
   <div class="lang-header">
     <div class="lang-switcher">
-      <button id="btn-es" class="btn-lang active" onclick="setLanguage('es')">🇪🇸 ES</button>
+      <button id="btn-es" class="btn-lang" onclick="setLanguage('es')">🇪🇸 ES</button>
       <button id="btn-en" class="btn-lang" onclick="setLanguage('en')">🇬🇧 EN</button>
-      <button id="btn-fr" class="btn-lang" onclick="setLanguage('fr')">🇫🇷 FR</button>
       <button id="btn-pt" class="btn-lang" onclick="setLanguage('pt')">🇵🇹 PT</button>
-
+      <button id="btn-fr" class="btn-lang" onclick="setLanguage('fr')">🇫🇷 FR</button>
+      <button id="btn-de" class="btn-lang" onclick="setLanguage('de')">🇩🇪 DE</button>
+      <button id="btn-ru" class="btn-lang" onclick="setLanguage('ru')">🇷🇺 RU</button>
+      <button id="btn-it" class="btn-lang" onclick="setLanguage('it')">🇮🇹 IT</button>
+      <button id="btn-pl" class="btn-lang" onclick="setLanguage('pl')">🇵🇱 PL</button>
+      <button id="btn-uk" class="btn-lang" onclick="setLanguage('uk')">🇺🇦 UK</button>
+      <button id="btn-no" class="btn-lang" onclick="setLanguage('no')">🇳🇴 NO</button>
+      <button id="btn-da" class="btn-lang" onclick="setLanguage('da')">🇩🇰 DA</button>
+      <button id="btn-zh" class="btn-lang" onclick="setLanguage('zh')">🇨🇳 ZH</button>
+      <button id="btn-hi" class="btn-lang" onclick="setLanguage('hi')">🇮🇳 HI</button>
+      <button id="btn-ar" class="btn-lang" onclick="setLanguage('ar')">🇸🇦 AR</button>
+      <button id="btn-bn" class="btn-lang" onclick="setLanguage('bn')">🇧🇩 BN</button>
+      <button id="btn-pa" class="btn-lang" onclick="setLanguage('pa')">🇮🇳 PA</button>
+      <button id="btn-ja" class="btn-lang" onclick="setLanguage('ja')">🇯🇵 JA</button>
+      <button id="btn-vi" class="btn-lang" onclick="setLanguage('vi')">🇻🇳 VI</button>
+      <button id="btn-mr" class="btn-lang" onclick="setLanguage('mr')">🇮🇳 MR</button>
+      <button id="btn-te" class="btn-lang" onclick="setLanguage('te')">🇮🇳 TE</button>
+      <button id="btn-ta" class="btn-lang" onclick="setLanguage('ta')">🇮🇳 TA</button>
+      <button id="btn-jv" class="btn-lang" onclick="setLanguage('jv')">🇮🇩 JV</button>
+      <button id="btn-tr" class="btn-lang" onclick="setLanguage('tr')">🇹🇷 TR</button>
+      <button id="btn-ko" class="btn-lang" onclick="setLanguage('ko')">🇰🇷 KO</button>
+      <button id="btn-fa" class="btn-lang" onclick="setLanguage('fa')">🇮🇷 FA</button>
+      <button id="btn-tl" class="btn-lang" onclick="setLanguage('tl')">🇵🇭 TL</button>
+      <button id="btn-gu" class="btn-lang" onclick="setLanguage('gu')">🇮🇳 GU</button>
+      <button id="btn-sw" class="btn-lang" onclick="setLanguage('sw')">🇹🇿 SW</button>
+      <button id="btn-ha" class="btn-lang" onclick="setLanguage('ha')">🇳🇬 HA</button>
+      <button id="btn-id" class="btn-lang" onclick="setLanguage('id')">🇮🇩 ID</button>
     </div>
   </div>
 
@@ -217,18 +242,12 @@
     </div>
 
     <!-- BLOQUE PRINCIPAL EN 2 COLUMNAS -->
-      
-      <!-- COLUMNA IZQUIERDA -->
-      <div>
-        <div class="box" style="margin-bottom: 10px;">
-          <h2 style="text-align: center;" data-i18n="left_title"></h2>
-          <p data-i18n="left_body"></p>
-        </div>
+    <div>
+      <div class="box" style="margin-bottom: 10px;">
+        <h2 style="text-align: center;" data-i18n="left_title"></h2>
+        <p data-i18n="left_body"></p>
       </div>
-
-      
-    
-    
+    </div>
 
     <div class="grid-subcolumns">
       <div class="box">
@@ -237,12 +256,10 @@
         <p style="font-size: 0.85rem;" data-i18n="universe_light_text"></p>
       </div>
 
-<div class="box">
-      <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
-    
-	    <p class="subtitle" style="font-size: 0.85rem; text-align: justify;" data-i18n="center_text"></p>
-    
-	</div>
+      <div class="box">
+        <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
+        <p class="subtitle" style="font-size: 0.85rem; text-align: justify;" data-i18n="center_text"></p>
+      </div>
 
       <div class="box">
         <h3 data-i18n="universe_mat_title"></h3>
@@ -256,7 +273,6 @@
       <p style="text-align: right; font-weight: bold; margin-top: 5px;">— Carl Sagan</p>
     </div>
 	
-    
     <!-- SECCIÓN DE VIDEO DESTACADO -->
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title"></h2>
@@ -279,13 +295,37 @@
 
   </div>
 
-  <!-- ARCHIVOS EXTERNOS DE TRADUCCIONES -->
-  <!-- Cada archivo registra su idioma en window.translations -->
+  <!-- ARCHIVOS EXTERNOS DE TRADUCCIONES (30 IDIOMAS) -->
   <script src="./translations/es.js"></script>
   <script src="./translations/en.js"></script>
-  <script src="./translations/fr.js"></script>
   <script src="./translations/pt.js"></script>
-
+  <script src="./translations/fr.js"></script>
+  <script src="./translations/de.js"></script>
+  <script src="./translations/ru.js"></script>
+  <script src="./translations/it.js"></script>
+  <script src="./translations/pl.js"></script>
+  <script src="./translations/uk.js"></script>
+  <script src="./translations/no.js"></script>
+  <script src="./translations/da.js"></script>
+  <script src="./translations/zh.js"></script>
+  <script src="./translations/hi.js"></script>
+  <script src="./translations/ar.js"></script>
+  <script src="./translations/bn.js"></script>
+  <script src="./translations/pa.js"></script>
+  <script src="./translations/ja.js"></script>
+  <script src="./translations/vi.js"></script>
+  <script src="./translations/mr.js"></script>
+  <script src="./translations/te.js"></script>
+  <script src="./translations/ta.js"></script>
+  <script src="./translations/jv.js"></script>
+  <script src="./translations/tr.js"></script>
+  <script src="./translations/ko.js"></script>
+  <script src="./translations/fa.js"></script>
+  <script src="./translations/tl.js"></script>
+  <script src="./translations/gu.js"></script>
+  <script src="./translations/sw.js"></script>
+  <script src="./translations/ha.js"></script>
+  <script src="./translations/id.js"></script>
 
   <!-- CONFIGURACIÓN EXTERNA DEL VIDEO -->
   <script src="config.js"></script>
@@ -298,9 +338,8 @@
     });
   </script>
 
-  <!-- CONTROLADOR DE CAMBIO DE IDIOMA SEGURO -->
+  <!-- CONTROLADOR DE CAMBIO DE IDIOMA Y DETECCIÓN AUTOMÁTICA -->
   <script>
-    // Diccionario global compartido por los cuatro archivos de idioma.
     window.translations = window.translations || {};
 
     function setLanguage(lang) {
@@ -324,17 +363,26 @@
       const activeBtn = document.getElementById(`btn-${lang}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      // Dirección de lectura (RTL para Árabe en caso de que lo actives después)
-      if (lang === 'ar') {
+      // Dirección de lectura (RTL para Árabe, Persa, etc.)
+      if (lang === 'ar' || lang === 'fa') {
         document.body.setAttribute('dir', 'rtl');
       } else {
         document.body.removeAttribute('dir');
       }
     }
 
-    // Al abrir la página, mostrar el idioma español por defecto.
+    // Detección automática del idioma del navegador al cargar la página
     document.addEventListener("DOMContentLoaded", function () {
-      setLanguage("es");
+      let userLang = navigator.language || navigator.userLanguage; // Ej: "en-US", "es-AR", "fr"
+      let shortLang = userLang.split('-')[0]; // Extraer el código principal (ej: "en", "es")
+
+      // Verificar si el idioma detectado existe en las traducciones cargadas
+      if (window.translations[shortLang]) {
+        setLanguage(shortLang);
+      } else {
+        // Fallback por defecto si el navegador usa un idioma no incluido
+        setLanguage("es");
+      }
     });
   </script>
 </body>
