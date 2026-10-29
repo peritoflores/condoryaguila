@@ -109,7 +109,7 @@
 
     .grid-subcolumns {
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr; /* 25% (1fr), 50% (2fr), 25% (1fr) */
+      grid-template-columns: 1fr 2fr 1fr;
       gap: 10px;
       margin-top: 10px;
     }
@@ -161,7 +161,6 @@
       text-align: justify;
     }
 
-    /* ADAPTACIÓN A MÓVILES */
     @media (max-width: 800px) {
       .grid-header, .grid-columns, .grid-subcolumns {
         grid-template-columns: 1fr;
@@ -171,44 +170,14 @@
         padding: 4px 8px;
       }
     }
-	
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE SELECCIÓN DE IDIOMAS (30 IDIOMAS) -->
+  <!-- BARRA DE SELECCIÓN DE IDIOMAS DINÁMICA -->
   <div class="lang-header">
-    <div class="lang-switcher">
-      <button id="btn-es" class="btn-lang" onclick="setLanguage('es')">🇪🇸 ES</button>
-      <button id="btn-en" class="btn-lang" onclick="setLanguage('en')">🇬🇧 EN</button>
-      <button id="btn-pt" class="btn-lang" onclick="setLanguage('pt')">🇵🇹 PT</button>
-      <button id="btn-fr" class="btn-lang" onclick="setLanguage('fr')">🇫🇷 FR</button>
-      <button id="btn-de" class="btn-lang" onclick="setLanguage('de')">🇩🇪 DE</button>
-      <button id="btn-ru" class="btn-lang" onclick="setLanguage('ru')">🇷🇺 RU</button>
-      <button id="btn-it" class="btn-lang" onclick="setLanguage('it')">🇮🇹 IT</button>
-      <button id="btn-pl" class="btn-lang" onclick="setLanguage('pl')">🇵🇱 PL</button>
-      <button id="btn-uk" class="btn-lang" onclick="setLanguage('uk')">🇺🇦 UK</button>
-      <button id="btn-no" class="btn-lang" onclick="setLanguage('no')">🇳🇴 NO</button>
-      <button id="btn-da" class="btn-lang" onclick="setLanguage('da')">🇩🇰 DA</button>
-      <button id="btn-zh" class="btn-lang" onclick="setLanguage('zh')">🇨🇳 ZH</button>
-      <button id="btn-hi" class="btn-lang" onclick="setLanguage('hi')">🇮🇳 HI</button>
-      <button id="btn-ar" class="btn-lang" onclick="setLanguage('ar')">🇸🇦 AR</button>
-      <button id="btn-bn" class="btn-lang" onclick="setLanguage('bn')">🇧🇩 BN</button>
-      <button id="btn-pa" class="btn-lang" onclick="setLanguage('pa')">🇮🇳 PA</button>
-      <button id="btn-ja" class="btn-lang" onclick="setLanguage('ja')">🇯🇵 JA</button>
-      <button id="btn-vi" class="btn-lang" onclick="setLanguage('vi')">🇻🇳 VI</button>
-      <button id="btn-mr" class="btn-lang" onclick="setLanguage('mr')">🇮🇳 MR</button>
-      <button id="btn-te" class="btn-lang" onclick="setLanguage('te')">🇮🇳 TE</button>
-      <button id="btn-ta" class="btn-lang" onclick="setLanguage('ta')">🇮🇳 TA</button>
-      <button id="btn-jv" class="btn-lang" onclick="setLanguage('jv')">🇮🇩 JV</button>
-      <button id="btn-tr" class="btn-lang" onclick="setLanguage('tr')">🇹🇷 TR</button>
-      <button id="btn-ko" class="btn-lang" onclick="setLanguage('ko')">🇰🇷 KO</button>
-      <button id="btn-fa" class="btn-lang" onclick="setLanguage('fa')">🇮🇷 FA</button>
-      <button id="btn-tl" class="btn-lang" onclick="setLanguage('tl')">🇵🇭 TL</button>
-      <button id="btn-gu" class="btn-lang" onclick="setLanguage('gu')">🇮🇳 GU</button>
-      <button id="btn-sw" class="btn-lang" onclick="setLanguage('sw')">🇹🇿 SW</button>
-      <button id="btn-ha" class="btn-lang" onclick="setLanguage('ha')">🇳🇬 HA</button>
-      <button id="btn-id" class="btn-lang" onclick="setLanguage('id')">🇮🇩 ID</button>
+    <div id="lang-switcher" class="lang-switcher">
+      <!-- Los botones se cargan dinámicamente según los archivos JSON existentes -->
     </div>
   </div>
 
@@ -217,23 +186,19 @@
 
     <!-- CABECERA SUPERIOR -->
     <div class="grid-header">
-      <!-- 1. Cóndor del Sur -->
       <div class="box" style="text-align: center;">
         <h3 data-i18n="condor_title"></h3>
         <img src="./images/TU_IMAGEN_CONDOR.jpg" alt="Condor" style="max-width: 150px; height: auto; margin: 0 auto 15px auto; display: block;">
         <p class="subtitle" data-i18n="condor_sub"></p>
       </div>
 
-      <!-- 2. Título Central -->
       <div class="box title-box">
         <h1 data-i18n="main_title"></h1>
         <p class="subtitle" style="text-align: center;" data-i18n="main_sub"></p>
-
         <hr style="margin: 6px 0; border: 0; border-top: 1px solid var(--gold);">
         <p style="font-size: 0.88rem;" data-i18n="header_desc"></p>
       </div>     
      
-      <!-- 3. Águila del Norte -->
       <div class="box" style="text-align: center;">
         <h3 data-i18n="eagle_title"></h3>
         <img src="./images/TU_IMAGEN_AGUILA.jpg" alt="Aguila" style="max-width: 150px; height: auto; margin: 0 auto 15px auto; display: block;">
@@ -241,7 +206,6 @@
       </div>
     </div>
 
-    <!-- BLOQUE PRINCIPAL EN 2 COLUMNAS -->
     <div>
       <div class="box" style="margin-bottom: 10px;">
         <h2 style="text-align: center;" data-i18n="left_title"></h2>
@@ -257,7 +221,7 @@
       </div>
 
       <div class="box">
-        <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 80%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
+        <img src="./images/sofiavsdemiurgo3.jpg" alt="SofiavsDemiurgo" style="max-width: 90%; height: auto; margin: 0 auto 15px auto; display: block; border-radius: 4px;">
         <p class="subtitle" style="font-size: 0.85rem; text-align: justify;" data-i18n="center_text"></p>
       </div>
 
@@ -273,7 +237,6 @@
       <p style="text-align: right; font-weight: bold; margin-top: 5px;">— Carl Sagan</p>
     </div>
 	
-    <!-- SECCIÓN DE VIDEO DESTACADO -->
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title"></h2>
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--gold);">
@@ -288,44 +251,11 @@
       </div>
     </div>
 
-    <!-- CITA FINAL INFERIOR -->
     <div class="box final-quote">
       <p data-i18n="final_quote"></p>
     </div>
 
   </div>
-
-  <!-- ARCHIVOS EXTERNOS DE TRADUCCIONES (30 IDIOMAS) -->
-  <script src="./translations/es.js"></script>
-  <script src="./translations/en.js"></script>
-  <script src="./translations/pt.js"></script>
-  <script src="./translations/fr.js"></script>
-  <script src="./translations/de.js"></script>
-  <script src="./translations/ru.js"></script>
-  <script src="./translations/it.js"></script>
-  <script src="./translations/pl.js"></script>
-  <script src="./translations/uk.js"></script>
-  <script src="./translations/no.js"></script>
-  <script src="./translations/da.js"></script>
-  <script src="./translations/zh.js"></script>
-  <script src="./translations/hi.js"></script>
-  <script src="./translations/ar.js"></script>
-  <script src="./translations/bn.js"></script>
-  <script src="./translations/pa.js"></script>
-  <script src="./translations/ja.js"></script>
-  <script src="./translations/vi.js"></script>
-  <script src="./translations/mr.js"></script>
-  <script src="./translations/te.js"></script>
-  <script src="./translations/ta.js"></script>
-  <script src="./translations/jv.js"></script>
-  <script src="./translations/tr.js"></script>
-  <script src="./translations/ko.js"></script>
-  <script src="./translations/fa.js"></script>
-  <script src="./translations/tl.js"></script>
-  <script src="./translations/gu.js"></script>
-  <script src="./translations/sw.js"></script>
-  <script src="./translations/ha.js"></script>
-  <script src="./translations/id.js"></script>
 
   <!-- CONFIGURACIÓN EXTERNA DEL VIDEO -->
   <script src="config.js"></script>
@@ -338,18 +268,24 @@
     });
   </script>
 
-  <!-- CONTROLADOR DE CAMBIO DE IDIOMA Y DETECCIÓN AUTOMÁTICA -->
+  <!-- CARGA DINÁMICA DESDE index_data.json Y VERIFICACIÓN DE ARCHIVOS JSON -->
   <script>
-    window.translations = window.translations || {};
+    const translations = {};
+    let currentLang = "es";
 
-    function setLanguage(lang) {
-      const dictionary = window.translations[lang];
-      if (!dictionary) {
-        console.warn(`El idioma "${lang}" no está cargado en ./translations/${lang}.js`);
-        return;
+    async function applyLanguage(lang) {
+      if (!translations[lang]) {
+        try {
+          const response = await fetch(`./translations/${lang}.json`);
+          if (!response.ok) return;
+          translations[lang] = await response.json();
+        } catch (error) {
+          console.error(`No se pudo cargar la traducción para ${lang}`, error);
+          return;
+        }
       }
 
-      // Actualizar textos respetando fallbacks.
+      const dictionary = translations[lang];
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const value = dictionary[key];
@@ -358,32 +294,69 @@
         }
       });
 
-      // Actualizar estado del botón activo
       document.querySelectorAll('.btn-lang').forEach(btn => btn.classList.remove('active'));
       const activeBtn = document.getElementById(`btn-${lang}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      // Dirección de lectura (RTL para Árabe, Persa, etc.)
       if (lang === 'ar' || lang === 'fa') {
         document.body.setAttribute('dir', 'rtl');
       } else {
         document.body.removeAttribute('dir');
       }
+      currentLang = lang;
     }
 
-    // Detección automática del idioma del navegador al cargar la página
-    document.addEventListener("DOMContentLoaded", function () {
-      let userLang = navigator.language || navigator.userLanguage; // Ej: "en-US", "es-AR", "fr"
-      let shortLang = userLang.split('-')[0]; // Extraer el código principal (ej: "en", "es")
+    async function initLanguages() {
+      const switcher = document.getElementById('lang-switcher');
+      switcher.innerHTML = "";
 
-      // Verificar si el idioma detectado existe en las traducciones cargadas
-      if (window.translations[shortLang]) {
-        setLanguage(shortLang);
-      } else {
-        // Fallback por defecto si el navegador usa un idioma no incluido
-        setLanguage("es");
+      try {
+        // Carga el archivo index_data.json desde la raíz
+        const res = await fetch('./idiomas_data.json');
+        if (!res.ok) throw new Error("No se pudo cargar index_data.json");
+        const idiomasData = await res.json();
+
+        // Recorre los idiomas definidos y valida si su archivo .json existe físicamente
+        for (const [code, info] of Object.entries(idiomasData)) {
+          try {
+            const testRes = await fetch(`./translations/${code}.json`, { method: 'HEAD' });
+            if (testRes.ok) {
+              const btn = document.createElement('button');
+              btn.id = `btn-${code}`;
+              btn.className = 'btn-lang';
+              btn.onclick = () => applyLanguage(code);
+              
+              const nombre = info.nombre || code.toUpperCase();
+              btn.innerHTML = `${code.toUpperCase()} - ${nombre}`;
+              switcher.appendChild(btn);
+            }
+          } catch (e) {
+            // Si el archivo no existe o falla la petición, se omite el botón
+          }
+        }
+
+        // Selección automática según el idioma del navegador o por defecto 'es'
+        let userLang = navigator.language || navigator.userLanguage;
+        let shortLang = userLang.split('-')[0];
+
+        if (document.getElementById(`btn-${shortLang}`)) {
+          applyLanguage(shortLang);
+        } else if (document.getElementById(`btn-es`)) {
+          applyLanguage('es');
+        } else {
+          const firstBtn = switcher.querySelector('.btn-lang');
+          if (firstBtn) {
+            const firstCode = firstBtn.id.replace('btn-', '');
+            applyLanguage(firstCode);
+          }
+        }
+
+      } catch (err) {
+        console.error("Error al inicializar los idiomas:", err);
       }
-    });
+    }
+
+    document.addEventListener("DOMContentLoaded", initLanguages);
   </script>
 </body>
 </html>
