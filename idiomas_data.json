@@ -5,7 +5,9 @@
         "continente": "América / Global",
         "hablantes": "~1.500 millones",
         "porcentaje_poblacion": "~18.3%",
-        "descripcion": "Con arraigo masivo en Norteamérica (EE. UU., Canadá) y estatus global."
+        "descripcion": "Con arraigo masivo en Norteamérica (EE. UU., Canadá) y estatus global.",
+        "translated": true,
+        "srt": false
     },
     "pt": {
         "archivo": "pt.json",
@@ -13,7 +15,9 @@
         "continente": "América / Europa / África",
         "hablantes": "~294 millones",
         "porcentaje_poblacion": "~3.6%",
-        "descripcion": "Con su mayor comunidad global concentrada en Sudamérica (Brasil)."
+        "descripcion": "Con su mayor comunidad global concentrada en Sudamérica (Brasil).",
+        "translated": true,
+        "srt": false
     },
     "fr": {
         "archivo": "fr.json",
@@ -21,7 +25,9 @@
         "continente": "América / Europa / África",
         "hablantes": "~340 millones",
         "porcentaje_poblacion": "~4.1%",
-        "descripcion": "Presente en el continente americano a través de Canadá (Quebec) e Haití (además de Europa y África)."
+        "descripcion": "Presente en el continente americano a través de Canadá (Quebec) e Haití (además de Europa y África).",
+        "translated": true,
+        "srt": false
     },
     "de": {
         "archivo": "de.json",
@@ -29,7 +35,9 @@
         "continente": "Europa",
         "hablantes": "~180 millones",
         "porcentaje_poblacion": "~2.2%",
-        "descripcion": "Principalmente en Europa Central (Alemania, Austria, Suiza)."
+        "descripcion": "Principalmente en Europa Central (Alemania, Austria, Suiza).",
+        "translated": true,
+        "srt": false
     },
     "es": {
         "archivo": "es.json",
@@ -37,7 +45,9 @@
         "continente": "América / Europa",
         "hablantes": "~635 millones",
         "porcentaje_poblacion": "~7.7%",
-        "descripcion": "Con su mayor masa demográfica y cultural en Hispanoamérica."
+        "descripcion": "Con su mayor masa demográfica y cultural en Hispanoamérica.",
+        "translated": true,
+        "srt": false
     },
     "ru": {
         "archivo": "ru.json",
@@ -45,7 +55,9 @@
         "continente": "Europa",
         "hablantes": "~255 millones",
         "porcentaje_poblacion": "~3.1%",
-        "descripcion": "Hablado en Europa Oriental y gran parte de Eurasia."
+        "descripcion": "Hablado en Europa Oriental y gran parte de Eurasia.",
+        "translated": false,
+        "srt": false
     },
     "it": {
         "archivo": "it.json",
@@ -53,7 +65,9 @@
         "continente": "Europa",
         "hablantes": "~75 millones",
         "porcentaje_poblacion": "~0.9%",
-        "descripcion": "Originario y hablado en el sur de Europa."
+        "descripcion": "Originario y hablado en el sur de Europa.",
+        "translated": true,
+        "srt": false
     },
     "pl": {
         "archivo": "pl.json",
@@ -61,7 +75,9 @@
         "continente": "Europa",
         "hablantes": "~45 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma eslavo de Europa Central (Polonia)."
+        "descripcion": "Idioma eslavo de Europa Central (Polonia).",
+        "translated": false,
+        "srt": false
     },
     "uk": {
         "archivo": "uk.json",
@@ -69,7 +85,9 @@
         "continente": "Europa",
         "hablantes": "~40 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma oficial de Ucrania en Europa Oriental."
+        "descripcion": "Idioma oficial de Ucrania en Europa Oriental.",
+        "translated": false,
+        "srt": false
     },
     "no": {
         "archivo": "no.json",
@@ -77,7 +95,9 @@
         "continente": "Europa",
         "hablantes": "~5 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma germánico escandinavo oficial en Noruega, conocido por su alta inteligibilidad mutua con el sueco y el danés."
+        "descripcion": "Idioma germánico escandinavo oficial en Noruega, conocido por su alta inteligibilidad mutua con el sueco y el danés.",
+        "translated": false,
+        "srt": false
     },
     "da": {
         "archivo": "da.json",
@@ -85,7 +105,9 @@
         "continente": "Europa",
         "hablantes": "~6 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma germánico hablado principalmente en Dinamarca y parte de Groenlandia, clave en la región nórdica."
+        "descripcion": "Idioma germánico hablado principalmente en Dinamarca y parte de Groenlandia, clave en la región nórdica.",
+        "translated": false,
+        "srt": false
     },
     "zh": {
         "archivo": "zh.json",
@@ -93,7 +115,9 @@
         "continente": "Asia",
         "hablantes": "~1.100 millones",
         "porcentaje_poblacion": "~13.4%",
-        "descripcion": "El gigante demográfico de Asia Oriental."
+        "descripcion": "El gigante demográfico de Asia Oriental.",
+        "translated": false,
+        "srt": false
     },
     "hi": {
         "archivo": "hi.json",
@@ -101,7 +125,9 @@
         "continente": "Asia",
         "hablantes": "~610 millones",
         "porcentaje_poblacion": "~7.4%",
-        "descripcion": "Una de las lenguas principales del sur de Asia (India)."
+        "descripcion": "Una de las lenguas principales del sur de Asia (India).",
+        "translated": false,
+        "srt": false
     },
     "ar": {
         "archivo": "ar.json",
@@ -109,7 +135,9 @@
         "continente": "Asia / África",
         "hablantes": "~320 millones",
         "porcentaje_poblacion": "~3.9%",
-        "descripcion": "Idioma fundamental de Oriente Medio y el norte de África."
+        "descripcion": "Idioma fundamental de Oriente Medio y el norte de África.",
+        "translated": true,
+        "srt": false
     },
     "bn": {
         "archivo": "bn.json",
@@ -117,7 +145,9 @@
         "continente": "Asia",
         "hablantes": "~275 millones",
         "porcentaje_poblacion": "~3.4%",
-        "descripcion": "Hablado en Bangladés y el este de la India."
+        "descripcion": "Hablado en Bangladés y el este de la India.",
+        "translated": false,
+        "srt": false
     },
     "pa": {
         "archivo": "pa.json",
@@ -125,7 +155,9 @@
         "continente": "Asia",
         "hablantes": "~130-150 millones",
         "porcentaje_poblacion": "~1.7%",
-        "descripcion": "Hablado en la región del Punyab (Pakistán e India)."
+        "descripcion": "Hablado en la región del Punyab (Pakistán e India).",
+        "translated": false,
+        "srt": false
     },
     "ja": {
         "archivo": "ja.json",
@@ -133,7 +165,9 @@
         "continente": "Asia",
         "hablantes": "~125 millones",
         "porcentaje_poblacion": "~1.5%",
-        "descripcion": "Idioma del archipiélago de Japón en Asia Oriental."
+        "descripcion": "Idioma del archipiélago de Japón en Asia Oriental.",
+        "translated": false,
+        "srt": false
     },
     "vi": {
         "archivo": "vi.json",
@@ -141,7 +175,9 @@
         "continente": "Asia",
         "hablantes": "~100 millones",
         "porcentaje_poblacion": "~1.2%",
-        "descripcion": "Idioma principal del Sudeste Asiático (Vietnam)."
+        "descripcion": "Idioma principal del Sudeste Asiático (Vietnam).",
+        "translated": false,
+        "srt": false
     },
     "mr": {
         "archivo": "mr.json",
@@ -149,7 +185,9 @@
         "continente": "Asia",
         "hablantes": "~99 millones",
         "porcentaje_poblacion": "~1.2%",
-        "descripcion": "Idioma oficial del estado de Maharastra (India), con epicentro en Bombay."
+        "descripcion": "Idioma oficial del estado de Maharastra (India), con epicentro en Bombay.",
+        "translated": false,
+        "srt": false
     },
     "te": {
         "archivo": "te.json",
@@ -157,7 +195,9 @@
         "continente": "Asia",
         "hablantes": "~95 millones",
         "porcentaje_poblacion": "~1.2%",
-        "descripcion": "Importante lengua drávida del sur de la India (Andhra Pradesh y Telangana)."
+        "descripcion": "Importante lengua drávida del sur de la India (Andhra Pradesh y Telangana).",
+        "translated": false,
+        "srt": false
     },
     "ta": {
         "archivo": "ta.json",
@@ -165,7 +205,9 @@
         "continente": "Asia",
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
-        "descripcion": "Antigua lengua del sur de la India (Tamil Nadu), Sri Lanka y Singapur."
+        "descripcion": "Antigua lengua del sur de la India (Tamil Nadu), Sri Lanka y Singapur.",
+        "translated": false,
+        "srt": false
     },
     "jv": {
         "archivo": "jv.json",
@@ -173,7 +215,9 @@
         "continente": "Asia",
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
-        "descripcion": "El idioma más hablado de Indonesia, concentrado en la isla de Java."
+        "descripcion": "El idioma más hablado de Indonesia, concentrado en la isla de Java.",
+        "translated": false,
+        "srt": false
     },
     "tr": {
         "archivo": "tr.json",
@@ -181,7 +225,9 @@
         "continente": "Asia / Europa",
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
-        "descripcion": "Idioma túrquico que conecta Europa Oriental y Asia Occidental."
+        "descripcion": "Idioma túrquico que conecta Europa Oriental y Asia Occidental.",
+        "translated": false,
+        "srt": false
     },
     "ko": {
         "archivo": "ko.json",
@@ -189,7 +235,9 @@
         "continente": "Asia",
         "hablantes": "~80 millones",
         "porcentaje_poblacion": "~1.0%",
-        "descripcion": "Hablado en la península de Corea (Asia Oriental)."
+        "descripcion": "Hablado en la península de Corea (Asia Oriental).",
+        "translated": false,
+        "srt": false
     },
     "fa": {
         "archivo": "fa.json",
@@ -197,7 +245,9 @@
         "continente": "Asia",
         "hablantes": "~75-110 millones",
         "porcentaje_poblacion": "~1.1%",
-        "descripcion": "Idioma oficial de Irán y variantes (darí) en Afganistán y Tayikistán."
+        "descripcion": "Idioma oficial de Irán y variantes (darí) en Afganistán y Tayikistán.",
+        "translated": false,
+        "srt": false
     },
     "tl": {
         "archivo": "tl.json",
@@ -205,7 +255,9 @@
         "continente": "Asia",
         "hablantes": "~45 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma principal de Filipinas (Sudeste Asiático)."
+        "descripcion": "Idioma principal de Filipinas (Sudeste Asiático).",
+        "translated": false,
+        "srt": false
     },
     "gu": {
         "archivo": "gu.json",
@@ -213,7 +265,9 @@
         "continente": "Asia",
         "hablantes": "~60 millones",
         "porcentaje_poblacion": "~0.7%",
-        "descripcion": "Idioma originario del estado de Guyarat en la India, muy vinculado al comercio."
+        "descripcion": "Idioma originario del estado de Guyarat en la India, muy vinculado al comercio.",
+        "translated": false,
+        "srt": false
     },
     "sw": {
         "archivo": "sw.json",
@@ -221,7 +275,9 @@
         "continente": "África",
         "hablantes": "~100-150 millones",
         "porcentaje_poblacion": "~1.5%",
-        "descripcion": "La lengua franca más importante de África Oriental (Tanzania, Kenia, RDC, etc.)."
+        "descripcion": "La lengua franca más importante de África Oriental (Tanzania, Kenia, RDC, etc.).",
+        "translated": false,
+        "srt": false
     },
     "ha": {
         "archivo": "ha.json",
@@ -229,7 +285,9 @@
         "continente": "África",
         "hablantes": "~80 millones",
         "porcentaje_poblacion": "~1.0%",
-        "descripcion": "Lengua principal de África Occidental, hablada en Nigeria y Níger."
+        "descripcion": "Lengua principal de África Occidental, hablada en Nigeria y Níger.",
+        "translated": false,
+        "srt": false
     },
     "id": {
         "archivo": "id.json",
@@ -237,7 +295,9 @@
         "continente": "Oceanía / Sudeste Insular",
         "hablantes": "~270-300 millones",
         "porcentaje_poblacion": "~3.5%",
-        "descripcion": "Idioma oficial de Indonesia, perteneciente a la familia austronésica, que sirve como gran puente de comunicación en los archipiélagos del Sudeste Asiático y la macro-región insular del Pacífico."
+        "descripcion": "Idioma oficial de Indonesia, perteneciente a la familia austronésica, que sirve como gran puente de comunicación en los archipiélagos del Sudeste Asiático y la macro-región insular del Pacífico.",
+        "translated": false,
+        "srt": false
     },
     "ur": {
         "archivo": "ur.json",
@@ -245,7 +305,9 @@
         "continente": "Asia",
         "hablantes": "~230 millones",
         "porcentaje_poblacion": "~2.8%",
-        "descripcion": "Idioma oficial de Pakistán y ampliamente hablado en el norte de la India."
+        "descripcion": "Idioma oficial de Pakistán y ampliamente hablado en el norte de la India.",
+        "translated": false,
+        "srt": false
     },
     "my": {
         "archivo": "my.json",
@@ -253,7 +315,9 @@
         "continente": "Asia",
         "hablantes": "~43 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma oficial de Myanmar (Birmania) en el Sudeste Asiático."
+        "descripcion": "Idioma oficial de Myanmar (Birmania) en el Sudeste Asiático.",
+        "translated": false,
+        "srt": false
     },
     "th": {
         "archivo": "th.json",
@@ -261,7 +325,9 @@
         "continente": "Asia",
         "hablantes": "~70 millones",
         "porcentaje_poblacion": "~0.9%",
-        "descripcion": "Idioma oficial y lengua nacional de Tailandia."
+        "descripcion": "Idioma oficial y lengua nacional de Tailandia.",
+        "translated": false,
+        "srt": false
     },
     "uz": {
         "archivo": "uz.json",
@@ -269,7 +335,9 @@
         "continente": "Asia",
         "hablantes": "~35-40 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma oficial de Uzbekistán y principal lengua de Asia Central."
+        "descripcion": "Idioma oficial de Uzbekistán y principal lengua de Asia Central.",
+        "translated": false,
+        "srt": false
     },
     "yo": {
         "archivo": "yo.json",
@@ -277,7 +345,9 @@
         "continente": "África",
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
-        "descripcion": "Gran lengua de África Occidental hablada en Nigeria, Benín y Togo."
+        "descripcion": "Gran lengua de África Occidental hablada en Nigeria, Benín y Togo.",
+        "translated": false,
+        "srt": false
     },
     "ig": {
         "archivo": "ig.json",
@@ -285,7 +355,9 @@
         "continente": "África",
         "hablantes": "~35 millones",
         "porcentaje_poblacion": "~0.4%",
-        "descripcion": "Idioma principal del sudeste de Nigeria."
+        "descripcion": "Idioma principal del sudeste de Nigeria.",
+        "translated": false,
+        "srt": false
     },
     "am": {
         "archivo": "am.json",
@@ -293,7 +365,9 @@
         "continente": "África",
         "hablantes": "~60 millones",
         "porcentaje_poblacion": "~0.7%",
-        "descripcion": "Lengua de trabajo oficial de Etiopía y una de las más habladas de África oriental."
+        "descripcion": "Lengua de trabajo oficial de Etiopía y una de las más habladas de África oriental.",
+        "translated": false,
+        "srt": false
     },
     "om": {
         "archivo": "om.json",
@@ -301,7 +375,9 @@
         "continente": "África",
         "hablantes": "~40 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "El idioma más hablado demográficamente en Etiopía y cuerno de África."
+        "descripcion": "El idioma más hablado demográficamente en Etiopía y cuerno de África.",
+        "translated": false,
+        "srt": false
     },
     "zu": {
         "archivo": "zu.json",
@@ -309,7 +385,9 @@
         "continente": "África",
         "hablantes": "~27 millones",
         "porcentaje_poblacion": "~0.3%",
-        "descripcion": "Idioma más hablado en Sudáfrica como lengua materna."
+        "descripcion": "Idioma más hablado en Sudáfrica como lengua materna.",
+        "translated": false,
+        "srt": false
     },
     "nl": {
         "archivo": "nl.json",
@@ -317,7 +395,9 @@
         "continente": "Europa / América",
         "hablantes": "~25 millones",
         "porcentaje_poblacion": "~0.3%",
-        "descripcion": "Hablado en Países Bajos, Bélgica (Flandes) y Surinam."
+        "descripcion": "Hablado en Países Bajos, Bélgica (Flandes) y Surinam.",
+        "translated": false,
+        "srt": false
     },
     "ro": {
         "archivo": "ro.json",
@@ -325,7 +405,9 @@
         "continente": "Europa",
         "hablantes": "~24 millones",
         "porcentaje_poblacion": "~0.3%",
-        "descripcion": "Lengua romance hablada principalmente en Rumania y Moldavia."
+        "descripcion": "Lengua romance hablada principalmente en Rumania y Moldavia.",
+        "translated": false,
+        "srt": false
     },
     "sv": {
         "archivo": "sv.json",
@@ -333,7 +415,9 @@
         "continente": "Europa",
         "hablantes": "~10 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma germánico del norte hablado en Suecia y zonas de Finlandia."
+        "descripcion": "Idioma germánico del norte hablado en Suecia y zonas de Finlandia.",
+        "translated": false,
+        "srt": false
     },
     "el": {
         "archivo": "el.json",
@@ -341,7 +425,9 @@
         "continente": "Europa",
         "hablantes": "~13 millones",
         "porcentaje_poblacion": "~0.2%",
-        "descripcion": "Idioma oficial de Grecia y Chipre, fundamental en el sudeste europeo."
+        "descripcion": "Idioma oficial de Grecia y Chipre, fundamental en el sudeste europeo.",
+        "translated": false,
+        "srt": false
     },
     "cs": {
         "archivo": "cs.json",
@@ -349,7 +435,9 @@
         "continente": "Europa",
         "hablantes": "~10 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma eslavo occidental oficial en la República Checa."
+        "descripcion": "Idioma eslavo occidental oficial en la República Checa.",
+        "translated": false,
+        "srt": false
     },
     "hu": {
         "archivo": "hu.json",
@@ -357,7 +445,9 @@
         "continente": "Europa",
         "hablantes": "~13 millones",
         "porcentaje_poblacion": "~0.2%",
-        "descripcion": "Lengua urálica hablada en Hungría y comunidades de países vecinos."
+        "descripcion": "Lengua urálica hablada en Hungría y comunidades de países vecinos.",
+        "translated": false,
+        "srt": false
     },
     "kn": {
         "archivo": "kn.json",
@@ -365,7 +455,9 @@
         "continente": "Asia",
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
-        "descripcion": "Lengua drávida del estado de Karnataka en la India (epicentro en Bangalore)."
+        "descripcion": "Lengua drávida del estado de Karnataka en la India (epicentro en Bangalore).",
+        "translated": false,
+        "srt": false
     },
     "ml": {
         "archivo": "ml.json",
@@ -373,7 +465,9 @@
         "continente": "Asia",
         "hablantes": "~38 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma oficial del estado de Kerala en el sudoeste de la India."
+        "descripcion": "Idioma oficial del estado de Kerala en el sudoeste de la India.",
+        "translated": false,
+        "srt": false
     },
     "or": {
         "archivo": "or.json",
@@ -381,7 +475,9 @@
         "continente": "Asia",
         "hablantes": "~38 millones",
         "porcentaje_poblacion": "~0.5%",
-        "descripcion": "Idioma oficial del estado de Odisha en el este de la India."
+        "descripcion": "Idioma oficial del estado de Odisha en el este de la India.",
+        "translated": false,
+        "srt": false
     },
     "ps": {
         "archivo": "ps.json",
@@ -389,7 +485,9 @@
         "continente": "Asia",
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
-        "descripcion": "Idioma oficial de Afganistán y ampliamente hablado en el noroeste de Pakistán."
+        "descripcion": "Idioma oficial de Afganistán y ampliamente hablado en el noroeste de Pakistán.",
+        "translated": false,
+        "srt": false
     },
     "sd": {
         "archivo": "sd.json",
@@ -397,7 +495,9 @@
         "continente": "Asia",
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
-        "descripcion": "Hablado principalmente en la provincia de Sind (Pakistán) y en la India."
+        "descripcion": "Hablado principalmente en la provincia de Sind (Pakistán) y en la India.",
+        "translated": false,
+        "srt": false
     },
     "ku": {
         "archivo": "ku.json",
@@ -405,7 +505,9 @@
         "continente": "Asia",
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
-        "descripcion": "Lengua hablada por el pueblo kurdo en Turquía, Irak, Irán y Siria."
+        "descripcion": "Lengua hablada por el pueblo kurdo en Turquía, Irak, Irán y Siria.",
+        "translated": false,
+        "srt": false
     },
     "az": {
         "archivo": "az.json",
@@ -413,7 +515,9 @@
         "continente": "Asia / Europa",
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
-        "descripcion": "Idioma oficial de Azerbaiyán, muy extendido también en el noroeste de Irán."
+        "descripcion": "Idioma oficial de Azerbaiyán, muy extendido también en el noroeste de Irán.",
+        "translated": false,
+        "srt": false
     },
     "kk": {
         "archivo": "kk.json",
@@ -421,7 +525,9 @@
         "continente": "Asia",
         "hablantes": "~15 millones",
         "porcentaje_poblacion": "~0.2%",
-        "descripcion": "Lengua túrquica oficial de Kazajistán en Asia Central."
+        "descripcion": "Lengua túrquica oficial de Kazajistán en Asia Central.",
+        "translated": false,
+        "srt": false
     },
     "sh": {
         "archivo": "sh.json",
@@ -429,7 +535,9 @@
         "continente": "Europa",
         "hablantes": "~17 millones",
         "porcentaje_poblacion": "~0.2%",
-        "descripcion": "Bloque lingüístico eslavo del sur, hablado en Serbia, Croacia, Bosnia y Herzegovina y Montenegro."
+        "descripcion": "Bloque lingüístico eslavo del sur, hablado en Serbia, Croacia, Bosnia y Herzegovina y Montenegro.",
+        "translated": false,
+        "srt": false
     },
     "bg": {
         "archivo": "bg.json",
@@ -437,7 +545,9 @@
         "continente": "Europa",
         "hablantes": "~8 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma eslavo oficial de Bulgaria en la península balcánica."
+        "descripcion": "Idioma eslavo oficial de Bulgaria en la península balcánica.",
+        "translated": true,
+        "srt": false
     },
     "be": {
         "archivo": "be.json",
@@ -445,6 +555,8 @@
         "continente": "Europa",
         "hablantes": "~7 millones",
         "porcentaje_poblacion": "~0.1%",
-        "descripcion": "Idioma eslavo oriental oficial de Bielorrusia."
+        "descripcion": "Idioma eslavo oriental oficial de Bielorrusia.",
+        "translated": false,
+        "srt": false
     }
 }

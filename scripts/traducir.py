@@ -9,8 +9,10 @@ client = OpenAI()
 # ⚙️ ZONA DE CONFIGURACIÓN
 # =====================================================================
 
+RUTA_IDIOMAS_DATA = "../idiomas_data.json"
+
 # 1. Cargar el archivo con la lista de idiomas disponibles
-with open('../idiomas_data.json', 'r', encoding='utf-8') as f:
+with open(RUTA_IDIOMAS_DATA, 'r', encoding='utf-8') as f:
     idiomas_destino = json.load(f)
 
 cantidad_idiomas = len(idiomas_destino)
@@ -24,6 +26,13 @@ DIRECTORIO_SALIDA = "../translations/"
 
 
 # =====================================================================
+# CÓDIGOS DE COLOR ANSI PARA CONSOLA
+# =====================================================================
+VERDE = "\033[92m"
+AMARILLO = "\033[93m"
+GRIS = "\033[90m"
+RESET = "\033[0m"
+
 
 def seleccionar_modelo():
     """Permite elegir el modelo de OpenAI de forma rápida."""
@@ -38,9 +47,9 @@ def seleccionar_modelo():
 
 
 def seleccionar_idiomas(idiomas_dict):
-    """Muestra la lista de idiomas en 3 columnas y permite seleccionar uno, un rango, varios o todos."""
+    """Muestra la lista de idiomas en 3 columnas indicando cuáles ya están traducidos."""
     print("\n=================================================================")
-    print("🌍 IDIOMAS DISPONIBLES")
+    print("🌍 IDIOMAS DISPONIBLES (Verde = Traducido, Amarillo = Pendiente)")
     print("=================================================================")
     
     lista_claves = list(idiomas_dict.keys())
@@ -53,16 +62,24 @@ def seleccionar_idiomas(idiomas_dict):
     elementos_formateados = []
     for idx, (code_lang, info) in enumerate(idiomas_dict.items(), start=1):
         nombre = info.get("nombre", code_lang)
-        celda = f"{idx:2d}. [{code_lang}] {nombre}"
+        ya_traducido = info.get("translated", False)
+        
+        if ya_traducido:
+            estado_str = f"{VERDE}[TRADUCIDO]{RESET}"
+        else:
+            estado_str = f"{AMARILLO}[PENDIENTE]{RESET}"
+            
+        celda = f"{idx:2d}. [{code_lang}] {nombre} {estado_str}"
         elementos_formateados.append(celda)
     
-    # Imprimir en 3 columnas
+    # Imprimir en 3 columnas (ajustando tamaño por los caracteres ANSI de color)
     for f in range(filas):
         linea = ""
         for c in range(columnas):
             indice = f + c * filas
             if indice < total:
-                linea += f"{elementos_formateados[indice]:<24} "
+                # Damos un margen mayor de caracteres por celda para compensar los códigos ANSI
+                linea += f"{elementos_formateados[indice]:<42} "
         print(linea)
     
     print("-----------------------------------------------------------------")
@@ -129,6 +146,9 @@ def traducir_json():
 
     print(f"\n🌐 Iniciando traducción y generación de archivos JSON...")
 
+    # Bandera para saber si debemos guardar cambios en idiomas_data.json
+    hubo_cambios = False
+
     # 4. Iterar únicamente sobre los idiomas seleccionados
     for code_lang in claves_a_traducir:
         info = idiomas_destino[code_lang]
@@ -173,10 +193,23 @@ def traducir_json():
             with open(ruta_salida, "w", encoding="utf-8") as out_f:
                 json.dump(translated_dict, out_f, ensure_ascii=False, indent=2)
 
-            print(f"    ✅ ¡'{filename}' generado con éxito!")
+            # Actualizar el estado en memoria de los metadatos
+            idiomas_destino[code_lang]["translated"] = True
+            hubo_cambios = True
+
+            print(f"    ✅ ¡'{filename}' generado con éxito y metadatos actualizados!")
 
         except Exception as e:
             print(f"    ❌ Error al procesar {nombre_idioma}: {e}")
+
+    # 5. Si se tradujo al menos un idioma con éxito, actualizar idiomas_data.json
+    if hubo_cambios:
+        try:
+            with open(RUTA_IDIOMAS_DATA, "w", encoding="utf-8") as f_data:
+                json.dump(idiomas_destino, f_data, ensure_ascii=False, indent=4)
+            print(f"\n💾 Archivo '{RUTA_IDIOMAS_DATA}' actualizado correctamente con los nuevos estados 'translated': true.")
+        except Exception as e:
+            print(f"\n⚠️ No se pudo actualizar el archivo de metadatos: {e}")
 
     print("\n🎉 ¡Proceso completado con éxito!")
 

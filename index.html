@@ -34,11 +34,16 @@
       padding: 20px 10px;
     }
 
-    /* BARRA SUPERIOR DE IDIOMAS */
+    /* BARRA SUPERIOR DE IDIOMAS Y COMPARTIR */
     .lang-header {
       width: 100%;
       max-width: 1100px;
       margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .lang-switcher {
@@ -80,6 +85,30 @@
       color: var(--deepblue);
       border-color: var(--goldlight);
       box-shadow: 0 0 8px rgba(225, 205, 145, 0.5);
+    }
+
+    /* BOTÓN DE COMPARTIR */
+    .btn-share {
+      background-color: var(--deepblue);
+      border: 1px solid var(--gold);
+      color: var(--goldlight);
+      padding: 10px 16px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-share:hover {
+      background-color: rgba(176, 140, 84, 0.2);
+      border-color: var(--goldlight);
+      transform: translateY(-1px);
     }
 
     /* MARCO ESTILO PERGAMINO */
@@ -165,20 +194,26 @@
       .grid-header, .grid-columns, .grid-subcolumns {
         grid-template-columns: 1fr;
       }
-      .btn-lang {
-        font-size: 0.7rem;
-        padding: 4px 8px;
+      .lang-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-share {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE SELECCIÓN DE IDIOMAS DINÁMICA -->
+  <!-- BARRA SUPERIOR: IDIOMAS Y BOTÓN DE COMPARTIR -->
   <div class="lang-header">
     <div id="lang-switcher" class="lang-switcher">
-      <!-- Los botones se cargan dinámicamente según los archivos JSON existentes -->
+      <!-- Los botones se cargan dinámicamente según translated: true de idiomas_data.json -->
     </div>
+    <button id="btn-share" class="btn-share">
+      <span>Compartir Manifiesto</span> 🔗
+    </button>
   </div>
 
   <!-- CONTENIDO DEL DOCUMENTO -->
@@ -233,7 +268,7 @@
     </div>
 
     <div class="box quote-box">
-      <p data-i18n="sagan_quote"></p>
+      <p data-i18n="sagan_quote"></p> -- Carl Sagan
       <p style="text-align: right; font-weight: bold; margin-top: 5px;"></p>
     </div>
 	
@@ -268,8 +303,35 @@
     });
   </script>
 
-  <!-- CARGA DINÁMICA DESDE index_data.json Y VERIFICACIÓN DE ARCHIVOS JSON -->
+  <!-- LÓGICA DE WEB SHARE API Y CARGA DINÁMICA DE IDIOMAS -->
   <script>
+    // Configuración del botón de compartir nativo
+    document.getElementById('btn-share').addEventListener('click', async () => {
+      const shareData = {
+        title: 'Cóndor & Águila — El Despertar',
+        text: 'Te comparto este manifiesto sobre la dualidad de la conciencia, la ciencia y la espiritualidad.',
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.error('Error al compartir:', err);
+          }
+        }
+      } else {
+        // Fallback para navegadores de escritorio que no soportan Web Share API
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('¡Enlace copiado al portapapeles!');
+        } catch (err) {
+          console.error('No se pudo copiar el enlace', err);
+        }
+      }
+    });
+
     const translations = {};
     let currentLang = "es";
 
@@ -277,10 +339,10 @@
       if (!translations[lang]) {
         try {
           const response = await fetch(`./translations/${lang}.json`);
-          if (!response.ok) return;
+          if (!response.ok) throw new Error(`No se pudo cargar ./translations/${lang}.json`);
           translations[lang] = await response.json();
         } catch (error) {
-          console.error(`No se pudo cargar la traducción para ${lang}`, error);
+          console.error(`Error al cargar la traducción para ${lang}:`, error);
           return;
         }
       }
@@ -311,31 +373,23 @@
       switcher.innerHTML = "";
 
       try {
-        // Carga el archivo index_data.json desde la raíz
         const res = await fetch('./idiomas_data.json');
-        if (!res.ok) throw new Error("No se pudo cargar index_data.json");
+        if (!res.ok) throw new Error("No se pudo cargar idiomas_data.json");
         const idiomasData = await res.json();
 
-        // Recorre los idiomas definidos y valida si su archivo .json existe físicamente
         for (const [code, info] of Object.entries(idiomasData)) {
-          try {
-            const testRes = await fetch(`./translations/${code}.json`, { method: 'HEAD' });
-            if (testRes.ok) {
-              const btn = document.createElement('button');
-              btn.id = `btn-${code}`;
-              btn.className = 'btn-lang';
-              btn.onclick = () => applyLanguage(code);
-              
-              const nombre = info.nombre || code.toUpperCase();
-              btn.innerHTML = `${code.toUpperCase()} - ${nombre}`;
-              switcher.appendChild(btn);
-            }
-          } catch (e) {
-            // Si el archivo no existe o falla la petición, se omite el botón
+          if (info.translated === true) {
+            const btn = document.createElement('button');
+            btn.id = `btn-${code}`;
+            btn.className = 'btn-lang';
+            btn.onclick = () => applyLanguage(code);
+            
+            const nombre = info.nombre || code.toUpperCase();
+            btn.innerHTML = `${code.toUpperCase()} - ${nombre}`;
+            switcher.appendChild(btn);
           }
         }
 
-        // Selección automática según el idioma del navegador o por defecto 'es'
         let userLang = navigator.language || navigator.userLanguage;
         let shortLang = userLang.split('-')[0];
 
