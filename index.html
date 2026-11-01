@@ -212,7 +212,13 @@
       <!-- Los botones se cargan dinámicamente según translated: true de idiomas_data.json -->
     </div>
     <button id="btn-share" class="btn-share">
-      <span>Compartir Manifiesto</span> 🔗
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="18" cy="5" r="3"></circle>
+  <circle cx="6" cy="12" r="3"></circle>
+  <circle cx="18" cy="19" r="3"></circle>
+  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+</svg></span> 
     </button>
   </div>
 
@@ -248,6 +254,12 @@
       </div>
     </div>
 
+	
+	<div class="box quote-box">
+      <p data-i18n="sagan_quote"></p> -- Carl Sagan
+      <p style="text-align: right; font-weight: bold; margin-top: 5px;"></p>
+    </div>
+
     <div class="grid-subcolumns">
       <div class="box">
         <h3 data-i18n="universe_light_title"></h3>
@@ -267,10 +279,12 @@
       </div>
     </div>
 
-    <div class="box quote-box">
-      <p data-i18n="sagan_quote"></p> -- Carl Sagan
-      <p style="text-align: right; font-weight: bold; margin-top: 5px;"></p>
-    </div>
+
+   <div class="box final-quote">
+      <p data-i18n="final_quote"></p>
+    </div> 
+   
+   
 	
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title"></h2>
@@ -286,9 +300,8 @@
       </div>
     </div>
 
-    <div class="box final-quote">
-      <p data-i18n="final_quote"></p>
-    </div>
+
+
 
   </div>
 
@@ -307,30 +320,40 @@
   <script>
     // Configuración del botón de compartir nativo
     document.getElementById('btn-share').addEventListener('click', async () => {
-      const shareData = {
-        title: 'Cóndor & Águila — El Despertar',
-        text: 'Te comparto este manifiesto sobre la dualidad de la conciencia, la ciencia y la espiritualidad.',
-        url: window.location.href
-      };
+  const dictionary = translations[currentLang] || {};
+  
+  // Textos traducidos o por defecto
+  const title = dictionary['share_title'] || 'Cóndor & Águila — El Despertar';
+  const customText = dictionary['share_text'] || 'Te comparto este enlace sobre la dualidad de la conciencia, la materia y la gravedad cuántica:\n';
+  const alertMsg = dictionary['share_copied'] || '¡Enlace copiado al portapapeles!';
 
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            console.error('Error al compartir:', err);
-          }
-        }
-      } else {
-        // Fallback para navegadores de escritorio que no soportan Web Share API
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          alert('¡Enlace copiado al portapapeles!');
-        } catch (err) {
-          console.error('No se pudo copiar el enlace', err);
-        }
+  // Unificamos todo en el texto para que las apps de correo o chat no se coman partes
+  const fullMessage = `${title}\n\n${customText}\n${window.location.href}`;
+
+  const shareData = {
+    title: title,
+    text: fullMessage,
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        console.error('Error al compartir:', err);
       }
-    });
+    }
+  } else {
+    // Fallback al portapapeles si el navegador no soporta Web Share
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert(alertMsg);
+    } catch (err) {
+      console.error('No se pudo copiar el enlace', err);
+    }
+  }
+});
 
     const translations = {};
     let currentLang = "es";
