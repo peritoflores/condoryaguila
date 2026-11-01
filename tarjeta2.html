@@ -163,6 +163,22 @@
       z-index: 1;
     }
 
+/* Estilo para los enlaces dentro de las cajas de arrastre */
+    .drag-box a {
+      color: var(--gold-primary);
+      font-family: 'Montserrat', sans-serif;
+      font-size: max(9px, 0.95vw);
+      text-decoration: none;
+      margin-top: 6px; /* Espacio entre la cita y el enlace */
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      transition: all 0.2s ease;
+    }
+
+    .drag-box a:hover {
+      text-decoration: underline;
+      opacity: 0.8;
+    }
+
     .drag-box {
       position: absolute;
       z-index: 10;
@@ -247,7 +263,7 @@
     .text-bottom-main {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: max(10px, 1.15vw);
+      font-size: max(6px, 0.7vw);
       line-height: 1.4;
       color: #ffffff;
       text-align: center;
@@ -303,7 +319,7 @@
   <div class="card-container-wrapper">
     <div class="card-canvas show-guides" id="cardCanvas">
       
-      <img src="./images/tapacondoryaguila.png" 
+      <img src="./images/tapacondoryaguilasinweb.png" 
            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop';" 
            alt="Tapa Cóndor y Águila" 
            class="bg-image">
@@ -315,9 +331,9 @@
       </div>
 
       <!-- SECCIÓN CÓNDOR -->
-      <div class="drag-box" id="box-condor-top" style="top: 47%; left: 23%; transform: translateX(-50%);">
+      <!--<div class="drag-box" id="box-condor-top" style="top: 47%; left: 23%; transform: translateX(-50%);">
         <div class="label-badge editable-text" contenteditable="true" data-i18n="condor_title">Intuición y Espíritu</div>
-      </div>
+      </div>-->
 	  
 	   <div class="drag-box" id="box-universe-light" style="top: 25%; left: 22%; transform: translateX(-50%);">
         <div class="label-badge editable-text" contenteditable="true" data-i18n="universe_light_title">Pleroma de Luz</div>
@@ -333,9 +349,9 @@
       </div>
 
       <!-- SECCIÓN ÁGUILA -->
-      <div class="drag-box" id="box-aguila-top" style="top: 50%; left: 86%; transform: translateX(-50%);">
+      <!--<div class="drag-box" id="box-aguila-top" style="top: 50%; left: 86%; transform: translateX(-50%);">
         <div class="label-badge editable-text" contenteditable="true" data-i18n="eagle_title">Ciencia y Tecnología</div>
-      </div>
+      </div>-->
   <div class="drag-box" id="box-universe-mat" style="top: 25%; left: 84%; transform: translateX(-50%);">
         <div class="label-badge editable-text" contenteditable="true" data-i18n="universe_mat_title">Prision Material</div>
       </div>
@@ -361,13 +377,14 @@
         </div>
       </div>
 
-      <!-- CITA INFERIOR 
-      <div class="drag-box" id="box-text-quote" style="bottom: 2%; left: 50%; transform: translateX(-50%); width: 85%;">
-        <div class="text-quote editable-text" contenteditable="true" data-i18n="final_quote">
-          "Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará"
-        </div>
+     
+      <div class="drag-box" id="box-video-title" style="bottom: 2%; left: 50%; transform: translateX(-50%); width: 85%;">
+        <div class="text-quote editable-text" contenteditable="true" data-i18n="video_title">
+          "Documental dle pensamiento material al sentieminto divino " 
+        </div>  <a href="https://www.condoryaguila.org">www.condoryaguila.org</a>
+
       </div>
--->
+
 
     </div>
   </div>

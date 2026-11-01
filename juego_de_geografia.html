@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoQuest - Mapa Interactivo y Juego de Geografía</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Leaflet custom map styling */
+        .leaflet-container {
+            background-color: #0b132b !important;
+            outline: none;
+        }
+        .dark .leaflet-container {
+            background-color: #070a13 !important;
+        }
+        .country-polygon {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col overflow-hidden transition-colors duration-300">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-950/90 border-b border-slate-800 backdrop-blur-md px-4 py-3 z-20 flex flex-wrap justify-between items-center gap-3">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                <i class="fa-solid font-bold text-white text-xl fa-earth-americas"></i>
+            </div>
+            <div>
+                <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">GeoQuest</h1>
+                <p class="text-xs text-slate-400 font-medium">Adivina o Explora el Mundo</p>
+            </div>
+        </div>
+
+        <!-- Mode Selector Switch -->
+        <div class="bg-slate-800 p-1 rounded-xl border border-slate-700/60 flex items-center space-x-1">
+            <button id="mode-game-btn" onclick="setMode('game')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>Modo Juego</span>
+            </button>
+            <button id="mode-learn-btn" onclick="setMode('learn')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Modo Aprender</span>
+            </button>
+        </div>
+
+        <!-- Dashboard Stats -->
+        <div class="flex items-center space-x-3 text-sm">
+            <div id="stats-container" class="flex items-center space-x-3">
+                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/50 flex items-center space-x-2">
+                    <i class="fa-solid fa-trophy text-amber-400"></i>
+                    <span class="text-slate-400 text-xs hidden sm:inline">Puntos:</span>
+                    <span id="score-val" class="font-bold text-amber-400">0</span>
+                </div>
+
+                <div class="bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700/50 flex items-center space-x-2">
+                    <i class="fa-solid fa-fire text-orange-500"></i>
+                    <span class="text-slate-400 text-xs hidden sm:inline">Racha:</span>
+                    <span id="streak-val" class="font-bold text-orange-400">0</span>
+                </div>
+            </div>
+
+            <button id="btn-theme" class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 flex items-center justify-center transition">
+                <i class="fa-solid fa-sun text-yellow-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Map Container -->
+    <main class="relative flex-1 w-full h-full">
+        <!-- Interactive Leaflet Map -->
+        <div id="map" class="w-full h-full absolute inset-0 z-0"></div>
+
+        <!-- Prompt Header Overlay (Game Mode Target Question) -->
+        <div id="game-prompt" class="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-[92%] max-w-xl transition-all duration-300">
+            <div class="glass-panel rounded-2xl p-4 shadow-2xl text-center border border-cyan-500/30">
+                <span class="text-xs uppercase tracking-wider font-semibold text-cyan-400 block mb-1">
+                    <i class="fa-solid fa-crosshairs mr-1"></i> Encuentra este país en el mapa
+                </span>
+                <h2 id="target-country-name" class="text-2xl sm:text-3xl font-black text-white tracking-wide">
+                    Cargando Mapa...
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Haz clic en el país correspondiente en el mapa</p>
+            </div>
+        </div>
+
+        <!-- Hover Card Info Overlay (Learn Mode) -->
+        <div id="learn-card" class="hidden absolute top-4 right-4 z-10 w-72 transition-all duration-200 pointer-events-none">
+            <div class="glass-panel rounded-2xl p-4 shadow-2xl border border-slate-700">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span id="learn-flag" class="text-4xl shadow rounded">🏳️</span>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider font-bold text-cyan-400 block">Explorando</span>
+                        <h3 id="learn-country-name" class="text-lg font-extrabold text-white leading-tight">Pasa el cursor sobre un país</h3>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1.5 flex items-center">
+                        <i class="fa-solid fa-comments mr-1 text-cyan-400"></i> Top 3 Idiomas Hablados
+                    </h4>
+                    <div id="learn-languages-list" class="space-y-1">
+                        <span class="text-xs text-slate-400 italic">Pasa el mouse sobre el mapa...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Modal Overlay (Game Mode Click Response) -->
+        <div id="result-modal" class="hidden absolute inset-0 z-20 bg-slate-950/50 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="glass-panel w-full max-w-md rounded-2xl p-6 shadow-2xl border border-slate-700 transform transition-all animate-in fade-in zoom-in duration-200">
+                <!-- Status Banner (Correct / Wrong) -->
+                <div id="modal-status-banner" class="rounded-xl p-3 mb-4 text-center font-bold text-lg flex items-center justify-center space-x-2">
+                    <i id="modal-status-icon" class="fa-solid"></i>
+                    <span id="modal-status-text">¡Correcto!</span>
+                </div>
+
+                <!-- Flag and Country Info -->
+                <div class="flex items-center space-x-4 mb-4 bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+                    <span id="modal-flag" class="text-5xl shadow rounded overflow-hidden">🏳️</span>
+                    <div>
+                        <h3 id="modal-country-name" class="text-xl font-extrabold text-white">Nombre del País</h3>
+                        <p id="modal-target-comparison" class="text-xs text-slate-400 mt-0.5">Objetivo: <span class="text-cyan-400 font-semibold" id="modal-target-name">...</span></p>
+                    </div>
+                </div>
+
+                <!-- Languages Spoken Section -->
+                <div class="mb-6">
+                    <h4 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-2 flex items-center">
+                        <i class="fa-solid fa-comments mr-1.5 text-cyan-400"></i> Top 3 Idiomas más hablados
+                    </h4>
+                    <div id="languages-list" class="space-y-2">
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button id="btn-next-round" class="w-full py-3.5 px-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-cyan-500/25 transition flex items-center justify-center space-x-2">
+                    <span>Siguiente País</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Initial Loader -->
+        <div id="loading-overlay" class="absolute inset-0 z-30 bg-slate-950 flex flex-col items-center justify-center space-y-4">
+            <div class="w-12 h-12 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin"></div>
+            <p class="text-slate-300 font-medium text-sm">Cargando mapa e información del mundo...</p>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Database Mapping ISO-3 code or Country Name to Top 3 spoken languages and Flags
+        const COUNTRY_DATA = {
+            "ESP": { name: "España", flag: "🇪🇸", langs: ["Español (Oficial)", "Catalán", "Gallego / Euskera"] },
+            "FRA": { name: "Francia", flag: "🇫🇷", langs: ["Francés (Oficial)", "Árabe", "Alemán / Bretón"] },
+            "DEU": { name: "Alemania", flag: "🇩🇪", langs: ["Alemán (Oficial)", "Turco", "Inglés"] },
+            "ITA": { name: "Italia", flag: "🇮🇹", langs: ["Italiano (Oficial)", "Alemán", "Francés"] },
+            "GBR": { name: "Reino Unido", flag: "🇬🇧", langs: ["Inglés (Oficial)", "Polaco", "Punjabi / Galés"] },
+            "PRT": { name: "Portugal", flag: "🇵🇹", langs: ["Portugués (Oficial)", "Mirandés", "Inglés"] },
+            "USA": { name: "Estados Unidos", flag: "🇺🇸", langs: ["Inglés", "Español", "Chino (Mandarín)"] },
+            "CAN": { name: "Canadá", flag: "🇨🇦", langs: ["Inglés (Oficial)", "Francés (Oficial)", "Chino"] },
+            "MEX": { name: "México", flag: "🇲🇽", langs: ["Español (Oficial)", "Náhuatl", "Maya"] },
+            "BRA": { name: "Brasil", flag: "🇧🇷", langs: ["Portugués (Oficial)", "Alemán", "Italiano / Guaraní"] },
+            "ARG": { name: "Argentina", flag: "🇦🇷", langs: ["Español (Oficial)", "Italiano", "Inglés / Quechua"] },
+            "COL": { name: "Colombia", flag: "🇨🇴", langs: ["Español (Oficial)", "Wayuunaiki", "Páez"] },
+            "CHL": { name: "Chile", flag: "🇨🇱", langs: ["Español (Oficial)", "Mapudungun", "Aymara"] },
+            "PER": { name: "Perú", flag: "🇵🇪", langs: ["Español (Oficial)", "Quechua", "Aymara"] },
+            "VEN": { name: "Venezuela", flag: "🇻🇪", langs: ["Español (Oficial)", "Wayuu", "Warao"] },
+            "RUS": { name: "Rusia", flag: "🇷🇺", langs: ["Ruso (Oficial)", "Tártaro", "Bashkir"] },
+            "CHN": { name: "China", flag: "🇨🇳", langs: ["Mandarín (Oficial)", "Cantonés", "Wu / Min"] },
+            "JPN": { name: "Japón", flag: "🇯🇵", langs: ["Japonés (Oficial)", "Ryukyuense", "Ainu"] },
+            "IND": { name: "India", flag: "🇮🇳", langs: ["Hindi (Oficial)", "Inglés", "Bengalí / Telugu"] },
+            "AUS": { name: "Australia", flag: "🇦🇺", langs: ["Inglés (Oficial)", "Chino (Mandarín)", "Árabe"] },
+            "EGY": { name: "Egipto", flag: "🇪🇬", langs: ["Árabe (Oficial)", "Inglés", "Francés"] },
+            "ZAF": { name: "Sudáfrica", flag: "🇿🇦", langs: ["Zulú", "Xhosa", "Afrikaans / Inglés"] },
+            "NGA": { name: "Nigeria", flag: "🇳🇬", langs: ["Inglés (Oficial)", "Hausa", "Yoruba / Igbo"] },
+            "MAR": { name: "Marruecos", flag: "🇲🇦", langs: ["Árabe (Oficial)", "Bereber", "Francés"] },
+            "GRC": { name: "Grecia", flag: "🇬🇷", langs: ["Griego (Oficial)", "Inglés", "Albanés"] },
+            "TUR": { name: "Turquía", flag: "🇹🇷", langs: ["Turco (Oficial)", "Curdo", "Árabe"] },
+            "SWE": { name: "Suecia", flag: "🇸🇪", langs: ["Sueco (Oficial)", "Finlandés", "Árabe"] },
+            "NOR": { name: "Noruega", flag: "🇳🇴", langs: ["Noruego (Oficial)", "Sami", "Inglés"] },
+            "FIN": { name: "Finlandia", flag: "🇫🇮", langs: ["Finlandés (Oficial)", "Sueco", "Ruso"] },
+            "POL": { name: "Polonia", flag: "🇵🇱", langs: ["Polaco (Oficial)", "Silesiano", "Inglés"] },
+            "UKR": { name: "Ucrania", flag: "🇺🇦", langs: ["Ucraniano (Oficial)", "Ruso", "Rumano"] },
+            "ROU": { name: "Rumanía", flag: "🇷🇴", langs: ["Rumano (Oficial)", "Húngaro", "Romaní"] },
+            "NLD": { name: "Países Bajos", flag: "🇳🇱", langs: ["Holandés (Oficial)", "Frisón", "Inglés"] },
+            "BEL": { name: "Bélgica", flag: "🇧🇪", langs: ["Holandés (Oficial)", "Francés (Oficial)", "Alemán"] },
+            "CHE": { name: "Suiza", flag: "🇨🇭", langs: ["Alemán (Oficial)", "Francés", "Italiano / Romanche"] },
+            "AUT": { name: "Austria", flag: "🇦🇹", langs: ["Alemán (Oficial)", "Húngaro", "Esloveno"] },
+            "SAU": { name: "Arabia Saudita", flag: "🇸🇦", langs: ["Árabe (Oficial)", "Tagalo", "Urdu"] },
+            "IRN": { name: "Irán", flag: "🇮🇷", langs: ["Persa (Farsi)", "Azerí", "Curdo"] },
+            "IDN": { name: "Indonesia", flag: "🇮🇩", langs: ["Indonesio (Oficial)", "Javanés", "Sundanés"] },
+            "KOR": { name: "Corea del Sur", flag: "🇰🇷", langs: ["Coreano (Oficial)", "Inglés", "Chino"] },
+            "THAI": { name: "Tailandia", flag: "🇹🇭", langs: ["Tailandés (Oficial)", "Isan", "Kam Mueang"] },
+            "VNM": { name: "Vietnam", flag: "🇻🇳", langs: ["Vietnamita (Oficial)", "Tày", "Mường"] },
+            "NZL": { name: "Nueva Zelanda", flag: "🇳🇿", langs: ["Inglés (Oficial)", "Maorí", "Lengua de Señas"] },
+            "CUB": { name: "Cuba", flag: "🇨🇺", langs: ["Español (Oficial)", "Criollo Haitiano", "Inglés"] },
+            "BOL": { name: "Bolivia", flag: "🇧🇴", langs: ["Español (Oficial)", "Quechua", "Aymara / Guaraní"] },
+            "ECU": { name: "Ecuador", flag: "🇪🇨", langs: ["Español (Oficial)", "Kichwa", "Shuar"] },
+            "URY": { name: "Uruguay", flag: "🇺🇾", langs: ["Español (Oficial)", "Portugués", "Inglés"] },
+            "PAR": { name: "Paraguay", flag: "🇵🇾", langs: ["Guaraní (Oficial)", "Español (Oficial)", "Alemán"] }
+        };
+
+        const DEFAULT_LANGS = ["Idioma Principal", "Idioma Regional", "Segunda Lengua"];
+
+        // State variables
+        let currentMode = 'game'; // 'game' or 'learn'
+        let map;
+        let geojsonLayer;
+        let worldGeoData = null;
+        let currentTargetIso = null;
+        let currentTargetFeature = null;
+        let score = 0;
+        let streak = 0;
+        let isRoundActive = false;
+
+        // Audio Effects via Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.2); // G5
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            } else {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            }
+        }
+
+        // Initialize Map
+        function initMap() {
+            map = L.map('map', {
+                center: [20, 0],
+                zoom: 2,
+                minZoom: 2,
+                maxZoom: 7,
+                zoomControl: false,
+                worldCopyJump: true
+            });
+
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+            fetch('https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson')
+                .then(res => res.json())
+                .then(data => {
+                    worldGeoData = data;
+                    renderGeoJson();
+                    document.getElementById('loading-overlay').classList.add('hidden');
+                    startNewRound();
+                })
+                .catch(err => {
+                    console.error("GeoJSON loading error:", err);
+                    document.getElementById('loading-overlay').innerHTML = `
+                        <div class="text-center px-4">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-500 text-4xl mb-3"></i>
+                            <p class="text-white font-bold">Error al cargar datos del mapa.</p>
+                            <p class="text-slate-400 text-xs mt-1">Revisa tu conexión a internet.</p>
+                        </div>
+                    `;
+                });
+        }
+
+        // Render GeoJSON Polygons
+        function renderGeoJson() {
+            if (geojsonLayer) map.removeLayer(geojsonLayer);
+
+            geojsonLayer = L.geoJSON(worldGeoData, {
+                style: function() {
+                    return {
+                        fillColor: '#334155',
+                        weight: 1,
+                        opacity: 1,
+                        color: '#64748b',
+                        fillOpacity: 0.6
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    layer.on({
+                        click: onCountryClick,
+                        mouseover: function(e) {
+                            const l = e.target;
+                            l.setStyle({
+                                fillOpacity: 0.85,
+                                weight: 2,
+                                color: '#38bdf8'
+                            });
+                            if (currentMode === 'learn') {
+                                updateLearnCard(feature.properties);
+                            }
+                        },
+                        mouseout: function(e) {
+                            if (isRoundActive || currentMode === 'learn') {
+                                geojsonLayer.resetStyle(e.target);
+                            }
+                        }
+                    });
+                }
+            }).addTo(map);
+        }
+
+        // Switch Mode (Game vs Learn)
+        function setMode(mode) {
+            currentMode = mode;
+            const gameBtn = document.getElementById('mode-game-btn');
+            const learnBtn = document.getElementById('mode-learn-btn');
+            const gamePrompt = document.getElementById('game-prompt');
+            const learnCard = document.getElementById('learn-card');
+            const statsContainer = document.getElementById('stats-container');
+
+            if (mode === 'game') {
+                gameBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow";
+                learnBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center space-x-1.5";
+                gamePrompt.classList.remove('hidden');
+                learnCard.classList.add('hidden');
+                statsContainer.classList.remove('hidden');
+                if (!isRoundActive) startNewRound();
+            } else {
+                learnBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow";
+                gameBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center space-x-1.5";
+                gamePrompt.classList.add('hidden');
+                learnCard.classList.remove('hidden');
+                statsContainer.classList.add('hidden');
+                if (geojsonLayer) geojsonLayer.resetStyle();
+            }
+        }
+
+        // Update Hover Info Card in Learn Mode
+        function updateLearnCard(props) {
+            const iso = props.ISO_A3 || props.iso_a3 || props.ADM0_A3;
+            const rawName = props.ADMIN || props.name || "Desconocido";
+
+            const data = COUNTRY_DATA[iso] || {
+                name: rawName,
+                flag: getFlagEmoji(iso),
+                langs: DEFAULT_LANGS
+            };
+
+            document.getElementById('learn-flag').textContent = data.flag || getFlagEmoji(iso);
+            document.getElementById('learn-country-name').textContent = data.name || rawName;
+
+            const list = document.getElementById('learn-languages-list');
+            list.innerHTML = "";
+            (data.langs || DEFAULT_LANGS).forEach((lang, idx) => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between bg-slate-800/60 px-2 py-1 rounded text-xs border border-slate-700/50";
+                item.innerHTML = `
+                    <span class="text-slate-300 font-medium">${lang}</span>
+                    <span class="text-[10px] text-cyan-400 font-bold">#${idx + 1}</span>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        // Click Handler for Map Polygons
+        function onCountryClick(e) {
+            if (currentMode === 'learn') {
+                updateLearnCard(e.target.feature.properties);
+                return;
+            }
+
+            if (!isRoundActive) return;
+            isRoundActive = false;
+
+            const clickedLayer = e.target;
+            const clickedProps = clickedLayer.feature.properties;
+            const clickedIso = clickedProps.ISO_A3 || clickedProps.iso_a3 || clickedProps.ADM0_A3;
+            const clickedName = clickedProps.ADMIN || clickedProps.name || "País Desconocido";
+
+            const isCorrect = (clickedIso === currentTargetIso) || (clickedName.toLowerCase() === getTargetName().toLowerCase());
+
+            clickedLayer.setStyle({
+                fillColor: isCorrect ? '#22c55e' : '#ef4444',
+                fillOpacity: 0.9,
+                color: '#ffffff',
+                weight: 2
+            });
+
+            if (!isCorrect) {
+                highlightTargetPolygon();
+                playSound('wrong');
+                streak = 0;
+            } else {
+                playSound('correct');
+                score += 100 + (streak * 20);
+                streak++;
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            updateDashboard();
+            showResultModal(isCorrect, clickedIso, clickedName);
+        }
+
+        // Highlight correct target on miss
+        function highlightTargetPolygon() {
+            geojsonLayer.eachLayer(layer => {
+                const props = layer.feature.properties;
+                const iso = props.ISO_A3 || props.iso_a3 || props.ADM0_A3;
+                if (iso === currentTargetIso) {
+                    layer.setStyle({
+                        fillColor: '#3b82f6',
+                        fillOpacity: 0.9,
+                        color: '#ffffff',
+                        weight: 3
+                    });
+                }
+            });
+        }
+
+        // Start Next Game Round
+        function startNewRound() {
+            if (!worldGeoData) return;
+            geojsonLayer.resetStyle();
+
+            const features = worldGeoData.features.filter(f => f.properties.ADMIN || f.properties.name);
+            const randomFeature = features[Math.floor(Math.random() * features.length)];
+            
+            currentTargetFeature = randomFeature;
+            const props = randomFeature.properties;
+            currentTargetIso = props.ISO_A3 || props.iso_a3 || props.ADM0_A3;
+
+            document.getElementById('target-country-name').textContent = getTargetName();
+            document.getElementById('result-modal').classList.add('hidden');
+            isRoundActive = true;
+        }
+
+        function getTargetName() {
+            if (!currentTargetFeature) return "";
+            if (COUNTRY_DATA[currentTargetIso]) {
+                return COUNTRY_DATA[currentTargetIso].name;
+            }
+            return currentTargetFeature.properties.ADMIN || currentTargetFeature.properties.name || "País";
+        }
+
+        // Show Results Modal after Guess
+        function showResultModal(isCorrect, clickedIso, clickedName) {
+            const modal = document.getElementById('result-modal');
+            const statusBanner = document.getElementById('modal-status-banner');
+            const statusIcon = document.getElementById('modal-status-icon');
+            const statusText = document.getElementById('modal-status-text');
+            const flagEl = document.getElementById('modal-flag');
+            const countryNameEl = document.getElementById('modal-country-name');
+            const targetComparisonEl = document.getElementById('modal-target-comparison');
+            const targetNameEl = document.getElementById('modal-target-name');
+            const languagesList = document.getElementById('languages-list');
+
+            const data = COUNTRY_DATA[clickedIso] || {
+                name: clickedName,
+                flag: getFlagEmoji(clickedIso),
+                langs: DEFAULT_LANGS
+            };
+
+            if (isCorrect) {
+                statusBanner.className = "rounded-xl p-3 mb-4 text-center font-bold text-lg flex items-center justify-center space-x-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                statusIcon.className = "fa-solid fa-circle-check text-emerald-400";
+                statusText.textContent = "¡Excelente! Has acertado";
+                targetComparisonEl.classList.add('hidden');
+            } else {
+                statusBanner.className = "rounded-xl p-3 mb-4 text-center font-bold text-lg flex items-center justify-center space-x-2 bg-rose-500/20 text-rose-400 border border-rose-500/30";
+                statusIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+                statusText.textContent = "¡Incorrecto!";
+                targetNameEl.textContent = getTargetName();
+                targetComparisonEl.classList.remove('hidden');
+            }
+
+            flagEl.textContent = data.flag || getFlagEmoji(clickedIso);
+            countryNameEl.textContent = data.name || clickedName;
+
+            languagesList.innerHTML = "";
+            (data.langs || DEFAULT_LANGS).forEach((lang, idx) => {
+                const langItem = document.createElement('div');
+                langItem.className = "flex items-center justify-between bg-slate-800/80 px-3 py-2 rounded-lg border border-slate-700/60 text-xs sm:text-sm";
+                langItem.innerHTML = `
+                    <span class="text-slate-300 font-medium">${lang}</span>
+                    <span class="text-xs bg-slate-700 text-cyan-400 font-bold px-2 py-0.5 rounded">#${idx + 1}</span>
+                `;
+                languagesList.appendChild(langItem);
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function getFlagEmoji(isoCode) {
+            if (!isoCode || isoCode.length < 2) return "🏳️";
+            const code = isoCode.substring(0, 2).toUpperCase();
+            return String.fromCodePoint(...[...code].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
+        }
+
+        function updateDashboard() {
+            document.getElementById('score-val').textContent = score;
+            document.getElementById('streak-val').textContent = streak;
+        }
+
+        document.getElementById('btn-next-round').addEventListener('click', () => {
+            startNewRound();
+        });
+
+        // Theme Switcher
+        const themeBtn = document.getElementById('btn-theme');
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            themeBtn.innerHTML = isDark ? '<i class="fa-solid fa-sun text-yellow-400"></i>' : '<i class="fa-solid fa-moon text-slate-600"></i>';
+        });
+
+        window.onload = function() {
+            initMap();
+        };
+    </script>
+</body>
+</html>
