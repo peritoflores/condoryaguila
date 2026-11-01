@@ -351,14 +351,6 @@
         </div>
       </div>
 
-      <!-- CITA INFERIOR 
-      <div class="drag-box" id="box-text-quote" style="bottom: 2%; left: 50%; transform: translateX(-50%); width: 85%;">
-        <div class="text-quote editable-text" contenteditable="true" data-i18n="final_quote">
-          "Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará"
-        </div>
-      </div>
--->
-
     </div>
   </div>
 
@@ -401,24 +393,31 @@
       }
     }
 
-    // Cambiar idioma y aplicar traducciones desde ./translations/{code}.json
+    // Cambiar idioma y aplicar traducciones de forma robusta
     async function changeLanguage(lang) {
       if (!translations[lang]) {
         try {
           const res = await fetch(`./translations/${lang}.json`);
-          if (!res.ok) return;
+          if (!res.ok) {
+            console.warn(`No se encontró el archivo de traducción: ./translations/${lang}.json`);
+            return;
+          }
           translations[lang] = await res.json();
         } catch (e) {
-          console.warn(`Sin archivo de traducción para: ${lang}`);
+          console.warn(`Error al cargar el JSON para: ${lang}`, e);
           return;
         }
       }
 
       const dict = translations[lang];
+      
+      // Recorrer todos los elementos que tengan el atributo data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (dict && dict[key]) {
+        if (dict && dict[key] !== undefined) {
           el.innerHTML = dict[key];
+        } else {
+          console.warn(`Clave de traducción faltante para "${key}" en el idioma ${lang}`);
         }
       });
     }

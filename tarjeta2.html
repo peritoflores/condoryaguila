@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cóndor & Águila - Editor de Tarjeta Multilingüe</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Librerías para exportar a PNG y PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    :root {
+      --gold-primary: #f5d061;
+      --gold-glow: rgba(245, 208, 97, 0.6);
+      --bg-dark: #0f1117;
+      --text-light: #ffffff;
+      --accent-red: #ff4d4d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-dark);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Toolbar de controles superiores */
+    .toolbar {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    /* Estilos del Select de Idiomas */
+    .lang-select-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 208, 97, 0.4);
+    }
+
+    .lang-select-container label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-primary);
+    }
+
+    .lang-select {
+      background: #1e293b;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lang-select option:disabled {
+      color: #64748b;
+      background-color: #0f172a;
+      font-style: italic;
+      filter: blur(1px);
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-green {
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #cbd5e1;
+    }
+
+    /* Contenedor Principal de la Tarjeta */
+    .card-container-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .card-canvas {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .drag-box {
+      position: absolute;
+      z-index: 10;
+      cursor: move;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: border 0.2s, background 0.2s;
+      border: 1px solid transparent;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .show-guides .drag-box {
+      border: 1px dashed rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .drag-box:hover {
+      border: 1px dashed var(--gold-primary);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .editable-text {
+      outline: none;
+      user-select: text;
+    }
+
+    /* Estilos tipográficos */
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: max(18px, 2.8vw);
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(245, 208, 97, 0.8), 2px 2px 8px #000000;
+      background: linear-gradient(180deg, #ffffff 0%, #f5d061 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: max(12px, 1.4vw);
+      color: #f5d061;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 6px #000000;
+      margin-top: 2px;
+    }
+
+    .label-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: max(10px, 1.1vw);
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      background: rgba(0, 0, 0, 0.45);
+      padding: 4px 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      white-space: nowrap;
+    }
+
+    .sub-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: max(9px, 0.95vw);
+      color: #e2e8f0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    .text-bottom-main {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: max(10px, 1.15vw);
+      line-height: 1.4;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 0 2px 5px #000;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 208, 97, 0.3);
+      max-width: 90%;
+    }
+
+    .text-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: max(9.5px, 1.05vw);
+      line-height: 1.35;
+      color: #fce7f3;
+      text-align: center;
+      text-shadow: 0 2px 5px #000;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      padding: 8px 14px;
+      border-radius: 6px;
+      border-left: 3px solid var(--gold-primary);
+      max-width: 85%;
+    }
+
+    .inverted-cross {
+      display: inline-block;
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE HERRAMIENTAS Y SELECTOR DE IDIOMAS -->
+  <div class="toolbar">
+    <div class="lang-select-container">
+      <label for="select-lang">🌐 Idioma:</label>
+      <select id="select-lang" class="lang-select" onchange="changeLanguage(this.value)">
+        <!-- Opciones generadas dinámicamente desde idiomas_data.json -->
+      </select>
+    </div>
+
+    <button class="btn btn-green" onclick="downloadPNG()">🖼️ PNG</button>
+    <button class="btn btn-purple" onclick="downloadPDF()">📄 PDF</button>
+    <button class="btn btn-outline" onclick="toggleGuides()">📐 Guías</button>
+    <button class="btn btn-outline" onclick="resetPositions()">🔄 Reiniciar</button>
+  </div>
+
+  <!-- TARJETA CON ETIQUETAS DE TRADUCCIÓN -->
+  <div class="card-container-wrapper">
+    <div class="card-canvas show-guides" id="cardCanvas">
+      
+      <img src="./images/tapacondoryaguila.png" 
+           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1920&auto=format&fit=crop';" 
+           alt="Tapa Cóndor y Águila" 
+           class="bg-image">
+
+      <!-- TÍTULO PRINCIPAL -->
+      <div class="drag-box" id="box-header" style="top: 3%; left: 50%; transform: translateX(-50%);">
+        <div class="main-title editable-text" contenteditable="true" data-i18n="main_title">Cóndor & Águila</div>
+        <div class="subtitle editable-text" contenteditable="true" data-i18n="main_sub">El Despertar ✝</div>
+      </div>
+
+      <!-- SECCIÓN CÓNDOR -->
+      <div class="drag-box" id="box-condor-top" style="top: 47%; left: 23%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" data-i18n="condor_title">Intuición y Espíritu</div>
+      </div>
+	  
+	   <div class="drag-box" id="box-universe-light" style="top: 25%; left: 22%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" data-i18n="universe_light_title">Pleroma de Luz</div>
+      </div>
+
+      <div class="drag-box" id="box-condor-bottom" style="top: 38%; left: 7%; transform: translateX(-50%);">
+        <div class="sub-label editable-text" contenteditable="true" data-i18n="condor_sub">El pneuma ❤️ ✝</div>
+      </div>
+
+      <!-- SAN MARTÍN / PATRIA GRANDE -->
+      <div class="drag-box" id="box-sanmartin" style="top: 60%; left: 12%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" style="border-color: #38bdf8;" data-i18n="sanmartin_text">2026: La Patria Grande</div>
+      </div>
+
+      <!-- SECCIÓN ÁGUILA -->
+      <div class="drag-box" id="box-aguila-top" style="top: 50%; left: 86%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" data-i18n="eagle_title">Ciencia y Tecnología</div>
+      </div>
+  <div class="drag-box" id="box-universe-mat" style="top: 25%; left: 84%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" data-i18n="universe_mat_title">Prision Material</div>
+      </div>
+ 
+
+
+
+      <div class="drag-box" id="box-aguila-bottom" style="top: 45%; left: 73%; transform: translateX(-50%);">
+        <div class="sub-label editable-text" contenteditable="true" data-i18n="eagle_sub">La psyche 🧠  <span class="inverted-cross">✝</span></div>
+      </div>
+
+      <!-- INGSOC -->
+      <div class="drag-box" id="box-ingsoc" style="top: 60%; left: 85%; transform: translateX(-50%);">
+        <div class="label-badge editable-text" contenteditable="true" style="background: rgba(220, 38, 38, 0.6); border-color: #ef4444;" data-i18n="ingsoc_text">
+          👁️ INGSOC 2062
+        </div>
+      </div>
+
+      <!-- TEXTO INFERIOR PRINCIPAL -->
+      <div class="drag-box" id="box-text-main" style="bottom: 9%; left: 50%; transform: translateX(-50%); width: 88%;">
+        <div class="text-bottom-main editable-text" contenteditable="true" data-i18n="header_desc">
+          El vuelo conjunto del Cóndor y del Águila simboliza la unión definitiva entre la ciencia y la espiritualidad, ofreciendo una explicación al denominado arrebatamiento de la Iglesia redefiniéndolo como un despertar espiritual: la materia es una propiedad emergente de nuestra psyche por lo que albergamos el pneuma o la chispa ❤️ divina ✝
+        </div>
+      </div>
+
+      <!-- CITA INFERIOR 
+      <div class="drag-box" id="box-text-quote" style="bottom: 2%; left: 50%; transform: translateX(-50%); width: 85%;">
+        <div class="text-quote editable-text" contenteditable="true" data-i18n="final_quote">
+          "Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará"
+        </div>
+      </div>
+-->
+
+    </div>
+  </div>
+
+  <script>
+  
+  
+  const translations = {};
+
+    // Cargar selector desde idiomas_data.json
+    async function loadLanguageSelector() {
+      const select = document.getElementById('select-lang');
+      try {
+        const res = await fetch('./idiomas_data.json');
+        if (!res.ok) throw new Error("No se pudo cargar idiomas_data.json");
+        const idiomas = await res.json();
+
+        select.innerHTML = '';
+
+        for (const [code, data] of Object.entries(idiomas)) {
+          const option = document.createElement('option');
+          option.value = code;
+
+          if (data.translated === true) {
+            option.textContent = `${data.nombre} (${code.toUpperCase()})`;
+          } else {
+            option.textContent = `${data.nombre} (${code.toUpperCase()}) - Próximamente`;
+            option.disabled = true;
+            option.style.opacity = '0.5';
+            option.style.filter = 'blur(1px)';
+          }
+
+          select.appendChild(option);
+        }
+
+        // Seleccionar español por defecto o primer traducido
+        if (idiomas['es'] && idiomas['es'].translated) {
+          select.value = 'es';
+          changeLanguage('es');
+        }
+      } catch (err) {
+        console.error("Error al cargar idiomas:", err);
+      }
+    }
+
+    // Cambiar idioma y aplicar traducciones de forma robusta
+    async function changeLanguage(lang) {
+      if (!translations[lang]) {
+        try {
+          const res = await fetch(`./translations/${lang}.json`);
+          if (!res.ok) {
+            console.warn(`No se encontró el archivo de traducción: ./translations/${lang}.json`);
+            return;
+          }
+          translations[lang] = await res.json();
+        } catch (e) {
+          console.warn(`Error al cargar el JSON para: ${lang}`, e);
+          return;
+        }
+      }
+
+      const dict = translations[lang];
+      
+      // Recorrer todos los elementos que tengan el atributo data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict && dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        } else {
+          console.warn(`Clave de traducción faltante para "${key}" en el idioma ${lang}`);
+        }
+      });
+    }
+  
+  
+    
+    
+
+    // Drag & Drop
+    let activeElement = null;
+    let initialX, initialY;
+    const dragBoxes = document.querySelectorAll('.drag-box');
+    const cardCanvas = document.getElementById('cardCanvas');
+
+    dragBoxes.forEach(box => {
+      box.addEventListener('mousedown', dragStart);
+      box.addEventListener('touchstart', dragStart, { passive: false });
+    });
+
+    document.addEventListener('mouseup', () => activeElement = null);
+    document.addEventListener('touchend', () => activeElement = null);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
+
+    function dragStart(e) {
+      if (e.target.isContentEditable) return;
+      activeElement = this;
+      const rect = activeElement.getBoundingClientRect();
+      const clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
+      initialX = clientX - rect.left;
+      initialY = clientY - rect.top;
+    }
+
+    function drag(e) {
+      if (activeElement) {
+        e.preventDefault();
+        const canvasRect = cardCanvas.getBoundingClientRect();
+        const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+        const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
+
+        let leftPercent = ((clientX - canvasRect.left - initialX + (activeElement.offsetWidth / 2)) / canvasRect.width) * 100;
+        let topPercent = ((clientY - canvasRect.top - initialY) / canvasRect.height) * 100;
+
+        activeElement.style.left = `${leftPercent}%`;
+        activeElement.style.top = `${topPercent}%`;
+        activeElement.style.bottom = 'auto';
+      }
+    }
+
+    function toggleGuides() { cardCanvas.classList.toggle('show-guides'); }
+    function resetPositions() { location.reload(); }
+
+    function downloadPNG() {
+      cardCanvas.classList.remove('show-guides');
+      html2canvas(cardCanvas, { scale: 2, useCORS: true }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Tarjeta_Condor_y_Aguila.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        cardCanvas.classList.add('show-guides');
+      });
+    }
+
+    function downloadPDF() {
+      cardCanvas.classList.remove('show-guides');
+      html2canvas(cardCanvas, { scale: 2, useCORS: true }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [canvas.width, canvas.height] });
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save('Tarjeta_Condor_y_Aguila.pdf');
+        cardCanvas.classList.add('show-guides');
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadLanguageSelector);
+  </script>
+</body>
+</html>
