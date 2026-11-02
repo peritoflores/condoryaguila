@@ -160,6 +160,7 @@
     .quote-box {
       background-color: rgba(225, 205, 145, 0.25);
       font-style: italic;
+      margin-bottom: 12px;
     }
 
     .final-quote {
@@ -209,7 +210,7 @@
   <!-- BARRA SUPERIOR: IDIOMAS Y BOTÓN DE COMPARTIR -->
   <div class="lang-header">
     <div id="lang-switcher" class="lang-switcher">
-      <!-- Los botones se cargan dinámicamente según translated: true de idiomas_data.json -->
+      <!-- Los botones se cargan dinámicamente -->
     </div>
     <button id="btn-share" class="btn-share">
       <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -254,9 +255,6 @@
       </div>
     </div>
 
-	
-
-
     <div class="grid-subcolumns">
       <div class="box">
         <h3 data-i18n="universe_light_title"></h3>
@@ -276,14 +274,12 @@
       </div>
     </div>
 
-
-	<div class="box quote-box">
-      <p data-i18n="sagan_quote"></p> -- Carl Sagan
-      <p style="text-align: right; font-weight: bold; margin-top: 5px;"></p>
+    <!-- CITA DE SAGAN (ARRIBA DEL VIDEO) -->
+    <div class="box quote-box" style="margin-top: 12px;">
+      <p data-i18n="sagan_quote"></p> — Carl Sagan
     </div> 
-   
-   
-	
+
+    <!-- SECCIÓN DEL VIDEO -->
     <div class="box" style="margin-bottom: 12px; text-align: center;">
       <h2 style="margin-bottom: 10px;" data-i18n="video_title"></h2>
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--gold);">
@@ -298,13 +294,14 @@
       </div>
     </div>
 
-
-   <div class="box final-quote">
-      <p data-i18n="final_quote"></p>
+    <!-- CITA FINAL (AL PIE DE TODO) -->
+    <div class="box final-quote" style="text-align: center; margin-top: 20px; padding: 25px;">
+      <p data-i18n="final_quote" style="font-style: italic;">
+        "Romper las cadenas de la ilusión es el primer paso para recordar de dónde venimos."
+      </p> 
     </div>
 
-
-  </div>
+  </div> <!-- Cierre correcto de .page-frame -->
 
   <!-- CONFIGURACIÓN EXTERNA DEL VIDEO -->
   <script src="config.js"></script>
@@ -319,42 +316,38 @@
 
   <!-- LÓGICA DE WEB SHARE API Y CARGA DINÁMICA DE IDIOMAS -->
   <script>
-    // Configuración del botón de compartir nativo
     document.getElementById('btn-share').addEventListener('click', async () => {
-  const dictionary = translations[currentLang] || {};
-  
-  // Textos traducidos o por defecto
-  const title = dictionary['share_title'] || 'Cóndor & Águila — El Despertar';
-  const customText = dictionary['share_text'] || 'Te comparto este enlace sobre la dualidad de la conciencia, la materia y la gravedad cuántica:\n';
-  const alertMsg = dictionary['share_copied'] || '¡Enlace copiado al portapapeles!';
+      const dictionary = translations[currentLang] || {};
+      
+      const title = dictionary['share_title'] || 'Cóndor & Águila — El Despertar';
+      const customText = dictionary['share_text'] || 'Te comparto este enlace sobre la dualidad de la conciencia, la materia y la gravedad cuántica:\n';
+      const alertMsg = dictionary['share_copied'] || '¡Enlace copiado al portapapeles!';
 
-  // Unificamos todo en el texto para que las apps de correo o chat no se coman partes
-  const fullMessage = `${title}\n\n${customText}\n${window.location.href}`;
+      const fullMessage = `${title}\n\n${customText}\n${window.location.href}`;
 
-  const shareData = {
-    title: title,
-    text: fullMessage,
-    url: window.location.href
-  };
+      const shareData = {
+        title: title,
+        text: fullMessage,
+        url: window.location.href
+      };
 
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData);
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error('Error al compartir:', err);
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.error('Error al compartir:', err);
+          }
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert(alertMsg);
+        } catch (err) {
+          console.error('No se pudo copiar el enlace', err);
+        }
       }
-    }
-  } else {
-    // Fallback al portapapeles si el navegador no soporta Web Share
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      alert(alertMsg);
-    } catch (err) {
-      console.error('No se pudo copiar el enlace', err);
-    }
-  }
-});
+    });
 
     const translations = {};
     let currentLang = "es";
