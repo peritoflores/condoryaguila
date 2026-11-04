@@ -214,19 +214,19 @@
     </div>
     <button id="btn-share" class="btn-share">
       <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="18" cy="5" r="3"></circle>
-  <circle cx="6" cy="12" r="3"></circle>
-  <circle cx="18" cy="19" r="3"></circle>
-  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-</svg></span> 
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg></span> 
     </button>
   </div>
 
   <!-- CONTENIDO DEL DOCUMENTO -->
   <div class="page-frame">
 
-    <!-- CABECERA SUPERIOR -->
+    <!-- 1. CABECERA SUPERIOR: CÓNDOR, TÍTULO PRINCIPAL Y ÁGUILA -->
     <div class="grid-header">
       <div class="box" style="text-align: center;">
         <h3 data-i18n="condor_title"></h3>
@@ -248,6 +248,7 @@
       </div>
     </div>
 
+    <!-- 2. INTRODUCCIÓN CONCEPTUAL -->
     <div>
       <div class="box" style="margin-bottom: 10px;">
         <h2 style="text-align: center;" data-i18n="left_title"></h2>
@@ -255,6 +256,7 @@
       </div>
     </div>
 
+    <!-- 3. TRES COLUMNAS: LUZ | DEMIURGO | MATERIA -->
     <div class="grid-subcolumns">
       <div class="box">
         <h3 data-i18n="universe_light_title"></h3>
@@ -274,14 +276,20 @@
       </div>
     </div>
 
-    <!-- CITA DE SAGAN (ARRIBA DEL VIDEO) -->
-    <div class="box quote-box" style="margin-top: 12px;">
-      <p data-i18n="sagan_quote"></p> — Carl Sagan
-    </div> 
 
-    <!-- SECCIÓN DEL VIDEO -->
-    <div class="box" style="margin-bottom: 12px; text-align: center;">
-      <h2 style="margin-bottom: 10px;" data-i18n="video_title"></h2>
+ <!-- 7. CITA FINAL (CIERRE DE LA PÁGINA) -->
+   <div class="box final-quote" style="margin-top: 15px; padding: 20px; text-align: center;">
+  <p data-i18n="final_quote" style="font-style: italic; text-align: center;"></p>
+</div>
+
+     <!-- 5. TEMARIO / CAPÍTULOS DE LA OBRA -->
+    <div class="box title-box" style="margin-top: 20px;">
+      <h2 data-i18n="p2_title"></h2>
+      <p class="subtitle" style="text-align: center;" data-i18n="p2_sub"></p>
+    </div>
+
+   <!-- 4. REPRODUCTOR DE VIDEO (INMEDIATAMENTE TRAS LA INTRODUCCIÓN) -->
+    <div class="box" style="margin-top: 20px; text-align: center;">
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 900px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--gold);">
         <iframe
           id="documentary-video"
@@ -293,15 +301,57 @@
         </iframe>
       </div>
     </div>
-
-    <!-- CITA FINAL (AL PIE DE TODO) -->
-    <div class="box final-quote" style="text-align: center; margin-top: 20px; padding: 25px;">
-      <p data-i18n="final_quote" style="font-style: italic;">
-        "Romper las cadenas de la ilusión es el primer paso para recordar de dónde venimos."
-      </p> 
+     <!-- 5. TEMARIO / CAPÍTULOS DE LA OBRA -->
+    <div class="box title-box" style="margin-top: 20px;">
+      <h2 data-i18n="p2_temario"></h2>
     </div>
 
-  </div> <!-- Cierre correcto de .page-frame -->
+
+    <div class="grid-columns" style="margin-top: 12px;">
+      <!-- Columna Izquierda: Capítulos 1 a 4 -->
+      <div class="box">
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap1_title"></h3>
+          <p data-i18n="cap1_desc"></p>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap2_title"></h3>
+          <p data-i18n="cap2_desc"></p>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap3_title"></h3>
+          <p data-i18n="cap3_desc"></p>
+        </div>
+        <div>
+          <h3 data-i18n="cap4_title"></h3>
+          <p data-i18n="cap4_desc"></p>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Capítulos 5 a 7 y Llamado Gnóstico -->
+      <div class="box">
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap5_title"></h3>
+          <p data-i18n="cap5_desc"></p>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap6_title"></h3>
+          <p data-i18n="cap6_desc"></p>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <h3 data-i18n="cap7_title"></h3>
+          <p data-i18n="cap7_desc"></p>
+        </div>
+ <div class="box quote-box" style="margin-top: 8px; text-align: center;">
+  <p data-i18n="sagan_quote" style="font-size: 0.72rem; line-height: 1.25;"></p>
+  <div style="text-align: right; font-weight: bold; font-size: 0.75rem; color: var(--golddark); margin-top: 4px;">— Carl Sagan</div>
+</div>
+
+      </div>
+    </div>
+
+
+     </div> <!-- Cierre de .page-frame -->
 
   <!-- CONFIGURACIÓN EXTERNA DEL VIDEO -->
   <script src="config.js"></script>
