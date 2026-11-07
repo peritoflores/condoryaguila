@@ -32,6 +32,7 @@ def traducir_comandos_a_emojis(datos):
         r"\rangle": "⟩",
         r"\vert": "|",
         r"\mid": "|",
+        r"\\": "<br>",
         r"\&": "&",
         r"\Longrightarrow": "&rarr;",
         r"$": "",
