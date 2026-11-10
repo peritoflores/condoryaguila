@@ -60,8 +60,7 @@ def limpiar_formato_latex(datos):
         texto_modificado = re.sub(r'\\textbf\{([^}]*)\}', r'\1', texto_modificado)
         texto_modificado = re.sub(r'\\text\{([^}]*)\}', r'\1', texto_modificado)
         texto_modificado = re.sub(r'\\textit\{([^}]*)\}', r'\1', texto_modificado)
-        texto_modificado = re.sub(r'\\enquote\{([^}]*)\}', r'\1', texto_modificado)
-        texto_modificado = re.sub(r'\\enquote\{([^}]*)\}', r'\1', texto_modificado)
+        texto_modificado = re.sub(r'\\enquote\{([^}]*)\}', r'<q>\1</q>', texto_modificado)
 
         
         # 2. Eliminar cualquier barra invertida sobrante (\ o \\)
