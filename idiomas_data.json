@@ -16,7 +16,7 @@
         "hablantes": "~294 millones",
         "porcentaje_poblacion": "~3.6%",
         "descripcion": "El portugués tiene su mayor comunidad global concentrada en Sudamérica (Brasil).",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "en": {
@@ -26,7 +26,7 @@
         "hablantes": "~1.500 millones",
         "porcentaje_poblacion": "~18.3%",
         "descripcion": "El inglés cuenta con un arraigo masivo en Norteamérica (EE. UU., Canadá) y estatus global.",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "fr": {
@@ -36,7 +36,7 @@
         "hablantes": "~340 millones",
         "porcentaje_poblacion": "~4.1%",
         "descripcion": "El francés está presente en el continente americano a través de Canadá (Quebec) y Haití (además de Europa y África).",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "he": {
