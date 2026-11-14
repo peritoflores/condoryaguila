@@ -39,16 +39,6 @@
         "translated": true,
         "srt": false
     },
-    "he": {
-        "archivo": "he.json",
-        "nombre": "עִבְרִית",
-        "continente": "Asia",
-        "hablantes": "9 millones",
-        "porcentaje_poblacion": "0.1%",
-        "descripcion": "El hebreo es el idioma hablado en Tierra Santa.",
-        "translated": false,
-        "srt": false
-    },
     "zh": {
         "archivo": "zh.json",
         "nombre": "中文 (普通话)",
@@ -56,6 +46,36 @@
         "hablantes": "~1.100 millones",
         "porcentaje_poblacion": "~13.4%",
         "descripcion": "El chino mandarín es el gigante demográfico de Asia Oriental.",
+        "translated": false,
+        "srt": false
+    },
+   "ar": {
+        "archivo": "ar.json",
+        "nombre": "العربية",
+        "continente": "Asia / África",
+        "hablantes": "~320 millones",
+        "porcentaje_poblacion": "~3.9%",
+        "descripcion": "El árabe es el idioma fundamental de Oriente Medio y el norte de África.",
+        "translated": false,
+        "srt": false
+    },
+    "ru": {
+        "archivo": "ru.json",
+        "nombre": "Русский",
+        "continente": "Europa",
+        "hablantes": "~255 millones",
+        "porcentaje_poblacion": "~3.1%",
+        "descripcion": "El ruso es hablado en Europa Oriental y gran parte de Eurasia.",
+        "translated": false,
+        "srt": false
+    },
+    "hi": {
+        "archivo": "hi.json",
+        "nombre": "हिन्दी",
+        "continente": "Asia",
+        "hablantes": "~610 millones",
+        "porcentaje_poblacion": "~7.4%",
+        "descripcion": "El hindi es una de las lenguas principales del sur de Asia (India).",
         "translated": false,
         "srt": false
     },
@@ -79,26 +99,6 @@
         "translated": false,
         "srt": false
     },
-    "hi": {
-        "archivo": "hi.json",
-        "nombre": "हिन्दी",
-        "continente": "Asia",
-        "hablantes": "~610 millones",
-        "porcentaje_poblacion": "~7.4%",
-        "descripcion": "El hindi es una de las lenguas principales del sur de Asia (India).",
-        "translated": false,
-        "srt": false
-    },
-    "ar": {
-        "archivo": "ar.json",
-        "nombre": "العربية",
-        "continente": "Asia / África",
-        "hablantes": "~320 millones",
-        "porcentaje_poblacion": "~3.9%",
-        "descripcion": "El árabe es el idioma fundamental de Oriente Medio y el norte de África.",
-        "translated": false,
-        "srt": false
-    },
     "bn": {
         "archivo": "bn.json",
         "nombre": "বাংলা",
@@ -106,16 +106,6 @@
         "hablantes": "~275 millones",
         "porcentaje_poblacion": "~3.4%",
         "descripcion": "El bengalí es hablado en Bangladés y el este de la India.",
-        "translated": false,
-        "srt": false
-    },
-    "ru": {
-        "archivo": "ru.json",
-        "nombre": "Русский",
-        "continente": "Europa",
-        "hablantes": "~255 millones",
-        "porcentaje_poblacion": "~3.1%",
-        "descripcion": "El ruso es hablado en Europa Oriental y gran parte de Eurasia.",
         "translated": false,
         "srt": false
     },
@@ -566,6 +556,16 @@
         "hablantes": "~5 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El noruego es un idioma germánico escandinavo oficial en Noruega, conocido por su alta inteligibilidad mutua con el sueco y el danés.",
+        "translated": false,
+        "srt": false
+    },
+   "he": {
+        "archivo": "he.json",
+        "nombre": "עִבְרִית",
+        "continente": "Asia",
+        "hablantes": "9 millones",
+        "porcentaje_poblacion": "0.1%",
+        "descripcion": "El hebreo es el idioma hablado en Tierra Santa.",
         "translated": false,
         "srt": false
     }
