@@ -49,7 +49,7 @@
         "translated": false,
         "srt": false
     },
-   "ar": {
+    "ar": {
         "archivo": "ar.json",
         "nombre": "العربية",
         "continente": "Asia / África",
@@ -559,7 +559,7 @@
         "translated": false,
         "srt": false
     },
-   "he": {
+    "he": {
         "archivo": "he.json",
         "nombre": "עִבְרִית",
         "continente": "Asia",
