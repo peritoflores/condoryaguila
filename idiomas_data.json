@@ -106,7 +106,7 @@
         "hablantes": "~275 millones",
         "porcentaje_poblacion": "~3.4%",
         "descripcion": "El bengalí es hablado en Bangladés y el este de la India.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "de": {
@@ -116,7 +116,7 @@
         "hablantes": "~130 millones",
         "porcentaje_poblacion": "~2.2%",
         "descripcion": "El alemán se habla principalmente en Europa Central (Alemania, Austria, Suiza).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "vi": {
@@ -126,7 +126,7 @@
         "hablantes": "~100 millones",
         "porcentaje_poblacion": "~1.2%",
         "descripcion": "El vietnamita es el idioma principal del Sudeste Asiático (Vietnam).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "tr": {
@@ -136,7 +136,7 @@
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El turco es un idioma túrquico que conecta Europa Oriental y Asia Occidental.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "it": {
@@ -146,7 +146,7 @@
         "hablantes": "~75 millones",
         "porcentaje_poblacion": "~0.9%",
         "descripcion": "El italiano es originario y hablado en el sur de Europa.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "id": {
@@ -156,7 +156,7 @@
         "hablantes": "~270-300 millones",
         "porcentaje_poblacion": "~3.5%",
         "descripcion": "El indonesio es el idioma oficial de Indonesia, perteneciente a la familia austronésica, que sirve como gran puente de comunicación en los archipiélagos del Sudeste Asiático y la macro-región insular del Pacífico.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "jv": {
@@ -166,7 +166,7 @@
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El javanés es el idioma más hablado de Indonesia, concentrado en la isla de Java.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "th": {
@@ -176,7 +176,7 @@
         "hablantes": "~70 millones",
         "porcentaje_poblacion": "~0.9%",
         "descripcion": "El tailandés es el idioma oficial y lengua nacional de Tailandia.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "tl": {
@@ -186,7 +186,7 @@
         "hablantes": "~45 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El tagalo o filipino es el idioma principal de Filipinas (Sudeste Asiático).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "my": {
@@ -196,7 +196,7 @@
         "hablantes": "~43 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El birmano es el idioma oficial de Myanmar (Birmania) en el Sudeste Asiático.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ur": {
@@ -206,7 +206,7 @@
         "hablantes": "~230 millones",
         "porcentaje_poblacion": "~2.8%",
         "descripcion": "El urdu es el idioma oficial de Pakistán y ampliamente hablado en el norte de la India.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "pa": {
@@ -216,7 +216,7 @@
         "hablantes": "~130-150 millones",
         "porcentaje_poblacion": "~1.7%",
         "descripcion": "El punyabí es hablado en la región del Punyab (Pakistán e India).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "mr": {
@@ -226,7 +226,7 @@
         "hablantes": "~99 millones",
         "porcentaje_poblacion": "~1.2%",
         "descripcion": "El maratí es el idioma oficial del estado de Maharastra (India), con epicentro en Bombay.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "te": {
@@ -236,7 +236,7 @@
         "hablantes": "~95 millones",
         "porcentaje_poblacion": "~1.2%",
         "descripcion": "El telugú es una importante lengua drávida del sur de la India (Andhra Pradesh y Telangana).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ta": {
@@ -246,7 +246,7 @@
         "hablantes": "~85 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El tamil es una antigua lengua del sur de la India (Tamil Nadu), Sri Lanka y Singapur.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "fa": {
@@ -256,7 +256,7 @@
         "hablantes": "~75-110 millones",
         "porcentaje_poblacion": "~1.1%",
         "descripcion": "El persa o farsi es el idioma oficial de Irán y tiene variantes (darí) en Afganistán y Tayikistán.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "gu": {
@@ -266,7 +266,7 @@
         "hablantes": "~60 millones",
         "porcentaje_poblacion": "~0.7%",
         "descripcion": "El guyaratí es el idioma originario del estado de Guyarat en la India, muy vinculado al comercio.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "kn": {
@@ -276,7 +276,7 @@
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
         "descripcion": "El kannada es una lengua drávida del estado de Karnataka en la India (epicentro en Bangalore).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ps": {
@@ -286,7 +286,7 @@
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
         "descripcion": "El pastún es el idioma oficial de Afganistán y ampliamente hablado en el noroeste de Pakistán.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ml": {
@@ -296,7 +296,7 @@
         "hablantes": "~38 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El malayalam es el idioma oficial del estado de Kerala en el sudoeste de la India.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "or": {
@@ -306,7 +306,7 @@
         "hablantes": "~38 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El odia es el idioma oficial del estado de Odisha en el este de la India.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "uz": {
@@ -316,7 +316,7 @@
         "hablantes": "~35-40 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El uzbeko es el idioma oficial de Uzbekistán y la principal lengua de Asia Central.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "sd": {
@@ -326,7 +326,7 @@
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
         "descripcion": "El sindhi es hablado principalmente en la provincia de Sind (Pakistán) y en la India.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ku": {
@@ -336,7 +336,7 @@
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
         "descripcion": "El kurdo es la lengua hablada por el pueblo kurdo en Turquía, Irak, Irán y Siria.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "az": {
@@ -346,7 +346,7 @@
         "hablantes": "~30 millones",
         "porcentaje_poblacion": "~0.4%",
         "descripcion": "El azerí es el idioma oficial de Azerbaiyán, muy extendido también en el noroeste de Irán.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "kk": {
@@ -356,7 +356,7 @@
         "hablantes": "~15 millones",
         "porcentaje_poblacion": "~0.2%",
         "descripcion": "El kazajo es la lengua túrquica oficial de Kazajistán en Asia Central.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "sw": {
@@ -366,7 +366,7 @@
         "hablantes": "~100-150 millones",
         "porcentaje_poblacion": "~1.5%",
         "descripcion": "El suajili es la lengua franca más importante de África Oriental (Tanzania, Kenia, RDC, etc.).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ha": {
@@ -376,7 +376,7 @@
         "hablantes": "~80 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El hausa es la lengua principal de África Occidental, hablada en Nigeria y Níger.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "am": {
@@ -386,7 +386,7 @@
         "hablantes": "~60 millones",
         "porcentaje_poblacion": "~0.7%",
         "descripcion": "El amhárico es la lengua de trabajo oficial de Etiopía y una de las más habladas de África oriental.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "yo": {
@@ -396,7 +396,7 @@
         "hablantes": "~50 millones",
         "porcentaje_poblacion": "~0.6%",
         "descripcion": "El yoruba es una gran lengua de África Occidental hablada en Nigeria, Benín y Togo.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "om": {
@@ -406,7 +406,7 @@
         "hablantes": "~40 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El oromo es el idioma más hablado demográficamente en Etiopía y el cuerno de África.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ig": {
@@ -416,7 +416,7 @@
         "hablantes": "~35 millones",
         "porcentaje_poblacion": "~0.4%",
         "descripcion": "El igbo es el idioma principal del sudeste de Nigeria.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "zu": {
@@ -426,7 +426,7 @@
         "hablantes": "~27 millones",
         "porcentaje_poblacion": "~0.3%",
         "descripcion": "El zulú es el idioma más hablado en Sudáfrica como lengua materna.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "pl": {
@@ -436,7 +436,7 @@
         "hablantes": "~45 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El polaco es un idioma eslavo de Europa Central (Polonia).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "uk": {
@@ -446,7 +446,7 @@
         "hablantes": "~40 millones",
         "porcentaje_poblacion": "~0.5%",
         "descripcion": "El ucraniano es el idioma oficial de Ucrania en Europa Oriental.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "nl": {
@@ -456,7 +456,7 @@
         "hablantes": "~25 millones",
         "porcentaje_poblacion": "~0.3%",
         "descripcion": "El neerlandés es hablado en Países Bajos, Bélgica (Flandes) y Surinam.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "ro": {
@@ -466,7 +466,7 @@
         "hablantes": "~24 millones",
         "porcentaje_poblacion": "~0.3%",
         "descripcion": "El rumano es una lengua romance hablada principalmente en Rumania y Moldavia.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "sh": {
@@ -476,7 +476,7 @@
         "hablantes": "~17 millones",
         "porcentaje_poblacion": "~0.2%",
         "descripcion": "El serbocroata es un bloque lingüístico eslavo del sur, hablado en Serbia, Croacia, Bosnia y Herzegovina y Montenegro.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "el": {
@@ -486,7 +486,7 @@
         "hablantes": "~13 millones",
         "porcentaje_poblacion": "~0.2%",
         "descripcion": "El griego es el idioma oficial de Grecia y Chipre, fundamental en el sudeste europeo.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "hu": {
@@ -496,7 +496,7 @@
         "hablantes": "~13 millones",
         "porcentaje_poblacion": "~0.2%",
         "descripcion": "El húngaro es una lengua urálica hablada en Hungría y comunidades de países vecinos.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "cs": {
@@ -506,7 +506,7 @@
         "hablantes": "~10 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El checo es el idioma eslavo occidental oficial en la República Checa.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "sv": {
@@ -516,7 +516,7 @@
         "hablantes": "~10 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El sueco es un idioma germánico del norte hablado en Suecia y zonas de Finlandia.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "bg": {
@@ -526,7 +526,7 @@
         "hablantes": "~8 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El búlgaro es el idioma eslavo oficial de Bulgaria en la península balcánica.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "be": {
@@ -536,7 +536,7 @@
         "hablantes": "~7 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El bielorruso es el idioma eslavo oriental oficial de Bielorrusia.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "da": {
@@ -546,7 +546,7 @@
         "hablantes": "~6 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El danés es un idioma germánico hablado principalmente en Dinamarca y parte de Groenlandia, clave en la región nórdica.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "no": {
@@ -556,7 +556,7 @@
         "hablantes": "~5 millones",
         "porcentaje_poblacion": "~0.1%",
         "descripcion": "El noruego es un idioma germánico escandinavo oficial en Noruega, conocido por su alta inteligibilidad mutua con el sueco y el danés.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "he": {
@@ -566,7 +566,7 @@
         "hablantes": "9 millones",
         "porcentaje_poblacion": "0.1%",
         "descripcion": "El hebreo es el idioma hablado en Tierra Santa.",
-        "translated": true,
+        "translated": false,
         "srt": false
     }
 }
