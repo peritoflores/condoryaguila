@@ -47,7 +47,7 @@ def seleccionar_modelo():
 
 
 def seleccionar_idiomas(idiomas_dict):
-    """Muestra la lista de idiomas en 3 columnas indicando cuáles ya están traducidos."""
+    """Muestra la lista de idiomas en 3 columnas indicando cuáles ya están traducidos y su número."""
     print("\n=================================================================")
     print("🌍 IDIOMAS DISPONIBLES (Verde = Traducido, Amarillo = Pendiente)")
     print("=================================================================")
@@ -55,7 +55,6 @@ def seleccionar_idiomas(idiomas_dict):
     lista_claves = list(idiomas_dict.keys())
     total = len(lista_claves)
     
-    # Organizar en 3 columnas
     columnas = 3
     filas = (total + columnas - 1) // columnas
     
@@ -72,28 +71,27 @@ def seleccionar_idiomas(idiomas_dict):
         celda = f"{idx:2d}. [{code_lang}] {nombre} {estado_str}"
         elementos_formateados.append(celda)
     
-    # Imprimir en 3 columnas (ajustando tamaño por los caracteres ANSI de color)
     for f in range(filas):
         linea = ""
         for c in range(columnas):
             indice = f + c * filas
             if indice < total:
-                # Damos un margen mayor de caracteres por celda para compensar los códigos ANSI
                 linea += f"{elementos_formateados[indice]:<42} "
         print(linea)
     
     print("-----------------------------------------------------------------")
     print("Opciones de selección:")
-    print(" • Un número (ej: 2) | Rango (ej: 1-5) | Varios (ej: 1, 4, 12)")
+    print(" • Un número (ej: 2) | Rango (ej: 8-30) | Varios (ej: 1, 4, 12)")
     print(" • Presiona ENTER o escribe 'todos' para seleccionar todos.")
     print("=================================================================")
     
     seleccion = input("Selecciona los idiomas: ").strip().lower()
     
     if not seleccion or seleccion == "todos" or seleccion == "t":
-        return lista_claves
+        # Devolvemos una lista de tuplas con (número, clave) para tenerlos numerados
+        return [(i, lista_claves[i - 1]) for i in range(1, total + 1)]
     
-    idiomas_seleccionados = set()
+    indices_seleccionados = []
     
     partes = seleccion.split(',')
     for parte in partes:
@@ -103,28 +101,38 @@ def seleccionar_idiomas(idiomas_dict):
                 inicio, fin = map(int, parte.split('-'))
                 for i in range(inicio, fin + 1):
                     if 1 <= i <= total:
-                        idiomas_seleccionados.add(lista_claves[i - 1])
+                        if i not in indices_seleccionados:
+                            indices_seleccionados.append(i)
             except ValueError:
                 print(f"⚠️ Rango inválido ignorado: '{parte}'")
         else:
             try:
                 i = int(parte)
                 if 1 <= i <= total:
-                    idiomas_seleccionados.add(lista_claves[i - 1])
+                    if i not in indices_seleccionados:
+                        indices_seleccionados.append(i)
             except ValueError:
                 print(f"⚠️ Selección inválida ignorada: '{parte}'")
                 
-    if not idiomas_seleccionados:
+    if not indices_seleccionados:
         print("⚠️ No se reconoció ninguna selección válida. Se procesarán TODOS los idiomas.")
-        return lista_claves
+        return [(i, lista_claves[i - 1]) for i in range(1, total + 1)]
+    
+    # Ordenamos numéricamente los índices seleccionados (ej: del 8 al 30 en orden)
+    indices_seleccionados.sort()
+    
+    # Construimos la lista manteniendo el número exacto y la clave
+    idiomas_seleccionados = [(i, lista_claves[i - 1]) for i in indices_seleccionados]
         
-    return list(idiomas_seleccionados)
+    return idiomas_seleccionados
 
 
 def traducir_json():
-    # 1. Seleccionar primero los idiomas a traducir
-    claves_a_traducir = seleccionar_idiomas(idiomas_destino)
-    print(f"\n🎯 Idiomas seleccionados ({len(claves_a_traducir)}): {', '.join(claves_a_traducir)}")
+    # 1. Seleccionar los idiomas a traducir (devuelve una lista de tuplas: (numero, code_lang))
+    pares_a_traducir = seleccionar_idiomas(idiomas_destino)
+    
+    nombres_seleccionados = [f"{num}. {code}" for num, code in pares_a_traducir]
+    print(f"\n🎯 Idiomas seleccionados ({len(pares_a_traducir)}): {', '.join(nombres_seleccionados)}")
 
     # 2. Seleccionar el modelo de IA
     modelo_elegido = seleccionar_modelo()
@@ -146,18 +154,15 @@ def traducir_json():
 
     print(f"\n🌐 Iniciando traducción y generación de archivos JSON...")
 
-    # Bandera para saber si debemos guardar cambios en idiomas_data.json
-    hubo_cambios = False
-
-    # 4. Iterar únicamente sobre los idiomas seleccionados
-    for code_lang in claves_a_traducir:
+    # 4. Iterar sobre los pares numerados seleccionados
+    for numero_id, code_lang in pares_a_traducir:
         info = idiomas_destino[code_lang]
         
         filename = f"{code_lang}.json"
         nombre_idioma = info.get("nombre", code_lang)
         ruta_salida = os.path.join(DIRECTORIO_SALIDA, filename)
 
-        print(f"\n🌐 Traduciendo al [{nombre_idioma.upper()}] -> Guardando en '{ruta_salida}'...")
+        print(f"\n🌐 [{numero_id}] Traduciendo al [{nombre_idioma.upper()}] -> Guardando en '{ruta_salida}'...")
 
         prompt = f"""
         Eres un traductor experto en localización de contenido místico/técnico.
@@ -193,23 +198,15 @@ def traducir_json():
             with open(ruta_salida, "w", encoding="utf-8") as out_f:
                 json.dump(translated_dict, out_f, ensure_ascii=False, indent=2)
 
-            # Actualizar el estado en memoria de los metadatos
+            # Actualizar inmediatamente el estado en el archivo idiomas_data.json en tiempo real
             idiomas_destino[code_lang]["translated"] = True
-            hubo_cambios = True
-
-            print(f"    ✅ ¡'{filename}' generado con éxito y metadatos actualizados!")
-
-        except Exception as e:
-            print(f"    ❌ Error al procesar {nombre_idioma}: {e}")
-
-    # 5. Si se tradujo al menos un idioma con éxito, actualizar idiomas_data.json
-    if hubo_cambios:
-        try:
             with open(RUTA_IDIOMAS_DATA, "w", encoding="utf-8") as f_data:
                 json.dump(idiomas_destino, f_data, ensure_ascii=False, indent=4)
-            print(f"\n💾 Archivo '{RUTA_IDIOMAS_DATA}' actualizado correctamente con los nuevos estados 'translated': true.")
+
+            print(f"    ✅ [{numero_id}] ¡'{filename}' generado y '{RUTA_IDIOMAS_DATA}' actualizado en tiempo real!")
+
         except Exception as e:
-            print(f"\n⚠️ No se pudo actualizar el archivo de metadatos: {e}")
+            print(f"    ❌ [{numero_id}] Error al procesar {nombre_idioma}: {e}")
 
     print("\n🎉 ¡Proceso completado con éxito!")
 
