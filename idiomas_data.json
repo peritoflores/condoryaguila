@@ -46,7 +46,7 @@
         "hablantes": "~1.100 millones",
         "porcentaje_poblacion": "~13.4%",
         "descripcion": "El chino mandarín es el gigante demográfico de Asia Oriental.",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "ar": {
@@ -56,7 +56,7 @@
         "hablantes": "~320 millones",
         "porcentaje_poblacion": "~3.9%",
         "descripcion": "El árabe es el idioma fundamental de Oriente Medio y el norte de África.",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "ru": {
@@ -66,7 +66,7 @@
         "hablantes": "~255 millones",
         "porcentaje_poblacion": "~3.1%",
         "descripcion": "El ruso es hablado en Europa Oriental y gran parte de Eurasia.",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "hi": {
@@ -76,7 +76,7 @@
         "hablantes": "~610 millones",
         "porcentaje_poblacion": "~7.4%",
         "descripcion": "El hindi es una de las lenguas principales del sur de Asia (India).",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "ja": {
@@ -86,7 +86,7 @@
         "hablantes": "~125 millones",
         "porcentaje_poblacion": "~1.5%",
         "descripcion": "El japonés es el idioma del archipiélago de Japón en Asia Oriental; clave en tecnología e innovación.",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "ko": {
@@ -96,7 +96,7 @@
         "hablantes": "~80 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El coreano es hablado en la península de Corea (Asia Oriental).",
-        "translated": false,
+        "translated": true,
         "srt": false
     },
     "bn": {
