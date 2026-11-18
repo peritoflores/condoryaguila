@@ -66,7 +66,7 @@
         "hablantes": "~255 millones",
         "porcentaje_poblacion": "~3.1%",
         "descripcion": "El ruso es hablado en Europa Oriental y gran parte de Eurasia.",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "hi": {
@@ -96,7 +96,7 @@
         "hablantes": "~80 millones",
         "porcentaje_poblacion": "~1.0%",
         "descripcion": "El coreano es hablado en la península de Corea (Asia Oriental).",
-        "translated": true,
+        "translated": false,
         "srt": false
     },
     "bn": {
