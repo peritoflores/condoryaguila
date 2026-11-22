@@ -1,0 +1,410 @@
+\documentclass[10pt]{article}
+% =========================================================
+%                PAQUETES DE CONFIGURACIÓN
+% =========================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[
+paperwidth=28cm,
+paperheight=15.75cm,
+top=0.62cm,
+bottom=0.62cm,
+left=0.65cm,
+right=0.65cm
+]{geometry}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,calc}
+\usepackage{ragged2e}
+\usepackage{csquotes}
+\usepackage{mathpazo}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+% =========================================================
+%            ENTORNO PERSONALIZADO PARA EXTRACCIÓN A JS
+% =========================================================
+\newenvironment{extraer}[1]{}{}
+
+% =========================================================
+%                    CONFIGURACIÓN GENERAL
+% =========================================================
+\pagestyle{empty}
+\setstretch{0.94}
+\hypersetup{colorlinks=false}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist{nosep,leftmargin=*}
+
+% =========================================================
+%                            COLORES
+% =========================================================
+\definecolor{deepblue}{RGB}{12,20,38}
+\definecolor{gold}{RGB}{176,140,52}
+\definecolor{golddark}{RGB}{120,90,22}
+\definecolor{goldlight}{RGB}{225,205,145}
+\definecolor{heartred}{RGB}{158,30,45}
+\definecolor{burgundy}{RGB}{85,18,30}
+\definecolor{textgray}{RGB}{35,33,30}
+\definecolor{cream}{RGB}{253,250,244}
+\definecolor{creamdark}{RGB}{244,237,222}
+\definecolor{softgold}{RGB}{238,222,180}
+\definecolor{framegold}{RGB}{162,128,42}
+
+% =========================================================
+%            SÍMBOLOS TIKZ (ULTRALIGEROS Y VECTORES)
+% =========================================================
+\newsavebox{\boxCruz}
+\newsavebox{\boxCruzInvertida}
+\newsavebox{\boxCorazonRojo}
+\newsavebox{\boxCerebro}
+\newsavebox{\boxCuantica}
+
+\sbox{\boxCruz}{%
+	\tikz[baseline=-0.35ex,scale=0.50]{
+		\fill[golddark] (-0.09,0.42) rectangle (0.09,-0.48);
+		\fill[golddark] (-0.28,0.18) rectangle (0.28,0.36);
+		\fill[gold!88] (-0.07,0.40) rectangle (0.07,-0.46);
+		\fill[gold!22] (-0.26,0.20) rectangle (0.26,0.34);
+	}%
+}
+\sbox{\boxCruzInvertida}{%
+	\tikz[baseline=-0.15ex,scale=0.50,rotate=180]{
+		\fill[golddark] (-0.09,0.42) rectangle (0.09,-0.48);
+		\fill[golddark] (-0.28,0.18) rectangle (0.28,0.36);
+		\fill[gold!65] (-0.07,0.40) rectangle (0.07,-0.46);
+		\fill[gold!65] (-0.26,0.20) rectangle (0.26,0.34);
+	}%
+}
+\sbox{\boxCorazonRojo}{%
+	\tikz[baseline=-0.25ex,scale=0.35]{
+		\fill[heartred]
+		(0,-0.55)
+		.. controls (-0.55,-0.15) and (-0.55,0.45) .. (0,0.25)
+		.. controls (0.55,0.45) and (0.55,-0.15) .. (0,-0.55);
+		\fill[heartred!65!white,opacity=0.30]
+		(-0.12,0.05) circle (0.11);
+	}%
+}
+\sbox{\boxCerebro}{%
+	\tikz[baseline=-0.2ex,scale=0.30]{
+		\fill[burgundy]
+		(0,0.55)
+		.. controls (-0.55,0.55) and (-0.7,0.1) .. (-0.55,-0.25)
+		.. controls (-0.4,-0.55) and (-0.15,-0.55) .. (0,-0.4)
+		.. controls (0.15,-0.55) and (0.4,-0.55) .. (0.55,-0.25)
+		.. controls (0.7,0.1) and (0.55,0.55) .. (0,0.55);
+		\draw[cream,line width=0.65pt]
+		(-0.35,0.15) .. controls (-0.1,0.35) and (0.1,0.0) .. (0.35,0.2);
+		\draw[cream,line width=0.5pt]
+		(-0.25,-0.15) .. controls (0.0,0.05) and (0.15,-0.25) .. (0.3,-0.05);
+	}%
+}
+\sbox{\boxCuantica}{%
+	\tikz[baseline=-0.3ex,scale=0.40]{
+		\draw[golddark, line width=0.7pt, rotate=30] (0,0) ellipse (0.6cm and 0.25cm);
+		\draw[golddark, line width=0.7pt, rotate=-30] (0,0) ellipse (0.6cm and 0.25cm);
+		\draw[golddark, line width=0.7pt] (0,0) circle (0.35cm);
+		\fill[gold!90] (0,0) circle (0.15cm);
+		\fill[cream] (0,0) circle (0.06cm);
+	}%
+}
+
+\newcommand{\cruz}{\usebox{\boxCruz}}
+\newcommand{\cruzinvertida}{\usebox{\boxCruzInvertida}}
+\newcommand{\corazonrojo}{\usebox{\boxCorazonRojo}}
+\newcommand{\cuantica}{\usebox{\boxCuantica}}
+\newcommand{\cerebro}{\usebox{\boxCerebro}}
+
+% =========================================================
+%                    MARCO DE LA PÁGINA
+% =========================================================
+\newcommand{\marcoPagina}{%
+	\begin{tikzpicture}[remember picture,overlay]
+		\fill[cream] (current page.south west) rectangle (current page.north east);
+		\draw[framegold,line width=1.5pt]
+		([xshift=0.22cm,yshift=-0.22cm]current page.north west)
+		rectangle
+		([xshift=-0.22cm,yshift=0.22cm]current page.south east);
+		\draw[goldlight!80!gold,line width=0.5pt]
+		([xshift=0.38cm,yshift=-0.38cm]current page.north west)
+		rectangle
+		([xshift=-0.38cm,yshift=0.38cm]current page.south east);
+		\draw[gold!30,line width=0.25pt]
+		([xshift=0.48cm,yshift=-0.48cm]current page.north west)
+		rectangle
+		([xshift=-0.48cm,yshift=0.48cm]current page.south east);
+		\foreach \corner/\dx/\dy in {
+			north west/0.22cm/-0.22cm,
+			north east/-0.22cm/-0.22cm,
+			south west/0.22cm/0.22cm,
+			south east/-0.22cm/0.22cm
+		}{
+			\draw[gold!70!black,line width=0.8pt] ([xshift=\dx,yshift=\dy]current page.\corner) circle (3.8pt);
+			\draw[goldlight,line width=0.35pt] ([xshift=\dx,yshift=\dy]current page.\corner) circle (5.3pt);
+			\fill[golddark] ([xshift=\dx,yshift=\dy]current page.\corner) circle (1.4pt);
+		}
+	\end{tikzpicture}%
+}
+
+% =========================================================
+%                    ESTILOS DE CAJAS
+% =========================================================
+\tcbset{
+	sideStyle/.style={
+		enhanced, colback=cream!98, colframe=gold!60!black,
+		boxrule=0.65pt, arc=3pt, valign=center,
+		left=3pt, right=3pt, top=2.5pt, bottom=2.5pt,
+		borderline={0.2pt}{0.9pt}{gold!30}
+	},
+	titleBoxStyle/.style={
+		enhanced, colback=gold!5!cream, colframe=gold!85!black,
+		boxrule=0.85pt, arc=4pt, top=3pt, bottom=3pt, left=4pt, right=4pt,
+		halign=center, borderline={0.3pt}{1.1pt}{gold!40}
+	},
+	contentStyle/.style={
+		enhanced, colback=cream!99, colframe=gold!50!black,
+		boxrule=0.65pt, arc=3.5pt, top=3pt, bottom=3pt, left=4pt, right=4pt,
+		borderline={0.2pt}{0.9pt}{gold!22}
+	},
+	centralStyle/.style={
+		enhanced, colback=cream!98, colframe=gold!60!black,
+		boxrule=0.65pt, arc=3.5pt, top=3pt, bottom=3pt, left=4pt, right=4pt,
+		borderline={0.25pt}{0.9pt}{gold!28}
+	},
+	introStyle/.style={
+		enhanced, colback=cream!96, colframe=gold!55!black,
+		boxrule=0.65pt, arc=3.5pt, top=3pt, bottom=3pt, left=4.5pt, right=4.5pt,
+		borderline={0.25pt}{0.9pt}{gold!25}
+	},
+	saganStyle/.style={
+		enhanced, colback=gold!6!cream, colframe=gold!70!black,
+		boxrule=0.7pt, arc=3pt, top=2.5pt, bottom=2.5pt, left=4.5pt, right=4.5pt,
+		borderline={0.25pt}{1.0pt}{gold!35}
+	},
+	finalQuoteStyle/.style={
+		enhanced, colback=gold!7!cream, colframe=gold!80!black,
+		boxrule=0.75pt, arc=3pt, top=2.5pt, bottom=2.5pt, left=4pt, right=4pt,
+		halign=center, borderline={0.25pt}{0.9pt}{gold!40}
+	}
+}
+
+% =========================================================
+%                            DOCUMENTO
+% =========================================================
+\begin{document}
+	\marcoPagina
+	
+	% 1. CABECERA SUPERIOR
+	\noindent
+	\begin{minipage}[c]{0.215\textwidth}
+		\begin{tcolorbox}[sideStyle, width=\textwidth]
+			\centering
+			{\small\color{deepblue}\bfseries\begin{extraer}{condor_title}Cóndor del Sur\end{extraer}}\\[0.04cm]
+			\includegraphics[width=\textwidth,height=2.20cm,keepaspectratio]{../images/TU_IMAGEN_CONDOR.jpg}\\[0.04cm]
+			{\small\color{textgray}\itshape\begin{extraer}{condor_sub}El \corazonrojo, la intuición y el espíritu\end{extraer}}
+		\end{tcolorbox}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{0.55\textwidth}
+		\begin{tcolorbox}[titleBoxStyle, width=\textwidth]
+			\centering
+			{\Large\color{deepblue}\bfseries\begin{extraer}{main_title}El vuelo del Cóndor y del Águila\end{extraer}}\\[0.03cm]
+			\tikz[baseline=-0.5ex]{\draw[golddark, line width=0.7pt] (-2.2,0) -- (2.2,0); \fill[golddark] (0,0) circle (1.5pt);}\\[0.03cm]
+			{\fontsize{8.2pt}{9.6pt}\selectfont\bfseries\color{golddark}\begin{extraer}{main_sub}La conciencia humana es energía que forma parte del Universo\end{extraer}}
+			
+			\vspace{0.16cm}
+			
+			{\fontsize{7.1pt}{8.3pt}\selectfont\color{textgray}
+				\begin{extraer}{header_desc}
+El encuentro del Cóndor y del Águila simboliza la unión definitiva entre la ciencia y la espiritualidad. La Conciencia Primigenia tiene la misión de reintroducir la gnosis en el conocimiento humano, revelando que cada hemisferio cerebral está vinculado a un plano distinto del cosmos: el plano divino, asociado a la cruz, corresponde al pneuma; mientras que el plano material, ligado a la cruz invertida, pertenece a la psyche.
+				\end{extraer}
+			}
+		\end{tcolorbox}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[c]{0.215\textwidth}
+		\begin{tcolorbox}[sideStyle, width=\textwidth]
+			\centering
+			{\small\color{deepblue}\bfseries\begin{extraer}{eagle_title}Águila del Norte\end{extraer}}\\[0.04cm]
+			\includegraphics[width=\textwidth,height=2.20cm,keepaspectratio]{../images/TU_IMAGEN_AGUILA.jpg}\\[0.04cm]
+			{\small\color{textgray}\itshape\begin{extraer}{eagle_sub}La \cerebro, Ciencia y Tecnología\end{extraer}}
+		\end{tcolorbox}
+	\end{minipage}
+	
+	\vspace{0.08cm}
+	
+	% =========================================================
+	% 2. BLOQUE INTRO: CONCIENCIA Y GRAVEDAD CUÁNTICA
+	% =========================================================
+	\noindent
+\begin{tcolorbox}[introStyle, width=\textwidth]
+	\fontsize{7.3pt}{8.6pt}\selectfont\color{textgray}%
+	\centering\bfseries\color{deepblue}%
+	\begin{extraer}{left_title}
+		El Retorno de Sophia: De la Prisión del Yaldabaoth \cerebro al Reino del UNO \corazonrojo
+	\end{extraer}\par
+	\vspace{0.06cm}
+	\justifying
+	\begin{extraer}{left_body}
+		Lo que la tradición cristiana define como el \enquote{arrebatamiento} es, en esencia, un despertar espiritual conocido como el \enquote{Retorno a la Unidad Divina}. Los evangelios gnósticos, escritos hace casi dos mil años, albergan la clave de uno de los mayores enigmas de la física moderna: la gravedad cuántica. El EGO posee masa y crea la ilusión tempo-material de la psyche \cerebro; para contrarrestarlo, el cosmos nos ofrece una Conciencia Universal, atemporal y no espacial —el UNO—, que nos permite retornar a la atemporalidad divina del pneuma \corazonrojo.
+	\end{extraer}
+\end{tcolorbox}
+	
+	\vspace{0.08cm}
+	
+	% =========================================================
+	% 3. TRES COLUMNAS: UNIVERSO DE LUZ | IMAGEN | UNIVERSO MATERIAL
+	% =========================================================
+	\noindent
+	\begin{minipage}[t]{0.25\textwidth}
+		\begin{tcolorbox}[contentStyle, width=\textwidth, equal height group=trescolumnas]
+			\centering
+			{\large\color{deepblue}\bfseries\begin{extraer}{universe_light_title}Reino del UNO \corazonrojo\end{extraer}}\\[0.04cm]
+			{\footnotesize\color{golddark}\bfseries\begin{extraer}{universe_light_sub}realidad atempo-divina \cruz\end{extraer}}\\[0.08cm]
+			\RaggedRight\fontsize{7.4pt}{8.7pt}\selectfont\color{textgray}
+			\begin{extraer}{universe_light_text}
+				Comprender que la muerte no es un final absoluto, sino una transformación, nos libera de la ignorancia. En el hemisferio derecho —nuestro \textit{pneuma}— reside el plano atemporal y divino; el plano espiritual de alta frecuencia $\vert 999\rangle$ es el origen del cosmos donde habita el Padre Invisible. Allí se encuentra la tierra de la unión y la libertad \textit{\textbf{(La Patria Grande)}}.
+			\end{extraer}
+		\end{tcolorbox}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.485\textwidth}
+		\begin{tcolorbox}[centralStyle, width=\textwidth, equal height group=trescolumnas]
+			\centering
+			\includegraphics[width=\textwidth,height=3.65cm,keepaspectratio]{../images/sophiavsdemiurgo.png}\\[0.06cm]
+			\justifying{\fontsize{7.3pt}{8.4pt}\selectfont\color{golddark}\bfseries
+				\begin{extraer}{center_text}
+				La conciencia se manifiesta a través de dos estados fundamentales: el espiritual $\vert\text{UNO}\rangle$ —representado por la Pistis Sophia y asociado al hemisferio derecho \corazonrojo—, y el físico $\vert\text{EGO}\rangle$ —representado por el Demiurgo Yaldabaoth y asociado al hemisferio izquierdo \cerebro—. Esto nos muestra que poseemos un libre albedrío de percepción, el cual puede formalizarse matemáticamente como un producto interno $\langle\text{UNO \corazonrojo}\vert\text{EGO \cerebro}\rangle$, reafirmando la máxima \enquote{El Reino de Dios está dentro de ti} (\textit{Evangelio de Tomás}, logion 3).
+				\end{extraer}}
+		\end{tcolorbox}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.25\textwidth}
+		\begin{tcolorbox}[contentStyle, width=\textwidth, equal height group=trescolumnas]
+			\centering
+			{\large\color{deepblue}\bfseries\begin{extraer}{universe_mat_title}Prisión de Yaldabaoth \cerebro\end{extraer}}\\[0.04cm]
+			{\footnotesize\color{golddark}\bfseries\begin{extraer}{universe_mat_sub}ilusión tempo-material \cruzinvertida\end{extraer}}\\[0.08cm]
+			\RaggedRight\fontsize{7.4pt}{8.7pt}\selectfont\color{textgray}
+			\begin{extraer}{universe_mat_text}
+				El cuerpo humano está compuesto de carbono-12 ($6p^+$, $6e^-$, $6n^0$). En el hemisferio izquierdo radica el plano temporal y material, el plano físico de baja frecuencia $\vert 666\rangle$; el fin del cosmos donde habita Yaldabaoth. Allí se encuentra un lugar donde: \enquote{la guerra es la paz, la libertad es la esclavitud y la ignorancia es la fuerza} (1984).
+			\end{extraer}
+		\end{tcolorbox}
+	\end{minipage}
+	
+	\vspace{0.08cm}
+	
+	% =========================================================
+	% 4. CITA FINAL PÁGINA 1
+	% =========================================================
+	\noindent
+	\begin{tcolorbox}[finalQuoteStyle, width=\textwidth]
+		{\fontsize{8.8pt}{10.5pt}\selectfont\color{textgray}\itshape
+			\begin{extraer}{final_quote}
+				Cuando el Águila del Norte y el Cóndor del Sur vuelen juntos en el mismo cielo, la Madre Tierra despertará y la humanidad entera sanará.
+			\end{extraer}
+		}
+	\end{tcolorbox}
+	
+	% =========================================================
+	% PÁGINA 2: ESTRUCTURA Y TEMARIO DEL DOCUMENTAL (CAPÍTULOS)
+	% =========================================================
+	\newpage
+	\marcoPagina
+	
+	% 1. CABECERA DE LA PÁGINA 2
+	\noindent
+	\begin{tcolorbox}[titleBoxStyle, width=\textwidth]
+		\centering
+		{\Large\color{deepblue}\bfseries\begin{extraer}{p2_title}Video Documental\end{extraer}}\\[0.03cm]
+		\tikz[baseline=-0.5ex]{\draw[golddark, line width=0.7pt] (-2.5,0) -- (2.5,0); \fill[golddark] (0,0) circle (1.5pt);}\\[0.03cm]
+		{\small\bfseries\color{golddark}\begin{extraer}{p2_sub}Cóndor y Águila: El vuelo de la ciencia y la espiritualidad\end{extraer}}\\[0.06cm]
+		{\small\textbf{Disponible en: } \url{https://www.condoryaguila.org}}\\[0.06cm]
+		\tikz{\draw[golddark!60, line width=0.45pt] (0,0) -- (\linewidth,0);}\\[0.04cm]
+		{\footnotesize\bfseries\color{deepblue}\begin{extraer}{p2_temario}Estructura y Guía de Capítulos (00:00 -- 16:30)\end{extraer}}
+	\end{tcolorbox}
+	
+	\vspace{0.08cm}
+	
+	% 2. ÍNDICE DE CAPÍTULOS (2 COLUMNAS BALANCEADAS)
+	\noindent
+	\begin{minipage}[t]{0.492\textwidth}
+		\begin{tcolorbox}[contentStyle, width=\textwidth, equal height group=pagina2]
+			\fontsize{7.2pt}{8.5pt}\selectfont\color{textgray}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap1_title}Capítulo 1: La Profecía del Cóndor y del Águila {\footnotesize\color{golddark}(00:10 -- 01:07)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap1_desc}
+				Premisa y marco de integración: la reconciliación entre la sabiduría intuitiva del Sur (el corazón, los saberes ancestrales y el espíritu) y el desarrollo tecnológico del Norte (la razón, la ciencia y la mente). El llamado al equilibrio para dar inicio al despertar evolutivo y trascender el estado de dualidad.
+			\end{extraer}
+			
+			\vspace{0.14cm}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap2_title}Capítulo 2: Gravedad Cuántica e Ilusión Temporal {\footnotesize\color{golddark}(01:13 -- 02:42)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap2_desc}
+				El choque fundamental de la física teórica: Relatividad General frente a Mecánica Cuántica. Por qué las leyes de Newton y Maxwell no distinguen entre pasado y futuro, la ruptura de la simultaneidad de Einstein y la disolución del tiempo lineal como una reconstrucción neural de la memoria.
+			\end{extraer}
+			
+			\vspace{0.14cm}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap3_title}Capítulo 3: Conciencia y Espacio-Tiempo {\footnotesize\color{golddark}(02:47 -- 05:19)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap3_desc}
+				El ensamble conceptual Faggin--Segarra: el cuerpo como vehículo operado por un campo cuántico consciente fuera del espacio-tiempo, donde residen los \textit{qualia}. La conciencia no surge del cerebro sino que lo antecede, convergiendo con la Conciencia Primera y el Diseñador Inteligente libre de tiempo y espacio.
+			\end{extraer}
+			
+			\vspace{0.14cm}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap4_title}Capítulo 4: Gnosis e Ilusión Material {\footnotesize\color{golddark}(05:27 -- 08:39)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap4_desc}
+				El hallazgo de Nag Hammadi (1945) y los códices coptos: el cosmos material concebido no como hogar, sino como encierro del alma. La enseñanza del Evangelio de Tomás (\textit{Logion} 3): Jesús no vino a fundar una religión de dogmas, sino a liberar a la chispa interior de la prisión del Demiurgo mediante el recuerdo (\textit{gnosis}).
+			\end{extraer}
+		\end{tcolorbox}
+	\end{minipage}%
+	\hfill
+	\begin{minipage}[t]{0.492\textwidth}
+		\begin{tcolorbox}[contentStyle, width=\textwidth, equal height group=pagina2]
+			\fontsize{7.2pt}{8.5pt}\selectfont\color{textgray}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap5_title}Capítulo 5: El Reino de Luz y la Prisión del Demiurgo {\footnotesize\color{golddark}(08:43 -- 10:16)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap5_desc}
+				El Demiurgo Yaldabaoth —también conocido como el gran arquitecto de la materia— es el creador del mundo sensible, un dios egocéntrico e ignorante de la verdadera divinidad. Por otro lado, Sophia yace cautiva en la densidad de la materia, aguardando la chispa del despertar.
+			\end{extraer}
+			
+			\vspace{0.12cm}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap6_title}Capítulo 6: El Dajjal y los Hemisferios Universales {\footnotesize\color{golddark}(10:23 -- 14:38)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap6_desc}
+				La escatología comparada y la distorsión perceptiva: la figura del Dajjal y el truco visual del paraíso invertido (el río y el fuego). El mecanismo del \textit{doblepensar} orwelliano (\textit{1984}) como prisión cognitiva del ego, frente al mensaje revolucionario de Jesús que desmantela el sistema de esclavitud imperial.
+			\end{extraer}
+			
+			\vspace{0.12cm}
+			
+			{\small\color{deepblue}\bfseries\begin{extraer}{cap7_title}Capítulo 7: Reflexiones sobre Nuestro Lugar en el Cosmos {\footnotesize\color{golddark}(14:40 -- 16:30)}\end{extraer}}\\[0.04cm]
+			\justifying
+			\begin{extraer}{cap7_desc}
+				Al final, la gran paradoja se reduce a esto: en la inmensidad del cosmos —con sus más de dos billones de galaxias— es ahí donde resuena con más fuerza la frase de Jesús: «El Padre y yo uno somos». ¿Habrá tenido esto un mensaje oculto sobre el vínculo profundo entre la humanidad y el cosmos?
+			\end{extraer}
+			
+			\vspace{0.10cm}
+			
+			\begin{tcolorbox}[saganStyle, width=\textwidth]
+				\justifying{\fontsize{6.7pt}{7.8pt}\selectfont\color{textgray}\itshape
+					\begin{extraer}{sagan_quote}\enquote{La idea de que Dios es un hombre blanco, más grande de lo normal, con una barba flameante, sentado en el cielo y contando la caída de cada gorrión, es ridícula. Pero si por Dios uno entiende el conjunto de leyes físicas que gobiernan el universo, entonces claramente existe tal Dios. Sin embargo, este Dios es emocionalmente insatisfactorio... no tiene mucho sentido rezarle a la ley de la gravedad.}\end{extraer}
+					\hfill{\small\upshape\color{golddark}\bfseries — Carl Sagan}
+				}
+			\end{tcolorbox}
+		\end{tcolorbox}
+	\end{minipage}
+
+\end{document}
