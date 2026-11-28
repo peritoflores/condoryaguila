@@ -49,6 +49,40 @@ def traducir_comandos_a_emojis(datos):
     return datos_procesados
 
 
+
+def limpiar_formato_latex(datos):
+    """Paso 3: Loop aparte para retirar formato y llaves conservando el texto."""
+    datos_limpios = {}
+
+    for clave, texto in datos.items():
+        texto_modificado = texto
+
+      # 0. Quitar \color{...} y \footnotesize en dos líneas separadas
+        texto_modificado = re.sub(r"\\color\{[^}]*\}\s*", "", texto_modificado)
+        texto_modificado = re.sub(r"\\footnotesize\s*", "", texto_modificado)
+
+        # 1. Retirar las etiquetas de formato conservando únicamente el texto interior
+        texto_modificado = re.sub(r"\\textbf\{([^}]*)\}", r"\1", texto_modificado)
+        texto_modificado = re.sub(r"\\text\{([^}]*)\}", r"\1", texto_modificado)
+        texto_modificado = re.sub(r"\\textit\{([^}]*)\}", r"\1", texto_modificado)
+        texto_modificado = re.sub(r"\\enquote\{([^}]*)\}", r"<q>\1</q>", texto_modificado)
+
+        # 2. Eliminar cualquier barra invertida sobrante (\ o \\)
+        texto_modificado = re.sub(r"\\+", " ", texto_modificado)
+
+        # 3. Eliminar llaves sueltas o de cierre restantes
+        texto_modificado = re.sub(r"[{}]", " ", texto_modificado)
+
+        # 4. Limpieza de espacios múltiples resultantes
+        texto_modificado = re.sub(r"\s+", " ", texto_modificado).strip()
+
+        datos_limpios[clave] = texto_modificado
+
+    return datos_limpios
+
+
+
+
 def limpiar_formato_latex(datos):
     """Paso 3: Loop aparte para retirar las barras dobles (\\\\) y el \\textbf."""
     datos_limpios = {}
@@ -56,9 +90,9 @@ def limpiar_formato_latex(datos):
     for clave, texto in datos.items():
         texto_modificado = texto
 
-       # 0. Eliminar bloques de formato de marca de tiempo tipo {\footnotesize\color{golddark}(10:23 -- 14:38)}
+       # 0. Quitar solo la apertura {\footnotesize\color{...} conservando lo de adentro
         texto_modificado = re.sub(
-            r"\{\\footnotesize\s*\\color\{[^}]*\}\s*\([^)]*\)\s*\}",
+            r"\{\\footnotesize\s*\\color\{[^}]*\}\s*",
             "",
             texto_modificado,
         )
