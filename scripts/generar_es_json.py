@@ -55,7 +55,13 @@ def limpiar_formato_latex(datos):
     
     for clave, texto in datos.items():
         texto_modificado = texto
-        
+
+       # 0. Eliminar bloques de formato de marca de tiempo tipo {\footnotesize\color{golddark}(10:23 -- 14:38)}
+        texto_modificado = re.sub(
+            r"\{\\footnotesize\s*\\color\{[^}]*\}\s*\([^)]*\)\s*\}",
+            "",
+            texto_modificado,
+        )
         # 1. Retirar las etiquetas de formato conservando únicamente el texto interior
         texto_modificado = re.sub(r'\\textbf\{([^}]*)\}', r'\1', texto_modificado)
         texto_modificado = re.sub(r'\\text\{([^}]*)\}', r'\1', texto_modificado)
